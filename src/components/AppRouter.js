@@ -1,5 +1,10 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { 
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch
+} from "react-router-dom";
 import HomePage from './HomePage.js';
 import CreatePage from './CreatePage.js';
 import NotFoundPage from './NotFoundPage.js';
@@ -18,9 +23,12 @@ const AppRouter = () => (
 
       <hr />
 
-      <Route exact path="/" component={HomePage} />
-      <Route exact path="/create" component={CreatePage} />
-      <Route component={NotFoundPage} />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/create" component={CreatePage} />
+        <Route component={NotFoundPage} />
+      </Switch>
+
     </div>
   </Router>
 );
