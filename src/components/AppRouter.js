@@ -12,7 +12,7 @@ import NotFoundPage from './NotFoundPage.js';
 const AppRouter = () => (
   <Router>
     <div>
-      <ul>
+      <ul style={{'listStyle': 'none', 'display': 'inline-flex'}}>
         <li>
           <Link to="/">Home</Link>
         </li>
