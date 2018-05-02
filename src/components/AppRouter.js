@@ -5,9 +5,9 @@ import {
   Link,
   Switch
 } from "react-router-dom";
-import HomePage from './HomePage.js';
-import CreatePage from './CreatePage.js';
-import NotFoundPage from './NotFoundPage.js';
+import HomePage from '../pages/HomePage.js';
+import CreatePage from '../pages/CreatePage.js';
+import NotFoundPage from '../pages/NotFoundPage.js';
 import Menu from './Menu.js';
 
 const AppRouter = () => (
