@@ -8,20 +8,12 @@ import {
 import HomePage from './HomePage.js';
 import CreatePage from './CreatePage.js';
 import NotFoundPage from './NotFoundPage.js';
+import Menu from './Menu.js';
 
 const AppRouter = () => (
   <Router>
     <div>
-      <ul style={{'listStyle': 'none', 'display': 'inline-flex'}}>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/create">Create Questions</Link>
-        </li>
-      </ul>
-
-      <hr />
+      <Menu />
 
       <Switch>
         <Route exact path="/" component={HomePage} />
