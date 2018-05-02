@@ -1,4 +1,5 @@
 import React from 'react'
+import Questions from '../components/Questions.js'
 
 const CreatePage = () => {
     return (
@@ -6,6 +7,9 @@ const CreatePage = () => {
             <h2>
                 Create Questions
             </h2>
+            <div className="container">
+                <Questions />
+            </div>
         </div>
     );
 }
