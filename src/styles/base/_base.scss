@@ -1,10 +1,13 @@
 body {
     font-family: Helvetica, Arial, sans-serif;
-    background: $off-blue;
-    color: $off-white;
+    color: $off-blue;
 }
 
 
 button {
     cursor: pointer;
+}
+
+nav {
+    margin: 1rem;
 }
