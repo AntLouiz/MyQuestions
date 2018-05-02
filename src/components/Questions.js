@@ -1,4 +1,5 @@
 import React from 'react'
+import QuestionInput from './questions/QuestionInput.js'
 
 
 class Questions extends React.Component {
@@ -17,7 +18,7 @@ class Questions extends React.Component {
 
                 <ul>
                     <li>
-                        1. <input type="text" /> ?
+                        <QuestionInput />
                     </li>
                 </ul>
             </div>
