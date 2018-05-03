@@ -8,7 +8,9 @@ class Questionnarie extends React.Component {
         super(props);
 
         this.state = {
-            questions: []
+            questions: [],
+            title: undefined,
+            description: undefined
         }
     }
 
