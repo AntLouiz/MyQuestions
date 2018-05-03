@@ -1,6 +1,6 @@
 import React from 'react'
 
-class QuestionInput extends React.Component {
+class QuestionWidget extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -43,4 +43,4 @@ class QuestionInput extends React.Component {
 }
 
 
-export default QuestionInput
+export default QuestionWidget

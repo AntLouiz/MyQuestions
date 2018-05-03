@@ -1,5 +1,5 @@
 import React from 'react'
-import QuestionInput from './questions/QuestionInput.js'
+import QuestionWidget from './questions/QuestionWidget.js'
 import shortid from 'shortid'
 
 
