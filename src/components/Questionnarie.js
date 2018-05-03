@@ -1,5 +1,5 @@
 import React from 'react'
-import QuestionWidget from './questions/QuestionWidget.js'
+import QuestionWidget from './questionnarie/QuestionWidget.js'
 import shortid from 'shortid'
 
 
@@ -17,6 +17,7 @@ class Questionnarie extends React.Component {
     render() {
         return (
             <div>
+                <h1>{!!this.state.title ? this.state.title : "Unknown"}</h1>
                 <ul>
                     {this.state.questions.map((question) => {
                         return (
@@ -32,4 +33,4 @@ class Questionnarie extends React.Component {
 }
 
 
-export default Questions
+export default Questionnarie
