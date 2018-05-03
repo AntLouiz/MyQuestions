@@ -1,5 +1,6 @@
 import React from 'react'
 import QuestionWidget from './questionnarie/QuestionWidget.js'
+import EditInput from './models/EditInput.js'
 import shortid from 'shortid'
 
 
@@ -17,8 +18,8 @@ class Questionnarie extends React.Component {
     render() {
         return (
             <div>
-                <h1>{!!this.state.title ? this.state.title : "Unknown"}</h1>
-                <h2>{!!this.state.description ? this.state.description : "Unknown"}</h2>
+                <h1><EditInput id={shortid.generate()} value={"Unknown"} /></h1>
+                <h2><EditInput id={shortid.generate()} value={"Unknown"} /></h2>
                 <ul>
                     {this.state.questions.map((question) => {
                         return (
