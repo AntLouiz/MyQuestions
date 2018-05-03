@@ -7,26 +7,20 @@ class EditInput extends React.Component {
 
     handleKeyPress(e) {
         if (e.key == 'Enter') {
-            let input = document.getElementById(this.props.id);
-
-            if(input.value){
-                // this.props.editOption({"id": input.id, "name": input.value});
-                console.log(input.value);
-            }
+            this.handleSave()
         }
     }
 
     handleFocusOut(e) {
+        this.handleSave()
+    }
+
+    handleSave() {
         let input = document.getElementById(this.props.id);
         
         if(input.value){
-            // this.props.editOption({"id": input.id, "name": input.value});
-            console.log(input.value);
+            this.props.saveInput(input.value);
         }
-    }
-
-    removeItself() {
-        // this.props.removeOption(this.props.data);
     }
 
     render() {
@@ -41,8 +35,8 @@ class EditInput extends React.Component {
                         onBlur={this.handleFocusOut.bind(this)}
                     />
                     <span>
-                        <button className="btn--link" onClick={this.removeItself.bind(this)}>
-                            remove
+                        <button className="btn--link" onClick={this.handleSave.bind(this)}>
+                            Save
                         </button>
                     </span>
                 </li>
