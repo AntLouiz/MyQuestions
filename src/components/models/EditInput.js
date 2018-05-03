@@ -24,9 +24,13 @@ class EditInput extends React.Component {
     }
 
     render() {
+
         return (
             <div>
-                <li className="widget-option">
+                <label to={this.props.id} style={{paddingRight: "1rem"}}> 
+                    {this.props.label} 
+                </label>
+
                     <input
                         id={this.props.id}
                         style={{border: "none"}}
@@ -34,12 +38,6 @@ class EditInput extends React.Component {
                         onKeyPress={this.handleKeyPress.bind(this)}
                         onBlur={this.handleFocusOut.bind(this)}
                     />
-                    <span>
-                        <button className="btn--link" onClick={this.handleSave.bind(this)}>
-                            Save
-                        </button>
-                    </span>
-                </li>
             </div>
         );
     }

@@ -18,13 +18,14 @@ class Questionnarie extends React.Component {
     render() {
         return (
             <div>
-                <h1>
+                <span>
                     <EditInput 
                         id={shortid.generate()} 
+                        label={"Title"}
                         value={"Unknown"}
                         saveInput={(new_title) => this.setState({title: new_title})}
                     />
-                </h1>
+                </span>
                 <ul>
                     {this.state.questions.map((question) => {
                         return (
