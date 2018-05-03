@@ -1,22 +1,21 @@
 import React from 'react'
-import shortid from 'shortid'
 
 class QuestionInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: shortid.generate()
+            id: props.id
         }
     }
 
-    handleKeyDown(e) {
+    handleKeyPress(e) {
         if(e.key === '?')
             e.preventDefault()
         else if(e.key === 'Enter'){
             let value = document.getElementById(`question-input-${this.state.id}`).value
             
             if(value)
-                props.addOption(value)
+                this.props.submitQuestion(this.state.id, value)
          }
         else
             return e
@@ -26,7 +25,7 @@ class QuestionInput extends React.Component {
     handleBlur(e) {
         let value = document.getElementById(`question-input-${this.state.id}`).value
         if(value)
-            props.addOption(value)
+            this.props.submitQuestion(this.state.id, value)
     }
 
     render() {
@@ -35,7 +34,7 @@ class QuestionInput extends React.Component {
                 <input 
                     id={`question-input-${this.state.id}`}
                     type="text" 
-                    onKeyDown={this.handleKeyDown.bind(this)}
+                    onKeyPress={this.handleKeyPress.bind(this)}
                     onBlur={this.handleBlur.bind(this)}
                 />?
             </div>

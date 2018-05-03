@@ -1,8 +1,9 @@
 import React from 'react'
 import QuestionInput from './questions/QuestionInput.js'
+import shortid from 'shortid'
 
 
-class Questions extends React.Component {
+class Questionnarie extends React.Component {
     constructor(props) {
         super(props);
 
@@ -14,12 +15,14 @@ class Questions extends React.Component {
     render() {
         return (
             <div>
-                <h2>Make a new question:</h2>
-
                 <ul>
-                    <li>
-                        <QuestionInput />
-                    </li>
+                    {this.state.questions.map((question) => {
+                        return (
+                            <li>
+                                {question}
+                            </li>
+                        )
+                    })}
                 </ul>
             </div>
         );

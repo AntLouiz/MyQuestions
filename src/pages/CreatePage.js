@@ -1,5 +1,5 @@
 import React from 'react'
-import Questions from '../components/Questions.js'
+import Questionnarie from '../components/Questionnarie.js'
 
 const CreatePage = () => {
     return (
@@ -8,7 +8,7 @@ const CreatePage = () => {
                 Create Questions
             </h2>
             <div className="container">
-                <Questions />
+                <Questionnarie />
             </div>
         </div>
     );
