@@ -18,6 +18,7 @@ class Questionnarie extends React.Component {
         return (
             <div>
                 <h1>{!!this.state.title ? this.state.title : "Unknown"}</h1>
+                <h2>{!!this.state.description ? this.state.description : "Unknown"}</h2>
                 <ul>
                     {this.state.questions.map((question) => {
                         return (
