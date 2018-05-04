@@ -25,6 +25,12 @@ class Questionnarie extends React.Component {
                         value={"Unknown"}
                         saveInput={(new_title) => this.setState({title: new_title})}
                     />
+                    <EditInput 
+                        id={shortid.generate()} 
+                        label={"Description"}
+                        value={"Unknown"}
+                        saveInput={(desc) => this.setState({description: desc})}
+                    />
                 </div>
                 <ul>
                     {this.state.questions.map((question) => {
