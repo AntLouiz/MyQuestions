@@ -9,7 +9,16 @@ class Questionnarie extends React.Component {
         super(props);
 
         this.state = {
-            questions: [],
+            questions: [
+                {
+                    description: "One question",
+                    aswers: ["Sim", "Nao"]
+                },
+                {
+                    description: "Second question",
+                    aswers: ["Sim", "Nao"]
+                }
+            ],
             title: undefined,
             description: undefined
         }
@@ -32,11 +41,28 @@ class Questionnarie extends React.Component {
                         saveInput={(desc) => this.setState({description: desc})}
                     />
                 </div>
-                <ul>
+                <ul style={{listStyle: "katakana"}}>
                     {this.state.questions.map((question) => {
+                        let question_id = shortid.generate()
                         return (
-                            <li>
-                                {question}
+                            <li key={question_id}>
+                                {question.description}
+                                <ul>
+                                    {question.aswers.map((aswer) => {
+                                        let aswer_id = shortid.generate();
+                                        return (
+                                            <li key={aswer_id}>
+                                                <input
+                                                    id={aswer_id}
+                                                    type="radio"
+                                                    name={`aswer${question_id}`}
+                                                    value={aswer}
+                                                />
+                                                <label htmlFor={aswer_id}> {aswer}</label>
+                                            </li>
+                                        );
+                                    })}
+                                </ul>
                             </li>
                         )
                     })}
