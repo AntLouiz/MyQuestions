@@ -18,7 +18,7 @@ class Questionnarie extends React.Component {
     render() {
         return (
             <div>
-                <div style={{fontSize: "2.5rem", textAlign: "center"}}>
+                <div style={{fontSize: "2.5rem", marginLeft: "5rem"}}>
                     <EditInput 
                         id={shortid.generate()} 
                         label={"Title"}
