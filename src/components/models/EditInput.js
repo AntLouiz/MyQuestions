@@ -28,7 +28,7 @@ class EditInput extends React.Component {
         return (
             <div>
                 <label to={this.props.id} style={{paddingRight: "1rem"}}> 
-                    {this.props.label} 
+                    {this.props.label}:
                 </label>
 
                     <input
