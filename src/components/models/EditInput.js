@@ -24,7 +24,7 @@ class EditInput extends React.Component {
     }
 
     render() {
-        let label = () => {
+        const Label = () => {
             if(this.props.label){
                 return (
                     <label to={this.props.id} style={{paddingRight: "1rem"}}> 
@@ -33,12 +33,12 @@ class EditInput extends React.Component {
                 );
             }
             else
-                return undefined;
+                return <label></label>;
         }
 
         return (
             <div>
-                    {label}
+                    <Label />
                     <input
                         id={this.props.id}
                         style={{border: "none"}}
