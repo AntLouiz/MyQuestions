@@ -44,8 +44,14 @@ class Questionnarie extends React.Component {
         }
     }
 
-    saveQuestionDescription() {
-        //
+    saveQuestionDescription(new_question) {
+        this.setState({questions: this.state.questions.filter((question)=>{
+            if (question.id === new_question.id){
+                question.description = new_question.description;
+            }
+
+            return question;
+        })});
     }
 
     render() {
@@ -73,6 +79,7 @@ class Questionnarie extends React.Component {
                                     id={question.id}
                                     description={question.description}
                                     answers={question.answers}
+                                    saveQuestionDescription={this.saveQuestionDescription.bind(this)}
                                 />
                             </li>
                         )
