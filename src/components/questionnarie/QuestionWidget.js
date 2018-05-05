@@ -4,39 +4,16 @@ class QuestionWidget extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: props.id
+            id: props.id,
+            description: props.description,
+            aswers: props.aswers
         }
-    }
-
-    handleKeyPress(e) {
-        if(e.key === '?')
-            e.preventDefault()
-        else if(e.key === 'Enter'){
-            let value = document.getElementById(`question-input-${this.state.id}`).value
-            
-            if(value)
-                this.props.submitQuestion(this.state.id, value)
-         }
-        else
-            return e
-    }
-
-
-    handleBlur(e) {
-        let value = document.getElementById(`question-input-${this.state.id}`).value
-        if(value)
-            this.props.submitQuestion(this.state.id, value)
     }
 
     render() {
         return (
             <div>
-                <input 
-                    id={`question-input-${this.state.id}`}
-                    type="text" 
-                    onKeyPress={this.handleKeyPress.bind(this)}
-                    onBlur={this.handleBlur.bind(this)}
-                />?
+                {this.state.description}
             </div>
         );
     }

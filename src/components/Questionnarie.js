@@ -46,23 +46,10 @@ class Questionnarie extends React.Component {
                         let question_id = shortid.generate()
                         return (
                             <li key={question_id}>
-                                {question.description}
-                                <ul>
-                                    {question.aswers.map((aswer) => {
-                                        let aswer_id = shortid.generate();
-                                        return (
-                                            <li key={aswer_id}>
-                                                <input
-                                                    id={aswer_id}
-                                                    type="radio"
-                                                    name={`aswer${question_id}`}
-                                                    value={aswer}
-                                                />
-                                                <label htmlFor={aswer_id}> {aswer}</label>
-                                            </li>
-                                        );
-                                    })}
-                                </ul>
+                                <QuestionWidget
+                                    description={question.description}
+                                    aswers={question.aswers}
+                                />
                             </li>
                         )
                     })}
