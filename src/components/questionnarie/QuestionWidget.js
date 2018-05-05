@@ -1,4 +1,6 @@
 import React from 'react'
+import EditInput from '../models/EditInput.js'
+import shortid from 'shortid'
 
 class QuestionWidget extends React.Component {
     constructor(props) {
@@ -19,7 +21,11 @@ class QuestionWidget extends React.Component {
         }
         return (
             <div style={style} >
-                {this.state.description}
+                <EditInput 
+                    id={shortid.generate()} 
+                    value={this.state.description}
+                    saveInput={(new_desc) => this.setState({description: new_desc})}
+                />
             </div>
         );
     }
