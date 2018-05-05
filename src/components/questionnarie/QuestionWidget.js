@@ -11,8 +11,14 @@ class QuestionWidget extends React.Component {
     }
 
     render() {
+        let style = {
+            border: "solid #46caa8",
+            width: "40rem",
+            margin: "2rem",
+            fontSize: "2rem"
+        }
         return (
-            <div>
+            <div style={style} >
                 {this.state.description}
             </div>
         );
