@@ -13,12 +13,30 @@ class Questionnarie extends React.Component {
                 {
                     id: shortid.generate(),
                     description: "One question",
-                    answers: ["Sim", "Nao"]
+                    answers: [
+                        {
+                            id: shortid.generate(),
+                            description: "Sim"
+                        },
+                        {
+                            id: shortid.generate(),
+                            description: "Nao"
+                        }
+                    ]
                 },
                 {
                     id: shortid.generate(),
                     description: "Second question",
-                    answers: ["Sim", "Nao"]
+                    answers: [
+                        {
+                            id: shortid.generate(),
+                            description: "Sim"
+                        },
+                        {
+                            id: shortid.generate(),
+                            description: "Nao"
+                        }
+                    ]
                 }
             ],
             title: undefined,

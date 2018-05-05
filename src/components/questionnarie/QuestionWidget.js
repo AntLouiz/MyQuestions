@@ -1,7 +1,6 @@
 import React from 'react'
 import EditInput from '../models/EditInput.js'
 import Answer from './questionWidget/Answer.js'
-import shortid from 'shortid'
 
 class QuestionWidget extends React.Component {
     constructor(props) {
@@ -26,11 +25,18 @@ class QuestionWidget extends React.Component {
                     <ul>
                         {this.state.answers.map((answer) => {
                             return (
-                                <li key={shortid.generate()}>
+                                <li key={answer.id}>
                                     <Answer
-                                        id={shortid.generate()}
+                                        id={answer.id}
                                         question_id={this.state.id}
                                         description={answer.description}
+                                        saveAnswer={
+                                            (new_answer) => {
+                                                this.setState(() => {
+                                                    this.state.answers.push(new_answer);
+                                                })
+                                            }
+                                        }
                                     />
                                 </li>
                             );
@@ -45,7 +51,7 @@ class QuestionWidget extends React.Component {
         return (
             <div style={style} >
                 <EditInput 
-                    id={shortid.generate()} 
+                    id={this.state.id} 
                     value={this.state.description}
                     saveInput={(new_desc) => this.setState({description: new_desc})}
                 />
