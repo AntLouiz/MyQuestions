@@ -11,10 +11,12 @@ class Questionnarie extends React.Component {
         this.state = {
             questions: [
                 {
+                    id: shortid.generate(),
                     description: "One question",
                     answers: ["Sim", "Nao"]
                 },
                 {
+                    id: shortid.generate(),
                     description: "Second question",
                     answers: ["Sim", "Nao"]
                 }
@@ -22,6 +24,10 @@ class Questionnarie extends React.Component {
             title: undefined,
             description: undefined
         }
+    }
+
+    saveQuestionDescription() {
+        //
     }
 
     render() {
@@ -43,10 +49,10 @@ class Questionnarie extends React.Component {
                 </div>
                 <ul style={{listStyle: "katakana"}}>
                     {this.state.questions.map((question) => {
-                        let question_id = shortid.generate()
                         return (
-                            <li key={question_id}>
+                            <li key={question.id}>
                                 <QuestionWidget
+                                    id={question.id}
                                     description={question.description}
                                     aswers={question.answers}
                                 />
