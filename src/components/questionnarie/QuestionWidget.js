@@ -26,7 +26,7 @@ class QuestionWidget extends React.Component {
                     <ul>
                         {this.state.answers.map((answer) => {
                             return (
-                                <li>
+                                <li key={shortid.generate()}>
                                     <Answer
                                         id={shortid.generate()}
                                         description={answer.description}
