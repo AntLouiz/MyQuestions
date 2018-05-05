@@ -54,7 +54,7 @@ class Questionnarie extends React.Component {
                                 <QuestionWidget
                                     id={question.id}
                                     description={question.description}
-                                    aswers={question.answers}
+                                    answers={question.answers}
                                 />
                             </li>
                         )
