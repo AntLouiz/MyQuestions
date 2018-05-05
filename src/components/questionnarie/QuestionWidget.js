@@ -29,6 +29,7 @@ class QuestionWidget extends React.Component {
                                 <li key={shortid.generate()}>
                                     <Answer
                                         id={shortid.generate()}
+                                        question_id={this.state.id}
                                         description={answer.description}
                                     />
                                 </li>

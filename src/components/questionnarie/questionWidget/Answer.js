@@ -7,14 +7,31 @@ class Answer extends React.Component {
         super(props);
         this.state = {
             id: props.id,
+            question_id: props.question_id,
             description: props.description,
             value: props.value
         }
     }
 
     render() {
+        let div_style = {
+            display: "flex"
+        }
+
+        let radio_input_style = {
+            marginTop: "1rem",
+            marginRight: "1rem",
+            padding: "1rem"
+        }
+
         return (
-            <div>
+            <div style={div_style}>
+                <input 
+                    type="radio" 
+                    style={radio_input_style} 
+                    value={this.state.description}
+                    name={`answer_from_question${this.state.question_id}`}
+                />
                 <EditInput 
                     id={shortid.generate()} 
                     value={this.state.description}
