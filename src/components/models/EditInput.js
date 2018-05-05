@@ -24,13 +24,21 @@ class EditInput extends React.Component {
     }
 
     render() {
+        let label = () => {
+            if(this.props.label){
+                return (
+                    <label to={this.props.id} style={{paddingRight: "1rem"}}> 
+                        {this.props.label}:
+                    </label>
+                );
+            }
+            else
+                return undefined;
+        }
 
         return (
             <div>
-                <label to={this.props.id} style={{paddingRight: "1rem"}}> 
-                    {this.props.label}:
-                </label>
-
+                    {label}
                     <input
                         id={this.props.id}
                         style={{border: "none"}}
