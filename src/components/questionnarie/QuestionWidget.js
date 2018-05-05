@@ -8,7 +8,7 @@ class QuestionWidget extends React.Component {
         this.state = {
             id: props.id,
             description: props.description,
-            aswers: props.aswers
+            answers: props.answers
         }
     }
 

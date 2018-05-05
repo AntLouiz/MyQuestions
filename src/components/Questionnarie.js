@@ -12,11 +12,11 @@ class Questionnarie extends React.Component {
             questions: [
                 {
                     description: "One question",
-                    aswers: ["Sim", "Nao"]
+                    answers: ["Sim", "Nao"]
                 },
                 {
                     description: "Second question",
-                    aswers: ["Sim", "Nao"]
+                    answers: ["Sim", "Nao"]
                 }
             ],
             title: undefined,
@@ -48,7 +48,7 @@ class Questionnarie extends React.Component {
                             <li key={question_id}>
                                 <QuestionWidget
                                     description={question.description}
-                                    aswers={question.aswers}
+                                    aswers={question.answers}
                                 />
                             </li>
                         )
