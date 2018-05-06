@@ -51,7 +51,6 @@ class QuestionWidget extends React.Component {
         return (
             <div style={style} >
                 <EditInput 
-                    id={this.state.id} 
                     value={this.state.description}
                     saveInput={this.saveQuestionDescription.bind(this)}
                 />

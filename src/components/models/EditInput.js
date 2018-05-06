@@ -1,8 +1,14 @@
 import React from 'react'
+import shortid from 'shortid'
 
 class EditInput extends React.Component {
+
     constructor(props) {
         super(props);
+        this.state = {
+            id: props.id,
+            value: props.value
+        }
     }
 
     handleKeyPress(e) {
@@ -51,5 +57,11 @@ class EditInput extends React.Component {
     }
 }
 
+
+EditInput.defaultProps = {
+    id: `edit-input-${shortid.generate()}`,
+    label: undefined,
+    value: undefined
+}
 
 export default EditInput;

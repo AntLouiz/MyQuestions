@@ -77,13 +77,11 @@ class Questionnarie extends React.Component {
             <div>
                 <div style={{fontSize: "2.5rem", marginLeft: "5rem"}}>
                     <EditInput 
-                        id={shortid.generate()} 
                         label={"Title"}
                         value={"Unknown"}
                         saveInput={(new_title) => this.setState({title: new_title})}
                     />
                     <EditInput 
-                        id={shortid.generate()} 
                         label={"Description"}
                         value={"Unknown"}
                         saveInput={(desc) => this.setState({description: desc})}
