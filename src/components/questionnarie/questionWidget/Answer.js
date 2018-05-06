@@ -39,6 +39,7 @@ class Answer extends React.Component {
                     name={`answer_from_question${this.state.question_id}`}
                 />
                 <EditInput 
+                    id={shortid.generate()} 
                     value={this.state.description}
                     saveInput={this.saveAnswer.bind(this)}
                 />

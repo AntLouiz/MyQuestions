@@ -1,12 +1,11 @@
 import React from 'react'
-import shortid from 'shortid'
 
 class EditInput extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            id: props.id,
+            id: `edit-input-${props.id}`,
             value: props.value
         }
     }
@@ -59,7 +58,6 @@ class EditInput extends React.Component {
 
 
 EditInput.defaultProps = {
-    id: `edit-input-${shortid.generate()}`,
     label: undefined,
     value: undefined
 }
