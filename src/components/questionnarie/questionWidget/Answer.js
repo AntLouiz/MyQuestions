@@ -13,6 +13,12 @@ class Answer extends React.Component {
         }
     }
 
+    saveAnswer(new_desc) {
+        this.setState({description: new_desc}, () => {
+            this.props.saveAnswer(this.state);
+        });
+    }
+
     render() {
         let div_style = {
             display: "flex"
@@ -35,7 +41,7 @@ class Answer extends React.Component {
                 <EditInput 
                     id={shortid.generate()} 
                     value={this.state.description}
-                    saveInput={(new_desc) => this.setState({description: new_desc})}
+                    saveInput={this.saveAnswer.bind(this)}
                 />
             </div>
         );

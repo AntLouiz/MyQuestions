@@ -54,6 +54,24 @@ class Questionnarie extends React.Component {
         })});
     }
 
+    saveAnswer(new_answer){
+        this.setState(() => {
+            return {questions: this.state.questions.filter((question)=>{
+                if (question.id === new_answer.question_id){
+                    question.answers.filter((answer) => {
+                        console.log(answer.description, new_answer.description)
+                        if(answer.id === new_answer.id){
+                            answer.description = new_answer.description;
+                        }
+                        return answer;
+                    });
+                }
+
+                return question;
+            })}
+        }); 
+    }
+
     render() {
         return (
             <div>
@@ -80,6 +98,7 @@ class Questionnarie extends React.Component {
                                     description={question.description}
                                     answers={question.answers}
                                     saveQuestionDescription={this.saveQuestionDescription.bind(this)}
+                                    saveAnswer={this.saveAnswer.bind(this)}
                                 />
                             </li>
                         )

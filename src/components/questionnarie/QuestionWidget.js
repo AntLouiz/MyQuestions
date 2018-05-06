@@ -17,6 +17,7 @@ class QuestionWidget extends React.Component {
         this.props.saveQuestionDescription(this.state);
     }
 
+
     render() {
         let style = {
             width: "40rem",
@@ -35,13 +36,7 @@ class QuestionWidget extends React.Component {
                                         id={answer.id}
                                         question_id={this.state.id}
                                         description={answer.description}
-                                        saveAnswer={
-                                            (new_answer) => {
-                                                this.setState(() => {
-                                                    this.state.answers.push(new_answer);
-                                                })
-                                            }
-                                        }
+                                        saveAnswer={this.props.saveAnswer}
                                     />
                                 </li>
                             );
