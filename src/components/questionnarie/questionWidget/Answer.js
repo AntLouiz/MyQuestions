@@ -13,10 +13,12 @@ class Answer extends React.Component {
         }
     }
 
-    saveAnswer(new_desc) {
-        this.setState({description: new_desc}, () => {
-            this.props.saveAnswer(this.state);
-        });
+    saveAnswer() {
+        this.props.saveAnswer(this.state);
+    }
+
+    editAnswer(new_desc) {
+        this.setState({description: new_desc});
     }
 
     render() {
@@ -41,7 +43,9 @@ class Answer extends React.Component {
                 <EditInput 
                     id={shortid.generate()} 
                     value={this.state.description}
+                    placeholder={"Insert the answer"}
                     saveInput={this.saveAnswer.bind(this)}
+                    editInput={this.editAnswer.bind(this)}
                 />
             </div>
         );

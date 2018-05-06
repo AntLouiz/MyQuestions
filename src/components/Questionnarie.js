@@ -79,14 +79,18 @@ class Questionnarie extends React.Component {
                     <EditInput 
                         id={shortid.generate()} 
                         label={"Title"}
-                        value={"Unknown"}
+                        value={this.state.title}
+                        placeholder={"Insert the title"}
                         saveInput={(new_title) => this.setState({title: new_title})}
+                        editInput={(new_title) => this.setState({title: new_title})}
                     />
                     <EditInput 
                         id={shortid.generate()} 
                         label={"Description"}
-                        value={"Unknown"}
+                        value={this.state.description}
+                        placeholder={"Insert the description"}
                         saveInput={(desc) => this.setState({description: desc})}
+                        editInput={(desc) => this.setState({description: desc})}
                     />
                 </div>
                 <ul style={{listStyle: "katakana"}}>

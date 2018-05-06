@@ -1,4 +1,5 @@
 import React from 'react'
+import AutosizeInput from 'react-input-autosize';
 
 class EditInput extends React.Component {
 
@@ -16,16 +17,12 @@ class EditInput extends React.Component {
         }
     }
 
-    handleFocusOut(e) {
-        this.handleSave()
+    handleEdit() {
+        this.props.editInput(this.state.value);
     }
 
     handleSave() {
-        let input = document.getElementById(this.props.id);
-        
-        if(input.value){
-            this.props.saveInput(input.value);
-        }
+        this.props.saveInput(this.state.value);
     }
 
     render() {
@@ -44,12 +41,14 @@ class EditInput extends React.Component {
         return (
             <div>
                     <Label />
-                    <input
-                        id={this.props.id}
-                        style={{border: "none"}}
-                        defaultValue={this.props.value} 
-                        onKeyPress={this.handleKeyPress.bind(this)}
-                        onBlur={this.handleFocusOut.bind(this)}
+                    <AutosizeInput
+                        id={this.state.id}
+                        value={this.props.value}
+                        onChange={(event) => {this.setState({value: event.target.value}, () => {
+                            this.handleEdit();
+                        })}}
+                        onBlur={this.handleSave.bind(this)}
+                        placeholder={this.props.placeholder}
                     />
             </div>
         );

@@ -17,6 +17,10 @@ class QuestionWidget extends React.Component {
         this.props.saveQuestionDescription(this.state);
     }
 
+    editQuestionDescription(new_desc) {
+        this.setState({description: new_desc});
+    }
+
 
     render() {
         let style = {
@@ -53,7 +57,9 @@ class QuestionWidget extends React.Component {
                 <EditInput 
                     id={this.state.id} 
                     value={this.state.description}
+                    placeholder={"Insert the question"}
                     saveInput={this.saveQuestionDescription.bind(this)}
+                    editInput={this.editQuestionDescription.bind(this)}
                 />
                 <div>
                     <Answers />
