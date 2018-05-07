@@ -53,7 +53,7 @@ class QuestionWidget extends React.Component {
         }
 
         return (
-            <div style={style} >
+            <div style={style} className="box">
                 <EditInput 
                     id={this.state.id} 
                     value={this.state.description}
