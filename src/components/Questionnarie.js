@@ -93,6 +93,11 @@ class Questionnarie extends React.Component {
                         editInput={(desc) => this.setState({description: desc})}
                     />
                 </div>
+                <div>
+                    <button className="button is-success is-rounded">
+                        Add question
+                    </button>
+                </div>
                 <ul style={{listStyle: "katakana"}}>
                     {this.state.questions.map((question) => {
                         return (

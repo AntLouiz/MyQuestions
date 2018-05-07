@@ -64,6 +64,11 @@ class QuestionWidget extends React.Component {
                 <div>
                     <Answers />
                 </div>
+                <div>
+                    <button className="button is-success is-rounded">
+                        Add Answer
+                    </button>
+                </div>
             </div>
         );
     }
