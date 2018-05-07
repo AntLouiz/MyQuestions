@@ -75,7 +75,6 @@ class Questionnarie extends React.Component {
             return {questions: this.state.questions.filter((question)=>{
                 if (question.id === new_answer.question_id){
                     question.answers.filter((answer) => {
-                        console.log(answer.description, new_answer.description)
                         if(answer.id === new_answer.id){
                             answer.description = new_answer.description;
                         }
