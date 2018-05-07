@@ -38,6 +38,12 @@ class EditInput extends React.Component {
                 return <label></label>;
         }
 
+        let style = {
+            border: "none",
+            background: "#f7f7f7",
+            color: "#696868"
+        }
+
         return (
             <div>
                     <Label />
@@ -49,6 +55,7 @@ class EditInput extends React.Component {
                         })}}
                         onBlur={this.handleSave.bind(this)}
                         placeholder={this.props.placeholder}
+                        style={style}
                     />
             </div>
         );
