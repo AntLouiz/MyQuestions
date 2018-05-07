@@ -44,6 +44,15 @@ class Questionnarie extends React.Component {
         }
     }
 
+    addQuestion() {
+        var new_empty_question = {
+                id: shortid.generate(),
+                description: undefined,
+                answers: []
+            }
+        this.setState(prev => this.state.questions.push(new_empty_question));
+    }
+
     saveQuestionDescription(new_question) {
         this.setState({questions: this.state.questions.filter((question)=>{
             if (question.id === new_question.id){
@@ -94,7 +103,10 @@ class Questionnarie extends React.Component {
                     />
                 </div>
                 <div>
-                    <button className="button is-success is-rounded">
+                    <button 
+                        className="button is-success is-rounded"
+                        onClick={this.addQuestion.bind(this)}
+                    >
                         Add question
                     </button>
                 </div>
