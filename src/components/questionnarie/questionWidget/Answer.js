@@ -23,11 +23,12 @@ class Answer extends React.Component {
 
     render() {
         let div_style = {
-            display: "flex"
+            display: "flex",
+            fontSize: "1.5rem"
         }
 
         let radio_input_style = {
-            marginTop: "1rem",
+            marginTop: "0.5rem",
             marginRight: "1rem",
             padding: "1rem"
         }
