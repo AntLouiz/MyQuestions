@@ -53,6 +53,13 @@ class Questionnarie extends React.Component {
         this.setState(prev => this.state.questions.push(new_empty_question));
     }
 
+    removeQuestion(question_target) {
+
+        this.setState({questions: this.state.questions.filter((question)=>{
+            return question.id !== question_target.id 
+        })});
+    }
+
     saveQuestionDescription(new_question) {
         this.setState({questions: this.state.questions.filter((question)=>{
             if (question.id === new_question.id){
