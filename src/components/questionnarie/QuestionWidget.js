@@ -64,11 +64,25 @@ class QuestionWidget extends React.Component {
                 <div>
                     <Answers />
                 </div>
-                <div>
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between'
+                }}>
                     <button className="button is-success is-rounded">
                         Add Answer
                     </button>
-                </div>
+                    <div class="field">
+                      <label class="label">Answer Type</label>
+                      <div class="control">
+                        <div class="select">
+                          <select>
+                            <option>radio</option>
+                            <option>input</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
             </div>
         );
     }
