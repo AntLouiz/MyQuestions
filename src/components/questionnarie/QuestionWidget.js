@@ -54,13 +54,19 @@ class QuestionWidget extends React.Component {
 
         return (
             <div style={style} className="box">
-                <EditInput 
-                    id={this.state.id} 
-                    value={this.state.description}
-                    placeholder={"Insert the question"}
-                    saveInput={this.saveQuestionDescription.bind(this)}
-                    editInput={this.editQuestionDescription.bind(this)}
-                />
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between'
+                }}>
+                    <EditInput 
+                        id={this.state.id} 
+                        value={this.state.description}
+                        placeholder={"Insert the question"}
+                        saveInput={this.saveQuestionDescription.bind(this)}
+                        editInput={this.editQuestionDescription.bind(this)}
+                    />
+                    <a class="button is-text">remove</a>
+                </div>
                 <div>
                     <Answers />
                 </div>
