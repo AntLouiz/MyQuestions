@@ -2,7 +2,7 @@ import React from 'react'
 import QuestionWidget from './questionnarie/QuestionWidget.js'
 import EditInput from './models/EditInput.js'
 import shortid from 'shortid'
-import AddQuestions from '../containers/AddQuestions.js'
+import AddQuestions from '../containers/questions/AddQuestions.js'
 
 
 class Questionnarie extends React.Component {

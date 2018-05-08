@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addQuestion } from '../actions'
+import { addQuestion } from '../../actions'
 
 
 const AddQuestions = ({dispatch}) => {
