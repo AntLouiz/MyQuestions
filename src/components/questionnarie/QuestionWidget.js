@@ -1,4 +1,5 @@
 import React from 'react'
+import scrollToComponent from 'react-scroll-to-component';
 import EditInput from '../models/EditInput.js'
 import Answer from './questionWidget/Answer.js'
 
@@ -12,6 +13,13 @@ class QuestionWidget extends React.Component {
         }
     }
 
+    componentDidMount() {
+        let question_description = this.refs.description.props.value;
+        console.log(question_description)
+
+        !!question_description ? undefined : scrollToComponent(this.refs.description)
+    }
+
     saveQuestionDescription(new_desc) {
         this.setState({description: new_desc});
         this.props.saveQuestionDescription(this.state);
@@ -19,6 +27,10 @@ class QuestionWidget extends React.Component {
 
     editQuestionDescription(new_desc) {
         this.setState({description: new_desc});
+    }
+
+    removeQuestion() {
+        this.props.removeQuestion(this.state)
     }
 
 
@@ -62,11 +74,13 @@ class QuestionWidget extends React.Component {
                         id={this.state.id} 
                         value={this.state.description}
                         placeholder={"Insert the question"}
+                        ref="description"
                         saveInput={this.saveQuestionDescription.bind(this)}
                         editInput={this.editQuestionDescription.bind(this)}
                     />
                     <a 
                         className="button is-text"
+                        onClick={this.removeQuestion.bind(this)}
                     >
                         remove
                     </a>
