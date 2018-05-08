@@ -33,6 +33,11 @@ class QuestionWidget extends React.Component {
         this.props.removeQuestion(this.state)
     }
 
+    addAnswer() {
+        let input_type = this.refs.select_input_type.children[0].text;
+        console.log(input_type);
+    }
+
 
     render() {
         let style = {
@@ -51,6 +56,7 @@ class QuestionWidget extends React.Component {
                                     <Answer
                                         id={answer.id}
                                         question_id={this.state.id}
+                                        type={'text'}
                                         description={answer.description}
                                         saveAnswer={this.props.saveAnswer}
                                     />
@@ -92,14 +98,17 @@ class QuestionWidget extends React.Component {
                     display: 'flex',
                     justifyContent: 'space-between'
                 }}>
-                    <button className="button is-success is-rounded">
+                    <button 
+                        className="button is-success is-rounded"
+                        onClick={this.addAnswer.bind(this)}
+                    >
                         Add Answer
                     </button>
                     <div className="field">
                       <label className="label">Answer Type</label>
                       <div className="control">
                         <div className="select">
-                          <select>
+                          <select ref="select_input_type">
                             <option>radio</option>
                             <option>input</option>
                           </select>
