@@ -65,7 +65,11 @@ class QuestionWidget extends React.Component {
                         saveInput={this.saveQuestionDescription.bind(this)}
                         editInput={this.editQuestionDescription.bind(this)}
                     />
-                    <a class="button is-text">remove</a>
+                    <a 
+                        className="button is-text"
+                    >
+                        remove
+                    </a>
                 </div>
                 <div>
                     <Answers />
@@ -77,10 +81,10 @@ class QuestionWidget extends React.Component {
                     <button className="button is-success is-rounded">
                         Add Answer
                     </button>
-                    <div class="field">
-                      <label class="label">Answer Type</label>
-                      <div class="control">
-                        <div class="select">
+                    <div className="field">
+                      <label className="label">Answer Type</label>
+                      <div className="control">
+                        <div className="select">
                           <select>
                             <option>radio</option>
                             <option>input</option>
@@ -88,7 +92,7 @@ class QuestionWidget extends React.Component {
                         </div>
                       </div>
                     </div>
-                    </div>
+                </div>
             </div>
         );
     }

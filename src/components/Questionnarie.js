@@ -125,6 +125,7 @@ class Questionnarie extends React.Component {
                                     description={question.description}
                                     answers={question.answers}
                                     saveQuestionDescription={this.saveQuestionDescription.bind(this)}
+                                    removeQuestion={this.removeQuestion.bind(this)}
                                     saveAnswer={this.saveAnswer.bind(this)}
                                 />
                             </li>
