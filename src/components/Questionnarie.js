@@ -9,36 +9,7 @@ class Questionnarie extends React.Component {
         super(props);
 
         this.state = {
-            questions: [
-                {
-                    id: shortid.generate(),
-                    description: "One question",
-                    answers: [
-                        {
-                            id: shortid.generate(),
-                            description: "Sim"
-                        },
-                        {
-                            id: shortid.generate(),
-                            description: "Nao"
-                        }
-                    ]
-                },
-                {
-                    id: shortid.generate(),
-                    description: "Second question",
-                    answers: [
-                        {
-                            id: shortid.generate(),
-                            description: "Sim"
-                        },
-                        {
-                            id: shortid.generate(),
-                            description: "Nao"
-                        }
-                    ]
-                }
-            ],
+            questions: [],
             title: undefined,
             description: undefined
         }
