@@ -7,7 +7,8 @@ class EditInput extends React.Component {
         super(props);
         this.state = {
             id: `edit-input-${props.id}`,
-            value: props.value
+            value: props.value,
+            type: props.type
         }
     }
 
@@ -56,6 +57,7 @@ class EditInput extends React.Component {
                         onBlur={this.handleSave.bind(this)}
                         placeholder={this.props.placeholder}
                         style={style}
+                        type={!!this.state.type ? this.state.type : 'text'}
                     />
             </div>
         );

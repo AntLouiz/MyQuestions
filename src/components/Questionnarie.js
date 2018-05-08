@@ -15,11 +15,13 @@ class Questionnarie extends React.Component {
                 answers: [
                     {
                         id: shortid.generate(),
-                        description: "Sim"
+                        description: "Sim",
+                        type: 'radio'
                     },
                     {
                         id: shortid.generate(),
-                        description: "Nao"
+                        description: "Nao",
+                        type: 'radio'
                     }
                 ]}],
             title: undefined,
@@ -34,18 +36,6 @@ class Questionnarie extends React.Component {
                 answers: []
             }
         this.setState(prev => this.state.questions.push(new_empty_question));
-    }
-
-    addAnswer(answer) {
-        this.seState((prev) => {
-            this.state.questions.map((question) => {
-                if(question.id === answer.question_id){
-                    question.answers.push(answer);
-                }
-
-                return question;
-            });
-        });
     }
 
     removeQuestion(question_target) {

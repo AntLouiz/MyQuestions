@@ -23,16 +23,47 @@ class Answer extends React.Component {
         this.setState({description: new_desc});
     }
 
-    render() {
-
-        return (
-            <div>
+    chooseAnswer() {
+        const answers_choices = {
+            radio: (
                 <RadioAnswer
                     description={this.state.description}
                     question_id={this.state.question_id}
                     saveAnswer={this.saveAnswer.bind(this)}
                     editAnswer={this.editAnswer.bind(this)}
                 />
+            ),
+            text: (
+                <EditInput
+                    id={this.state.id} 
+                    value={this.state.description}
+                    placeholder={"Insert the answer"}
+                    saveInput={this.saveAnswer.bind(this)}
+                    editInput={this.editAnswer.bind(this)}
+                />
+            ),
+            number: (
+                <EditInput
+                    id={this.state.id} 
+                    value={this.state.description}
+                    placeholder={"Insert the answer"}
+                    type="number"
+                    saveInput={this.saveAnswer.bind(this)}
+                    editInput={this.editAnswer.bind(this)}
+                />
+            )
+        }
+
+        return answers_choices[this.state.type];
+    }
+
+    render() {
+        return (
+            <div>
+                {this.chooseAnswer()}
+                <a className="button is-text">
+                    remove
+                </a>
             </div>
         );
     }

@@ -1,6 +1,7 @@
 import React from 'react'
-import scrollToComponent from 'react-scroll-to-component';
+import scrollToComponent from 'react-scroll-to-component'
 import EditInput from '../models/EditInput.js'
+import shortid from 'shortid'
 import Answer from './questionWidget/Answer.js'
 
 class QuestionWidget extends React.Component {
@@ -34,8 +35,16 @@ class QuestionWidget extends React.Component {
     }
 
     addAnswer() {
-        let input_type = this.refs.select_input_type.children[0].text;
-        console.log(input_type);
+        let option_index = this.refs.select_input_type.selectedIndex;
+        let input_type = this.refs.select_input_type.children[option_index].text;
+        let empty_answer = {
+            id: shortid.generate(),
+            question_id: this.state.id,
+            description: undefined,
+            type: input_type
+        }
+
+        this.setState(prev => this.state.answers.push(empty_answer));
     }
 
 
@@ -56,7 +65,7 @@ class QuestionWidget extends React.Component {
                                     <Answer
                                         id={answer.id}
                                         question_id={this.state.id}
-                                        type={'text'}
+                                        type={answer.type}
                                         description={answer.description}
                                         saveAnswer={this.props.saveAnswer}
                                     />
@@ -105,12 +114,13 @@ class QuestionWidget extends React.Component {
                         Add Answer
                     </button>
                     <div className="field">
-                      <label className="label">Answer Type</label>
+                      <label className="label">Answer Type: </label>
                       <div className="control">
                         <div className="select">
                           <select ref="select_input_type">
                             <option>radio</option>
-                            <option>input</option>
+                            <option>text</option>
+                            <option>number</option>
                           </select>
                         </div>
                       </div>
