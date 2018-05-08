@@ -19,6 +19,10 @@ class Answer extends React.Component {
         this.props.saveAnswer(this.state);
     }
 
+    removeAnswer() {
+        this.props.removeAnswer(this.state);
+    }
+
     editAnswer(new_desc) {
         this.setState({description: new_desc});
     }
@@ -61,7 +65,10 @@ class Answer extends React.Component {
         return (
             <div>
                 {this.chooseAnswer()}
-                <a className="button is-text">
+                <a 
+                    className="button is-text"
+                    onClick={this.removeAnswer.bind(this)}
+                >
                     remove
                 </a>
             </div>

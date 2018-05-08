@@ -44,7 +44,17 @@ class QuestionWidget extends React.Component {
             type: input_type
         }
 
-        this.setState(prev => this.state.answers.push(empty_answer));
+        this.setState(prev => {answers: this.state.answers.push(empty_answer)})
+
+        this.props.addAnswer(empty_answer);
+    }
+
+    removeAnswer(answer_target){
+        this.setState({answers: this.state.answers.filter((answer)=>{
+            return answer.id !== answer_target.id
+        })})
+
+        this.props.removeAnswer(answer_target);
     }
 
 
@@ -68,6 +78,7 @@ class QuestionWidget extends React.Component {
                                         type={answer.type}
                                         description={answer.description}
                                         saveAnswer={this.props.saveAnswer}
+                                        removeAnswer={this.removeAnswer.bind(this)}
                                     />
                                 </li>
                             );

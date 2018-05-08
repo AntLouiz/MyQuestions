@@ -55,6 +55,28 @@ class Questionnarie extends React.Component {
         })});
     }
 
+    addAnswer(new_answer){
+        this.setState({questions: this.state.questions.filter((question)=>{
+                if (question.id === new_answer.question_id){
+                        question.answers.push(new_answer);
+                }
+                return question;
+            })});  
+    }
+
+
+    removeAnswer(answer_target){
+        this.setState({questions: this.state.questions.filter((question)=>{
+                if(question.id === answer_target.question_id){
+                    question.answers = question.answers.filter((answer) => {
+                        console.log(answer.id, answer_target.id);
+                        return answer.id !== answer_target.id;
+                    })
+                }
+            return question; 
+        })});
+    }
+
     saveAnswer(new_answer){
         this.setState(() => {
             return {questions: this.state.questions.filter((question)=>{
@@ -111,7 +133,9 @@ class Questionnarie extends React.Component {
                                     answers={question.answers}
                                     saveQuestionDescription={this.saveQuestionDescription.bind(this)}
                                     removeQuestion={this.removeQuestion.bind(this)}
+                                    addAnswer={this.addAnswer.bind(this)}
                                     saveAnswer={this.saveAnswer.bind(this)}
+                                    removeAnswer={this.removeAnswer.bind(this)}
                                 />
                             </li>
                         )
