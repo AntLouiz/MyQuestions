@@ -8,23 +8,7 @@ import AddQuestions from '../containers/questions/AddQuestions.js'
 class Questionnarie extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
-            questions: [{
-                id: shortid.generate(),
-                description: "One question",
-                answers: [
-                    {
-                        id: shortid.generate(),
-                        description: "Sim",
-                        type: 'radio'
-                    },
-                    {
-                        id: shortid.generate(),
-                        description: "Nao",
-                        type: 'radio'
-                    }
-                ]}],
             title: undefined,
             description: undefined
         }
@@ -118,7 +102,7 @@ class Questionnarie extends React.Component {
                 </div>
                 <AddQuestions />
                 <ul style={{listStyle: "decimal"}}>
-                    {this.state.questions.map((question) => {
+                    {this.props.questions.map((question) => {
                         return (
                             <li key={question.id}>
                                 <QuestionWidget
