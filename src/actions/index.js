@@ -6,3 +6,8 @@ export const addQuestion = () => ({
   description: undefined,
   answers: []
 })
+
+export const removeQuestion = (id) => ({
+  type: 'REMOVE_QUESTION',
+  id: id,
+})

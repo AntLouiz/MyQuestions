@@ -9,6 +9,12 @@ const QuestionsReducer = (state = [], action) => {
           answers: action.answers
         }
       ]
+    case 'REMOVE_QUESTION':
+      return [
+        state.filter((question) => {
+          return question.id !== action.id
+        })
+      ]
     default:
       return state
   }

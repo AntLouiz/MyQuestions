@@ -31,7 +31,7 @@ class QuestionWidget extends React.Component {
     }
 
     removeQuestion() {
-        this.props.removeQuestion(this.state)
+        this.props.removeQuestion(this.state.id)
     }
 
     addAnswer() {
