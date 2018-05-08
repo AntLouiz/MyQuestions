@@ -1,4 +1,5 @@
 import React from 'react'
+import shortid from 'shortid'
 import { connect } from 'react-redux'
 import { addQuestion } from '../../actions'
 

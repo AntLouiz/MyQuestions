@@ -21,42 +21,9 @@ class QuestionWidget extends React.Component {
         !!question_description ? undefined : scrollToComponent(this.refs.description)
     }
 
-    saveQuestionDescription(new_desc) {
-        this.setState({description: new_desc});
-        this.props.saveQuestionDescription(this.state);
-    }
-
-    editQuestionDescription(new_desc) {
-        this.setState({description: new_desc});
-    }
-
-    removeQuestion() {
+    removeItself() {
         this.props.removeQuestion(this.state.id)
     }
-
-    addAnswer() {
-        let option_index = this.refs.select_input_type.selectedIndex;
-        let input_type = this.refs.select_input_type.children[option_index].text;
-        let empty_answer = {
-            id: shortid.generate(),
-            question_id: this.state.id,
-            description: undefined,
-            type: input_type
-        }
-
-        this.setState(prev => {answers: this.state.answers.push(empty_answer)})
-
-        this.props.addAnswer(empty_answer);
-    }
-
-    removeAnswer(answer_target){
-        this.setState({answers: this.state.answers.filter((answer)=>{
-            return answer.id !== answer_target.id
-        })})
-
-        this.props.removeAnswer(answer_target);
-    }
-
 
     render() {
         let style = {
@@ -77,8 +44,6 @@ class QuestionWidget extends React.Component {
                                         question_id={this.state.id}
                                         type={answer.type}
                                         description={answer.description}
-                                        saveAnswer={this.props.saveAnswer}
-                                        removeAnswer={this.removeAnswer.bind(this)}
                                     />
                                 </li>
                             );
@@ -101,12 +66,10 @@ class QuestionWidget extends React.Component {
                         value={this.state.description}
                         placeholder={"Insert the question"}
                         ref="description"
-                        saveInput={this.saveQuestionDescription.bind(this)}
-                        editInput={this.editQuestionDescription.bind(this)}
                     />
                     <a 
                         className="button is-text"
-                        onClick={this.removeQuestion.bind(this)}
+                        onClick={this.removeItself.bind(this)}
                     >
                         remove
                     </a>
@@ -120,7 +83,6 @@ class QuestionWidget extends React.Component {
                 }}>
                     <button 
                         className="button is-success is-rounded"
-                        onClick={this.addAnswer.bind(this)}
                     >
                         Add Answer
                     </button>

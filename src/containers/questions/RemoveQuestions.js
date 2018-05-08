@@ -7,4 +7,4 @@ const mapDispatchToProps = (dispatch) => ({
   removeQuestion: (id) => dispatch(removeQuestion(id))
 })
 
-export default connect(mapDispatchToProps)(QuestionWidget);
+export default connect(null, mapDispatchToProps)(QuestionWidget);

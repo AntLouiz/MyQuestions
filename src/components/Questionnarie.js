@@ -1,5 +1,5 @@
 import React from 'react'
-import QuestionWidget from './questionnarie/QuestionWidget.js'
+import QuestionWidget from '../containers/questions/RemoveQuestions.js'
 import EditInput from './models/EditInput.js'
 import shortid from 'shortid'
 import AddQuestions from '../containers/questions/AddQuestions.js'
@@ -12,71 +12,6 @@ class Questionnarie extends React.Component {
             title: undefined,
             description: undefined
         }
-    }
-
-    addQuestion() {
-        var new_empty_question = {
-                id: shortid.generate(),
-                description: undefined,
-                answers: []
-            }
-        this.setState(prev => this.state.questions.push(new_empty_question));
-    }
-
-    removeQuestion(question_target) {
-
-        this.setState({questions: this.state.questions.filter((question)=>{
-            return question.id !== question_target.id 
-        })});
-    }
-
-    saveQuestionDescription(new_question) {
-        this.setState({questions: this.state.questions.filter((question)=>{
-            if (question.id === new_question.id){
-                question.description = new_question.description;
-            }
-
-            return question;
-        })});
-    }
-
-    addAnswer(new_answer){
-        this.setState({questions: this.state.questions.filter((question)=>{
-                if (question.id === new_answer.question_id){
-                        question.answers.push(new_answer);
-                }
-                return question;
-            })});  
-    }
-
-
-    removeAnswer(answer_target){
-        this.setState({questions: this.state.questions.filter((question)=>{
-                if(question.id === answer_target.question_id){
-                    question.answers = question.answers.filter((answer) => {
-                        console.log(answer.id, answer_target.id);
-                        return answer.id !== answer_target.id;
-                    })
-                }
-            return question; 
-        })});
-    }
-
-    saveAnswer(new_answer){
-        this.setState(() => {
-            return {questions: this.state.questions.filter((question)=>{
-                if (question.id === new_answer.question_id){
-                    question.answers.filter((answer) => {
-                        if(answer.id === new_answer.id){
-                            answer.description = new_answer.description;
-                        }
-                        return answer;
-                    });
-                }
-
-                return question;
-            })}
-        }); 
     }
 
     render() {
@@ -109,11 +44,6 @@ class Questionnarie extends React.Component {
                                     id={question.id}
                                     description={question.description}
                                     answers={question.answers}
-                                    saveQuestionDescription={this.saveQuestionDescription.bind(this)}
-                                    removeQuestion={this.removeQuestion.bind(this)}
-                                    addAnswer={this.addAnswer.bind(this)}
-                                    saveAnswer={this.saveAnswer.bind(this)}
-                                    removeAnswer={this.removeAnswer.bind(this)}
                                 />
                             </li>
                         )
