@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { addQuestion } from '../actions'
 
 
-const AddQuestion = ({dispatch}) => {
+const AddQuestions = ({dispatch}) => {
     return (
         <div>
             <button 
@@ -16,4 +16,4 @@ const AddQuestion = ({dispatch}) => {
     );
 }
 
-export default connect()(AddQuestion);
+export default connect()(AddQuestions);

@@ -2,7 +2,7 @@ import React from 'react'
 import QuestionWidget from './questionnarie/QuestionWidget.js'
 import EditInput from './models/EditInput.js'
 import shortid from 'shortid'
-import AddQuestion from '../containers/AddQuestion.js'
+import AddQuestions from '../containers/AddQuestions.js'
 
 
 class Questionnarie extends React.Component {
@@ -116,7 +116,7 @@ class Questionnarie extends React.Component {
                         editInput={(desc) => this.setState({description: desc})}
                     />
                 </div>
-                <AddQuestion />
+                <AddQuestions />
                 <ul style={{listStyle: "decimal"}}>
                     {this.state.questions.map((question) => {
                         return (
