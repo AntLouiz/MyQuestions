@@ -4,7 +4,8 @@ import EditInput from '../models/EditInput.js'
 import shortid from 'shortid'
 import Answer from './questionWidget/Answer.js'
 import dispatch from 'redux'
-import editQuestion from '../../actions'
+import { connect } from 'react-redux'
+import { removeQuestion, editQuestion } from '../../actions'
 
 class QuestionWidget extends React.Component {
     constructor(props) {
@@ -112,5 +113,9 @@ class QuestionWidget extends React.Component {
     }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  removeQuestion: (id) => dispatch(removeQuestion(id)),
+  editQuestion: (id, description) => dispatch(editQuestion(id, description))
+})
 
-export default QuestionWidget
+export default connect(null, mapDispatchToProps)(QuestionWidget);

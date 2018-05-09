@@ -1,5 +1,5 @@
 import React from 'react'
-import QuestionWidget from '../containers/questions/RemoveQuestions.js'
+import QuestionWidget from '../components/questionnarie/QuestionWidget.js'
 import EditInput from './models/EditInput.js'
 import shortid from 'shortid'
 import AddQuestions from '../containers/questions/AddQuestions.js'
