@@ -7,6 +7,12 @@ export const addQuestion = () => ({
   answers: []
 })
 
+export const editQuestion = (id, description) => ({
+  type: 'EDIT_QUESTION',
+  id: id,
+  description: description,
+})
+
 export const removeQuestion = (id) => ({
   type: 'REMOVE_QUESTION',
   id: id,

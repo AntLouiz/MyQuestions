@@ -51,9 +51,7 @@ class EditInput extends React.Component {
                     <AutosizeInput
                         id={this.state.id}
                         value={this.props.value}
-                        onChange={(event) => {this.setState({value: event.target.value}, () => {
-                            this.handleEdit();
-                        })}}
+                        onChange={(event) => {this.setState({value: event.target.value})}}
                         onBlur={this.handleSave.bind(this)}
                         placeholder={this.props.placeholder}
                         style={style}
