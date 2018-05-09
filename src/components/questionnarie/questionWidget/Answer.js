@@ -18,7 +18,6 @@ class Answer extends React.Component {
     }
 
     saveAnswer(new_desc) {
-        console.log(this.state.description)
         this.setState(prev => {description: new_desc});
         this.props.saveAnswer(
             this.state.id, 
