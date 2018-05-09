@@ -32,7 +32,6 @@ class Answer extends React.Component {
     }
 
     editAnswer(new_desc) {
-        console.log(new_desc)
         this.setState({description: new_desc});
     }
 
