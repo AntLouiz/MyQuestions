@@ -33,7 +33,19 @@ class QuestionWidget extends React.Component {
     addAnswer() {
         let option_index = this.refs.select_input_type.selectedIndex;
         let answer_type = this.refs.select_input_type.children[option_index].text;
-        this.props.addAnswer(answer_type, this.state.id)
+        let empty_answer = {
+            id: shortid.generate(),
+            answer_type: answer_type,
+            description: undefined,
+            value: undefined,
+            question_id: this.state.id
+        }
+        // this.setState({answers: [...this.state.answers, empty_answer]})
+        this.props.addAnswer(
+            empty_answer.id, 
+            empty_answer.answer_type,
+            empty_answer.question_id
+        )
     }
 
     render() {
@@ -53,7 +65,7 @@ class QuestionWidget extends React.Component {
                                     <Answer
                                         id={answer.id}
                                         question_id={this.state.id}
-                                        type={answer.type}
+                                        type={answer.answer_type}
                                         description={answer.description}
                                     />
                                 </li>
@@ -118,15 +130,15 @@ class QuestionWidget extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => ({
+  questions: state.questions
+})
+
+
 const mapDispatchToProps = (dispatch) => ({
   removeQuestion: (id) => dispatch(removeQuestion(id)),
   editQuestion: (id, description) => dispatch(editQuestion(id, description)),
   addAnswer: (type, question_id) => dispatch(addAnswer(type, question_id))
 })
-
-const mapStateToProps = (state) => ({
-  questions: state.questions
-})
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionWidget);

@@ -35,7 +35,7 @@ class Questionnarie extends React.Component {
                         saveInput={(desc) => this.setState({description: desc})}
                         editInput={(desc) => this.setState({description: desc})}
                     />
-                </div>
+                </div> 
                 <AddQuestions />
                 <ul style={{listStyle: "decimal"}}>
                     {this.props.questions.map((question) => {

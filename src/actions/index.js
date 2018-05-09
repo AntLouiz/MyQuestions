@@ -19,11 +19,18 @@ export const removeQuestion = (id) => ({
 })
 
 
-export const addAnswer = (type, question_id) => ({
+export const addAnswer = (id, answer_type, question_id) => ({
   type: 'ADD_ANSWER',
-  id: shortid.generate(),
+  id: id,
   description: undefined,
-  answer_type: type,
+  answer_type: answer_type,
   question_id: question_id,
   value: undefined
+})
+
+export const editAnswer = (id, description, question_id) => ({
+  type: 'EDIT_ANSWER',
+  id: id,
+  description: description,
+  question_id: question_id,
 })
