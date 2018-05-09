@@ -40,7 +40,6 @@ class QuestionWidget extends React.Component {
             value: undefined,
             question_id: this.state.id
         }
-        // this.setState({answers: [...this.state.answers, empty_answer]})
         this.props.addAnswer(
             empty_answer.id, 
             empty_answer.answer_type,
@@ -138,7 +137,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   removeQuestion: (id) => dispatch(removeQuestion(id)),
   editQuestion: (id, description) => dispatch(editQuestion(id, description)),
-  addAnswer: (type, question_id) => dispatch(addAnswer(type, question_id))
+  addAnswer: (id, type, question_id) => dispatch(addAnswer(id, type, question_id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionWidget);
