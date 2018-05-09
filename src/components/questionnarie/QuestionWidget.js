@@ -5,21 +5,19 @@ import shortid from 'shortid'
 import Answer from './questionWidget/Answer.js'
 import dispatch from 'redux'
 import { connect } from 'react-redux'
-import { removeQuestion, editQuestion } from '../../actions'
+import { removeQuestion, editQuestion, addAnswer } from '../../actions'
 
 class QuestionWidget extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            id: props.id,
-            description: props.description,
-            answers: props.answers
-        }
+
+        this.state = this.props.questions.filter((question) => {
+            return question.id === this.props.id
+        })[0]
     }
 
     componentDidMount() {
         let question_description = this.refs.description.props.value;
-        console.log(question_description)
 
         !!question_description ? undefined : scrollToComponent(this.refs.description)
     }
@@ -30,6 +28,12 @@ class QuestionWidget extends React.Component {
 
     removeItself() {
         this.props.removeQuestion(this.state.id)
+    }
+
+    addAnswer() {
+        let option_index = this.refs.select_input_type.selectedIndex;
+        let answer_type = this.refs.select_input_type.children[option_index].text;
+        this.props.addAnswer(answer_type, this.state.id)
     }
 
     render() {
@@ -92,6 +96,7 @@ class QuestionWidget extends React.Component {
                 }}>
                     <button 
                         className="button is-success is-rounded"
+                        onClick={this.addAnswer.bind(this)}
                     >
                         Add Answer
                     </button>
@@ -115,7 +120,13 @@ class QuestionWidget extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   removeQuestion: (id) => dispatch(removeQuestion(id)),
-  editQuestion: (id, description) => dispatch(editQuestion(id, description))
+  editQuestion: (id, description) => dispatch(editQuestion(id, description)),
+  addAnswer: (type, question_id) => dispatch(addAnswer(type, question_id))
 })
 
-export default connect(null, mapDispatchToProps)(QuestionWidget);
+const mapStateToProps = (state) => ({
+  questions: state.questions
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionWidget);

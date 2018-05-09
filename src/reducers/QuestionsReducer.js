@@ -17,21 +17,39 @@ const QuestionsReducer = (state, action) => {
           answers: action.answers
         }
       ]
+
     case 'EDIT_QUESTION':
       state.map((question) => {
         if(question.id === action.id){
           question.description = action.description;
-          console.log(question.id, action.id)
         }
       });
 
       return [
         ...state
       ]
+
     case 'REMOVE_QUESTION':
       return state.filter((question) => {
           return question.id !== action.id
         })
+
+    case 'ADD_ANSWER':
+      state.map((question) => {
+        if(question.id === action.question_id)
+          question.answers.push({
+            id: action.id,
+            question_id: action.question_id,
+            description: action.description,
+            type: action.answer_type,
+            value: action.value
+          })
+        return question;
+      });
+      return [
+        ...state
+      ]
+
     default:
       return [empty_question]
   }
