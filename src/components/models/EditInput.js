@@ -18,12 +18,15 @@ class EditInput extends React.Component {
         }
     }
 
-    handleEdit() {
-        this.props.editInput(this.state.value);
+    handleEdit(e) {
+        let new_value = e.target.value;
+        this.setState((prev) => {value: new_value})
+        this.props.editInput(e.target.value);
     }
 
-    handleSave() {
-        this.props.saveInput(this.state.value);
+    handleSave(e) {
+        let new_value = e.target.value;
+        this.props.saveInput(new_value);
     }
 
     render() {
@@ -51,7 +54,7 @@ class EditInput extends React.Component {
                     <AutosizeInput
                         id={this.state.id}
                         value={this.props.value}
-                        onChange={(event) => {this.setState({value: event.target.value})}}
+                        onChange={this.handleEdit.bind(this)}
                         onBlur={this.handleSave.bind(this)}
                         placeholder={this.props.placeholder}
                         style={style}

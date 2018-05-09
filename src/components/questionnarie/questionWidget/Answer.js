@@ -2,6 +2,8 @@ import React from 'react'
 import EditInput from '../../models/EditInput.js'
 import shortid from 'shortid'
 import RadioAnswer from './answer/RadioAnswer.js'
+import { connect } from 'react-redux'
+import { saveAnswer } from '../../../actions'
 
 class Answer extends React.Component {
     constructor(props) {
@@ -15,8 +17,14 @@ class Answer extends React.Component {
         }
     }
 
-    saveAnswer() {
-        this.props.saveAnswer(this.state);
+    saveAnswer(new_desc) {
+        console.log(this.state.description)
+        this.setState(prev => {description: new_desc});
+        this.props.saveAnswer(
+            this.state.id, 
+            new_desc,
+            this.state.question_id
+        );
     }
 
     removeAnswer() {
@@ -24,7 +32,7 @@ class Answer extends React.Component {
     }
 
     editAnswer(new_desc) {
-        this.setState({description: new_desc});
+        this.setState(prev => {description: new_desc});
     }
 
     chooseAnswer() {
@@ -76,5 +84,9 @@ class Answer extends React.Component {
     }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  saveAnswer: (id, description, question_id) => dispatch(saveAnswer(id, description, question_id))
+})
 
-export default Answer
+
+export default connect(null, mapDispatchToProps)(Answer);

@@ -28,8 +28,8 @@ export const addAnswer = (id, answer_type, question_id) => ({
   value: undefined
 })
 
-export const editAnswer = (id, description, question_id) => ({
-  type: 'EDIT_ANSWER',
+export const saveAnswer = (id, description, question_id) => ({
+  type: 'SAVE_ANSWER',
   id: id,
   description: description,
   question_id: question_id,

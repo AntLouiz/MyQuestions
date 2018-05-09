@@ -50,15 +50,14 @@ const QuestionsReducer = (state, action) => {
         ...state
       ]
 
-    case 'EDIT_ANSWER':
+    case 'SAVE_ANSWER':
       state.map((question) => {
         if(question.id === action.question_id){
           question.answers.map((answer) => {
-            if(answer.id === action.id)
+            if(answer.id === action.id){
               answer.description = action.description;
-            return answer;
+            }
           })
-        return question;
         }
       });
       return [
