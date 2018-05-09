@@ -1,5 +1,5 @@
 import React from 'react'
-import Questionnarie from '../containers/questions/ListQuestions.js'
+import Questionnarie from '../components/Questionnarie.js'
 
 const CreatePage = () => {
     return (

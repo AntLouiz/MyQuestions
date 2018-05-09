@@ -3,6 +3,7 @@ import QuestionWidget from '../containers/questions/RemoveQuestions.js'
 import EditInput from './models/EditInput.js'
 import shortid from 'shortid'
 import AddQuestions from '../containers/questions/AddQuestions.js'
+import { connect } from 'react-redux'
 
 
 class Questionnarie extends React.Component {
@@ -55,4 +56,8 @@ class Questionnarie extends React.Component {
 }
 
 
-export default Questionnarie
+const mapStateToProps = (state) => ({
+  questions: state.questions
+})
+
+export default connect(mapStateToProps)(Questionnarie);
