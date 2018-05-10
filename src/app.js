@@ -8,7 +8,14 @@ import store from './store.js'
 
 let appRoot = document.getElementById("app");
 
-ReactDOM.render(
-    <Provider store={store}><AppRouter /></Provider>,
-    appRoot
-);
+
+function render() {
+    ReactDOM.render(
+        <Provider store={store}><AppRouter/></Provider>,
+        appRoot
+    );
+}
+
+store.subscribe(render);
+
+render();
