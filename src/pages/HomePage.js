@@ -6,16 +6,16 @@ const HomePage = () => {
         <div>
             <div className="container is-fullhd">
               <div className="notification welcome-message">
-                <h2>
-                    Welcome to MyQuestions
-                </h2>
+                <h3>
+                   Create awesome questionnaries for your researches!
+                </h3>
                 <div className="column">
                     <Link 
                         to='/create' 
                         className="button is-success is-rounded is-medium"
                     >
 
-                        Create questions
+                        Start now
                     </Link>
                 </div>
               </div>

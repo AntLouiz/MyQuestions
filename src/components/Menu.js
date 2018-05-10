@@ -6,7 +6,7 @@ const Menu = () => {
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <a className="navbar-item" href="https://bulma.io">
-            <img src="http://brandmark.io/logo-rank/random/bp.png" />
+            <img src="http://www.iconsdb.com/icons/preview/color/23D160/literature-xxl.png" />
           </a>
         </div>
         <div className="navbar-menu">
@@ -14,7 +14,10 @@ const Menu = () => {
             Home
           </Link>
           <Link to="/create" className="navbar-item button is-success is-outlined">
-            Create Question
+            Create Questionnarie
+          </Link>
+          <Link to="/create" className="navbar-item button is-info is-outlined">
+            My Questionnaries
           </Link>
         </div>
       </nav>
