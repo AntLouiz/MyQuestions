@@ -34,3 +34,9 @@ export const saveAnswer = (id, description, question_id) => ({
   description: description,
   question_id: question_id,
 })
+
+export const removeAnswer = (id, question_id) => ({
+  type: 'REMOVE_ANSWER',
+  id: id,
+  question_id: question_id,
+})

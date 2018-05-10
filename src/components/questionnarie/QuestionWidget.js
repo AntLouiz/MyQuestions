@@ -5,7 +5,12 @@ import shortid from 'shortid'
 import Answer from './questionWidget/Answer.js'
 import dispatch from 'redux'
 import { connect } from 'react-redux'
-import { removeQuestion, editQuestion, addAnswer } from '../../actions'
+import { 
+    removeQuestion, 
+    editQuestion, 
+    addAnswer, 
+    removeAnswer 
+} from '../../actions'
 
 class QuestionWidget extends React.Component {
     constructor(props) {
@@ -47,6 +52,14 @@ class QuestionWidget extends React.Component {
         )
     }
 
+
+    removeAnswer(answer_target){
+        this.props.removeAnswer(
+            answer_target.id,
+            answer_target.question_id
+        )
+    }
+
     render() {
         let style = {
             width: "40rem",
@@ -55,10 +68,10 @@ class QuestionWidget extends React.Component {
         }
 
         const Answers = () => {
-            if(this.state.answers){
+            if(this.props.answers){
                 return (
                     <ul>
-                        {this.state.answers.map((answer) => {
+                        {this.props.answers.map((answer) => {
                             return (
                                 <li key={answer.id}>
                                     <Answer
@@ -66,6 +79,7 @@ class QuestionWidget extends React.Component {
                                         question_id={this.state.id}
                                         type={answer.answer_type}
                                         description={answer.description}
+                                        removeAnswer={this.removeAnswer.bind(this)}
                                     />
                                 </li>
                             );
@@ -137,7 +151,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   removeQuestion: (id) => dispatch(removeQuestion(id)),
   editQuestion: (id, description) => dispatch(editQuestion(id, description)),
-  addAnswer: (id, type, question_id) => dispatch(addAnswer(id, type, question_id))
+  addAnswer: (id, type, question_id) => dispatch(addAnswer(id, type, question_id)),
+  removeAnswer: (id, question_id) => dispatch(removeAnswer(id, question_id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionWidget);

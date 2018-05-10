@@ -64,6 +64,20 @@ const QuestionsReducer = (state, action) => {
         ...state
       ]
 
+    case 'REMOVE_ANSWER':
+      state.map((question) => {
+        if(question.id === action.question_id){
+          question.answers = question.answers.filter((answer)=>{
+            return answer.id !== action.id
+          })
+        }
+        return question
+      })
+
+      return [
+        ...state
+      ]
+
     default:
       return [empty_question]
   }
