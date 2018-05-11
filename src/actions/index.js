@@ -1,5 +1,13 @@
 import shortid from 'shortid'
 
+export const saveQuestionnarie = (id, title, description, questions) => ({
+  type: 'SAVE_QUESTIONNARIE',
+  id: id,
+  title: title,
+  description: description,
+  questions: questions
+})
+
 export const addQuestion = () => ({
   type: 'ADD_QUESTION',
   id: shortid.generate(),

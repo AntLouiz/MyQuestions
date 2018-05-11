@@ -8,6 +8,12 @@ let empty_question = {
 
 const QuestionsReducer = (state, action) => {
   switch (action.type) {
+    case 'SAVE_QUESTIONNARIE':
+      // save on the firebase
+      console.log(action)
+
+      return []
+
     case 'ADD_QUESTION':
       return [
         ...state,
