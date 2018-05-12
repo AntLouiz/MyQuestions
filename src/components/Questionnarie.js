@@ -3,20 +3,28 @@ import QuestionWidget from '../components/questionnarie/QuestionWidget.js'
 import EditInput from './models/EditInput.js'
 import shortid from 'shortid'
 import AddQuestions from '../containers/questions/AddQuestions.js'
-import { saveQuestionnarie } from '../actions'
+import { addQuestion, saveQuestionnarie } from '../actions'
 import { connect } from 'react-redux'
 import { Redirect } from "react-router-dom"
+import store from '../store.js'
 
 
 class Questionnarie extends React.Component {
     constructor(props) {
         super(props);
+        this.store = store;
         this.state = {
-            id: shortid.generate(),
-            title: undefined,
-            description: undefined,
+            id: this.props.id,
+            title: this.props.title,
+            description: this.props.description,
+            questions: this.props.questions,
             is_saved: false
         }
+    }
+
+    addQuestion() {
+        this.props.addQuestion(this.props.id)
+        this.setState({questions: this.props.questions})
     }
 
     saveQuestionnarie() {
@@ -25,7 +33,7 @@ class Questionnarie extends React.Component {
             this.state.id,
             this.state.title,
             this.state.description,
-            this.props.questions
+            this.state.questions
         )
         this.setState({is_saved: true});
     }
@@ -58,10 +66,15 @@ class Questionnarie extends React.Component {
                         saveInput={(desc) => this.setState({description: desc})}
                         editInput={(desc) => this.setState({description: desc})}
                     />
+                    <button state
+                        className="button is-success is-rounded"
+                        onClick={this.addQuestion.bind(this)}
+                    >
+                        Add question
+                    </button>
                 </div> 
-                <AddQuestions />
                 <ul style={{listStyle: "decimal"}}>
-                    {this.props.questions.map((question) => {
+                    {this.state.questions.map((question) => {
                         return (
                             <li key={question.id}>
                                 <QuestionWidget
@@ -79,14 +92,20 @@ class Questionnarie extends React.Component {
 }
 
 
-const mapStateToProps = (state) => ({
-  questions: state.questions
+const mapStateToProps = (store, ownProps) => ({
+  id: store.questionnarie.id,
+  description: store.questionnarie.description,
+  title: store.questionnarie.title,
+  questions: store.questionnarie.questions
 })
 
 const mapDispatchToProps = (dispatch) => ({
   saveQuestionnarie: (id, title, description, questions) => {
-        dispatch(saveQuestionnarie(id, title, description, questions))
-    },
+    dispatch(saveQuestionnarie(id, title, description, questions))
+  },
+  addQuestion: (questionnarie_id) => {
+    dispatch(addQuestion(questionnarie_id))
+  }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Questionnarie);
