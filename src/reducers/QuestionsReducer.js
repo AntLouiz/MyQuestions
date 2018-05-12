@@ -1,12 +1,13 @@
 import shortid from 'shortid'
 
-let empty_question = {
+let empty_questionnarie = {
   id: shortid.generate(),
+  title: undefined,
   description: undefined,
-  answers: []
+  questions: []
 }
 
-const QuestionsReducer = (state, action) => {
+const QuestionsReducer = (state = empty_questionnarie, action) => {
   switch (action.type) {
     case 'SAVE_QUESTIONNARIE':
       // save on the firebase
@@ -15,14 +16,13 @@ const QuestionsReducer = (state, action) => {
       return []
 
     case 'ADD_QUESTION':
-      return [
-        ...state,
-        {
-          id: action.id,
-          description: action.description,
-          answers: action.answers
-        }
-      ]
+      state.questions.push({
+        id: action.id,
+        description: action.description,
+        answers: action.answers,
+        questionnarie_id: action.questionnarie_id
+      });
+      return Object.assign(state, state);
 
     case 'EDIT_QUESTION':
       state.map((question) => {
@@ -85,7 +85,7 @@ const QuestionsReducer = (state, action) => {
       ]
 
     default:
-      return [empty_question]
+      return state
   }
 }
 
