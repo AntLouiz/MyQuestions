@@ -3,5 +3,5 @@ import QuestionsReducer from './QuestionsReducer.js'
 
 
 export default combineReducers({
-  questions: QuestionsReducer
+  questionnarie: QuestionsReducer
 })
