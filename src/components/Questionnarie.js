@@ -76,6 +76,8 @@ class Questionnarie extends React.Component {
                 <ul style={{listStyle: "decimal"}}>
                     {this.state.questions.map((question) => {
                         return (
+                            <li>{question.id}</li>
+                        /*
                             <li key={question.id}>
                                 <QuestionWidget
                                     id={question.id}
@@ -83,6 +85,7 @@ class Questionnarie extends React.Component {
                                     answers={question.answers}
                                 />
                             </li>
+                        */
                         )
                     })}
                 </ul>
