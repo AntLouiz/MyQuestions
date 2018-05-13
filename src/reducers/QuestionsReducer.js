@@ -31,15 +31,14 @@ const QuestionsReducer = (state, action) => {
       return Object.assign({}, state);
 
     case 'EDIT_QUESTION':
-      state.map((question) => {
-        if(question.id === action.id){
-          question.description = action.description;
-        }
-      });
 
-      return [
-        ...state
-      ]
+      return Object.assign({}, state, (
+          state.questions.map((question) => {
+            if(question.id === action.id){
+              question.description = action.description;
+            }
+          })
+        ))
 
     case 'REMOVE_QUESTION':
       return Object.assign({}, state, (
