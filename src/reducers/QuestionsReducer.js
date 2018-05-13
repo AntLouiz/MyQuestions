@@ -15,6 +15,12 @@ const QuestionsReducer = (state = empty_questionnarie, action) => {
 
       return []
 
+    case 'EDIT_QUESTIONNARIE':
+      return Object.assign({}, state, (
+          state.title = action.title,
+          state.description = action.description
+        ));
+
     case 'ADD_QUESTION':
       state.questions.push({
         id: action.id,

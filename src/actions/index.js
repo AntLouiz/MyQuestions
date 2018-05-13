@@ -8,6 +8,12 @@ export const saveQuestionnarie = (id, title, description, questions) => ({
   questions: questions
 })
 
+export const editQuestionnarie = (title, description) => ({
+  type: 'EDIT_QUESTIONNARIE',
+  title: title,
+  description: description
+})
+
 export const addQuestion = (questionnarie_id) => ({
   type: 'ADD_QUESTION',
   id: shortid.generate(),

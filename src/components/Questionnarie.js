@@ -2,8 +2,7 @@ import React from 'react'
 import QuestionWidget from '../components/questionnarie/QuestionWidget.js'
 import EditInput from './models/EditInput.js'
 import shortid from 'shortid'
-import AddQuestions from '../containers/questions/AddQuestions.js'
-import { addQuestion, saveQuestionnarie } from '../actions'
+import { addQuestion, saveQuestionnarie, editQuestionnarie } from '../actions'
 import { connect } from 'react-redux'
 import { Redirect } from "react-router-dom"
 import store from '../store.js'
@@ -38,6 +37,13 @@ class Questionnarie extends React.Component {
         this.setState({is_saved: true});
     }
 
+    editQuestionnarie() {
+        this.props.editQuestionnarie(
+            this.state.title,
+            this.state.description
+        )
+    }
+
     render() {
         return (
             <div>
@@ -63,7 +69,7 @@ class Questionnarie extends React.Component {
                         label={"Description"}
                         value={this.state.description}
                         placeholder={"Insert the description"}
-                        saveInput={(desc) => this.setState({description: desc})}
+                        saveInput={this.editQuestionnarie.bind(this)}
                         editInput={(desc) => this.setState({description: desc})}
                     />
                     <button state
@@ -105,6 +111,9 @@ const mapStateToProps = (store, ownProps) => ({
 const mapDispatchToProps = (dispatch) => ({
   saveQuestionnarie: (id, title, description, questions) => {
     dispatch(saveQuestionnarie(id, title, description, questions))
+  },
+  editQuestionnarie: (title, description) => {
+    dispatch(editQuestionnarie(title, description))
   },
   addQuestion: (questionnarie_id) => {
     dispatch(addQuestion(questionnarie_id))
