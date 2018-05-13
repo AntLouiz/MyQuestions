@@ -21,6 +21,12 @@ class Questionnarie extends React.Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+       this.setState({
+         questions: nextProps.questions,
+       })
+    }
+
     addQuestion() {
         this.props.addQuestion(this.props.id)
         this.setState({questions: this.props.questions})
@@ -82,16 +88,15 @@ class Questionnarie extends React.Component {
                 <ul style={{listStyle: "decimal"}}>
                     {this.state.questions.map((question) => {
                         return (
-                            <li>{question.id}</li>
-                        /*
+                            /*<li>{question.id}</li>*/
                             <li key={question.id}>
                                 <QuestionWidget
                                     id={question.id}
                                     description={question.description}
                                     answers={question.answers}
+                                    questionnarie_id={question.questionnarie_id}
                                 />
                             </li>
-                        */
                         )
                     })}
                 </ul>

@@ -16,9 +16,12 @@ class QuestionWidget extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = this.props.questions.filter((question) => {
-            return question.id === this.props.id
-        })[0]
+        this.state = {
+            id: props.id,
+            description: props.description,
+            questionnarie_id: props.questionnarie_id,
+            answers: props.answers
+        }
     }
 
     componentDidMount() {
