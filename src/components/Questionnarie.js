@@ -33,7 +33,6 @@ class Questionnarie extends React.Component {
     }
 
     saveQuestionnarie() {
-        console.log("SAVE QUESTIONNARIE");
         this.props.saveQuestionnarie(
             this.state.id,
             this.state.title,
@@ -53,7 +52,7 @@ class Questionnarie extends React.Component {
     render() {
         return (
             <div>
-                {this.state.is_saved ? <Redirect to="/"/>: false}
+                {this.state.is_saved ? <Redirect to="/"/>: undefined}
 
                 <div style={{fontSize: "2.5rem", marginLeft: "5rem"}}>
                     <button 
