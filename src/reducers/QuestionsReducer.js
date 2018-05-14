@@ -48,20 +48,19 @@ const QuestionsReducer = (state, action) => {
         ))
 
     case 'ADD_ANSWER':
-      state.map((question) => {
-        if(question.id === action.question_id){
-          question.answers.push({
-            id: action.id,
-            question_id: action.question_id,
-            description: action.description,
-            answer_type: action.answer_type,
-            value: action.value
+      return Object.assign({}, state, (
+          state.questions.map((question) => {
+            if(question.id === action.question_id){
+              question.answers.push({
+                id: action.id,
+                question_id: action.question_id,
+                description: action.description,
+                answer_type: action.answer_type,
+                value: action.value
+              })
+            }
           })
-        }
-      });
-      return [
-        ...state
-      ]
+        ))
 
     case 'SAVE_ANSWER':
       state.map((question) => {
