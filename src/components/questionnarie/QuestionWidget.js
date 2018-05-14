@@ -48,11 +48,7 @@ class QuestionWidget extends React.Component {
             value: undefined,
             question_id: this.state.id
         }
-        this.props.addAnswer(
-            empty_answer.id, 
-            empty_answer.answer_type,
-            empty_answer.question_id
-        )
+        this.setState(prev => this.state.answers.push(empty_answer))
     }
 
 
@@ -71,10 +67,10 @@ class QuestionWidget extends React.Component {
         }
 
         const Answers = () => {
-            if(this.props.answers){
+            if(this.state.answers){
                 return (
                     <ul>
-                        {this.props.answers.map((answer) => {
+                        {this.state.answers.map((answer) => {
                             return (
                                 <li key={answer.id}>
                                     <Answer
