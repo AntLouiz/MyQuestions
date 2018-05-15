@@ -85,7 +85,7 @@ class Questionnarie extends React.Component {
                     </button>
                 </div> 
                 <ul style={{listStyle: "decimal"}}>
-                    {this.state.questions.map((question) => {
+                    {this.state.questions.map((question, index) => {
                         return (
                             /*<li>{question.id}</li>*/
                             <li key={question.id}>
