@@ -104,14 +104,6 @@ class Questionnarie extends React.Component {
     }
 }
 
-
-const mapStateToProps = (store, ownProps) => ({
-  id: store.questionnarie.id,
-  description: store.questionnarie.description,
-  title: store.questionnarie.title,
-  questions: store.questionnarie.questions
-})
-
 const mapDispatchToProps = (dispatch) => ({
   saveQuestionnarie: (id, title, description, questions) => {
     dispatch(saveQuestionnarie(id, title, description, questions))
@@ -124,4 +116,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Questionnarie);
+export default connect(null, mapDispatchToProps)(Questionnarie);
