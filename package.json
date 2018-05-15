@@ -17,6 +17,7 @@
     "babel-preset-es2016": "^6.24.1",
     "bulma-start": "0.0.2",
     "css-loader": "^0.28.11",
+    "firebase": "^5.0.2",
     "live-server": "^1.2.0",
     "node-sass": "^4.9.0",
     "normalize.css": "^8.0.0",
