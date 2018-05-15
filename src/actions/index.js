@@ -1,4 +1,14 @@
 import shortid from 'shortid'
+import { questionnariesRef } from '../config/firebase.js'
+
+export const fetchQuestionnaries = () => async dispatch => {
+  questionnariesRef.on("value", (snapshot) => {
+    dispatch({
+      type: 'FETCH_QUESTIONNARIES',
+      payload: snapshot.val()
+    })
+  })
+}
 
 export const saveQuestionnarie = (id, title, description, questions) => ({
   type: 'SAVE_QUESTIONNARIE',
