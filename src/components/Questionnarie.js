@@ -23,7 +23,7 @@ class Questionnarie extends React.Component {
 
     componentWillReceiveProps(nextProps) {
        this.setState({
-         questions: nextProps.questions,
+         questions: nextProps.questions
        })
     }
 

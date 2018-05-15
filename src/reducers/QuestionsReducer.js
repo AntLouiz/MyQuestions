@@ -76,18 +76,16 @@ const QuestionsReducer = (state, action) => {
         ))
 
     case 'REMOVE_ANSWER':
-      state.map((question) => {
-        if(question.id === action.question_id){
-          question.answers = question.answers.filter((answer)=>{
-            return answer.id !== action.id
+      return Object.assign({}, state, (
+          state.questions = state.questions.filter((question) => {
+            if(question.id === action.question_id){
+              question.answers = question.answers.filter((answer) => {
+                return answer.id !== action.id
+              })
+            }
+            return question.id === action.question_id
           })
-        }
-        return question
-      })
-
-      return [
-        ...state
-      ]
+        ))
 
     default:
       return Object.assign({}, empty_questionnarie)

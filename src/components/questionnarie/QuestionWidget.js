@@ -30,6 +30,10 @@ class QuestionWidget extends React.Component {
         !!question_description ? undefined : scrollToComponent(this.refs.description)
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({answers: nextProps.answers})
+    }
+
     editQuestion(new_description) {
         this.props.editQuestion(this.state.id, new_description)
     }
@@ -48,15 +52,21 @@ class QuestionWidget extends React.Component {
             value: undefined,
             question_id: this.state.id
         }
-        this.setState(prev => this.state.answers.push(empty_answer))
+        this.props.addAnswer(
+            empty_answer.id, 
+            empty_answer.answer_type, 
+            empty_answer.question_id
+        )
+        this.setState({answers: this.state.answers})
+        // this.setState({ answers: this.props.answers })
     }
 
-
-    removeAnswer(answer_target){
+    removeAnswer(id, question_id){
         this.props.removeAnswer(
-            answer_target.id,
-            answer_target.question_id
+            id,
+            question_id
         )
+        this.setState({answers: this.state.answers})
     }
 
     render() {

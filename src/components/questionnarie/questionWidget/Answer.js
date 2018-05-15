@@ -3,7 +3,7 @@ import EditInput from '../../models/EditInput.js'
 import shortid from 'shortid'
 import RadioAnswer from './answer/RadioAnswer.js'
 import { connect } from 'react-redux'
-import { saveAnswer } from '../../../actions'
+import { saveAnswer, removeAnswer } from '../../../actions'
 
 class Answer extends React.Component {
     constructor(props) {
@@ -26,8 +26,8 @@ class Answer extends React.Component {
         );
     }
 
-    removeAnswer() {
-        this.props.removeAnswer(this.state);
+    removeItself() {
+        this.props.removeAnswer(this.state.id, this.state.question_id);
     }
 
     editAnswer(new_desc) {
@@ -74,7 +74,7 @@ class Answer extends React.Component {
                 {this.chooseAnswer()}
                 <a 
                     className="button is-text"
-                    onClick={this.removeAnswer.bind(this)}
+                    onClick={this.removeItself.bind(this)}
                 >
                     remove
                 </a>
