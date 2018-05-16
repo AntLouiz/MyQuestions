@@ -3,14 +3,6 @@ import scrollToComponent from 'react-scroll-to-component'
 import EditInput from '../models/EditInput.js'
 import shortid from 'shortid'
 import Answer from './questionWidget/Answer.js'
-import dispatch from 'redux'
-import { connect } from 'react-redux'
-import { 
-    removeQuestion, 
-    editQuestion, 
-    addAnswer, 
-    removeAnswer 
-} from '../../actions'
 
 class QuestionWidget extends React.Component {
     constructor(props) {
@@ -35,7 +27,7 @@ class QuestionWidget extends React.Component {
     }
 
     editQuestion(new_description) {
-        this.props.editQuestion(this.state.id, new_description)
+        this.setState({description: new_description})
     }
 
     removeItself() {
@@ -152,16 +144,4 @@ class QuestionWidget extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-  questions: state.questions
-})
-
-
-const mapDispatchToProps = (dispatch) => ({
-  removeQuestion: (id) => dispatch(removeQuestion(id)),
-  editQuestion: (id, description) => dispatch(editQuestion(id, description)),
-  addAnswer: (id, type, question_id) => dispatch(addAnswer(id, type, question_id)),
-  removeAnswer: (id, question_id) => dispatch(removeAnswer(id, question_id))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionWidget);
+export default QuestionWidget;
