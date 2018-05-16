@@ -1,6 +1,6 @@
 import shortid from 'shortid'
 
-const QuestionsReducer = (state, action) => {
+const QuestionnarieReducer = (state, action) => {
   switch (action.type) {
     case 'FETCH_QUESTIONNARIES':
       return action.payload
@@ -13,4 +13,4 @@ const QuestionsReducer = (state, action) => {
   }
 }
 
-export default QuestionsReducer
+export default QuestionnarieReducer

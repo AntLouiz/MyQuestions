@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
-import QuestionsReducer from './QuestionsReducer.js'
+import QuestionnarieReducer from './QuestionnarieReducer.js'
 
 
 export default combineReducers({
-  questionnarie: QuestionsReducer
+  questionnarie: QuestionnarieReducer
 })
