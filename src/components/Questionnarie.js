@@ -46,10 +46,7 @@ class Questionnarie extends React.Component {
     }
 
     editQuestionnarie() {
-        this.props.editQuestionnarie(
-            this.state.title,
-            this.state.description
-        )
+        this.setState({title: this.state.title, description: this.state.description})
     }
 
     render() {
