@@ -17,7 +17,8 @@ class QuestionWidget extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({answers: nextProps.answers})
+        console.log(nextProps)
+        this.setState({description: nextProps.description, answers: nextProps.answers})
     }
 
     componentDidMount() {
@@ -27,7 +28,8 @@ class QuestionWidget extends React.Component {
     }
 
     editQuestion(new_description) {
-        this.setState({description: new_description})
+        this.props.editQuestion(new_description, this.state.id);
+        this.setState({description: new_description});
     }
 
     removeItself() {
@@ -40,7 +42,7 @@ class QuestionWidget extends React.Component {
         let empty_answer = {
             id: shortid.generate(),
             answer_type: answer_type,
-            description: undefined,
+            description: "Herroo",
             value: undefined,
             question_id: this.state.id
         }
@@ -90,7 +92,7 @@ class QuestionWidget extends React.Component {
                         placeholder={"Insert the question"}
                         ref="description"
                         saveInput={this.editQuestion.bind(this)}
-                        editInput={(description) => this.setState({description: description})}
+                        editInput={this.editQuestion.bind(this)}
                     />
                     <a 
                         className="button is-text"

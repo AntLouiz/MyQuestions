@@ -42,6 +42,14 @@ class Questionnarie extends React.Component {
         })});
     }
 
+    editQuestion(new_desc, question_id){
+        this.state.questions.map((question) => {
+            if(question.id === question_id){
+                question.description = new_desc;
+            }
+        })
+    }
+
     addAnswer(answer) {
         this.setState(prev => (
             this.state.questions.map((question) => {
@@ -54,7 +62,7 @@ class Questionnarie extends React.Component {
     removeAnswer(answer_id, question_id){
         this.setState(prev => (
             this.state.questions.map((question) => {
-                if(question.id == question_id){
+                if(question.id === question_id){
                     question.answers = question.answers.filter((answer) => {
                         return answer.id !== answer_id;
                     })
@@ -121,6 +129,8 @@ class Questionnarie extends React.Component {
                                     description={question.description}
                                     answers={question.answers}
                                     questionnarie_id={question.questionnarie_id}
+
+                                    editQuestion={this.editQuestion.bind(this)}
 
                                     removeQuestion={this.removeQuestion.bind(this)}
                                     addAnswer={this.addAnswer.bind(this)}
