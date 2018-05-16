@@ -41,7 +41,7 @@ class QuestionWidget extends React.Component {
         let empty_answer = {
             id: shortid.generate(),
             answer_type: answer_type,
-            description: "Herroo",
+            description: undefined,
             value: undefined,
             question_id: this.state.id
         }
