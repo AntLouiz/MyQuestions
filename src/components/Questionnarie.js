@@ -35,6 +35,12 @@ class Questionnarie extends React.Component {
         this.setState(prev => this.state.questions.push(empty_question))
     }
 
+    removeQuestion(question_id) {
+        this.setState({questions: this.state.questions.filter((question)=>{
+            return question.id !== question_id 
+        })});
+    }
+
     saveQuestionnarie() {
         this.props.saveQuestionnarie(
             this.state.id,
@@ -94,6 +100,8 @@ class Questionnarie extends React.Component {
                                     description={question.description}
                                     answers={question.answers}
                                     questionnarie_id={question.questionnarie_id}
+
+                                    removeQuestion={this.removeQuestion.bind(this)}
                                 />
                             </li>
                         )
