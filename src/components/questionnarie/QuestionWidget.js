@@ -23,7 +23,6 @@ class QuestionWidget extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps)
         this.setState({answers: nextProps.answers})
     }
 

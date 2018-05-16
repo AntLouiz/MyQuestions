@@ -49,8 +49,6 @@ class Questionnarie extends React.Component {
                     question.answers.push(answer);
                 }
             })))
-
-        console.log(this.state.questions)
     }
 
     saveQuestionnarie() {
