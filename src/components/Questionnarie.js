@@ -28,8 +28,11 @@ class Questionnarie extends React.Component {
     }
 
     addQuestion() {
-        this.props.addQuestion(this.props.id)
-        this.setState({questions: this.props.questions})
+        let empty_question = {
+            id: shortid.generate(),
+            description: null
+        }
+        this.setState(prev => this.state.questions.push(empty_question))
     }
 
     saveQuestionnarie() {
@@ -107,12 +110,6 @@ class Questionnarie extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
   saveQuestionnarie: (id, title, description, questions) => {
     dispatch(saveQuestionnarie(id, title, description, questions))
-  },
-  editQuestionnarie: (title, description) => {
-    dispatch(editQuestionnarie(title, description))
-  },
-  addQuestion: (questionnarie_id) => {
-    dispatch(addQuestion(questionnarie_id))
   }
 })
 
