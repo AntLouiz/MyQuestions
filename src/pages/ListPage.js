@@ -13,23 +13,36 @@ class ListPage extends React.Component {
     }
 
     render() {
+        const Questionnaries = (props) => {
+            if(this.props.questionnaries.length){
+                return (
+                    <ul>
+                        {this.props.questionnaries.map((questionnarie) => {
+                            return  <li key={questionnarie.id}>
+                                        <a href="#">{questionnarie.title}</a>
+                                    </li>
+                        })}
+                    </ul>
+                );
+            }
+            else
+                return (<div>Questionnaries not found</div>);
+        }
+
         return (
             <div>
-                <ul>
-                    {this.props.questionnaries.map((questionnarie) => {
-                        return  <li key={questionnarie.id}>
-                                    <a href="#">{questionnarie.title}</a>
-                                </li>
-                    })}
-                </ul>
+                <Questionnaries questionnaries={this.props.questionnaries} />
             </div>
         );
     }
 }
 
 const mapStateToProps = (state) => {
+    console.log(state.questionnarie)
+    return {
         questionnaries: state.questionnarie
     }
+}
 
 const mapDispatchToProps = (dispatch) => ({
   fetchQuestionnaries: () => {
