@@ -16,7 +16,9 @@ class Answer extends React.Component {
     }
 
     saveAnswer(new_desc) {
-        this.setState({description: new_desc});
+        this.setState({description: new_desc}, (
+            this.props.editAnswer(this.state)
+        ));
     }
 
     removeItself() {

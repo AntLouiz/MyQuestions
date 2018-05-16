@@ -68,6 +68,7 @@ class QuestionWidget extends React.Component {
                                         type={answer.answer_type}
                                         description={answer.description}
                                         removeAnswer={this.props.removeAnswer}
+                                        editAnswer={this.props.editAnswer}
                                     />
                                 </li>
                             );

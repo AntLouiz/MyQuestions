@@ -59,6 +59,20 @@ class Questionnarie extends React.Component {
             })))
     }
 
+    editAnswer(answer_target){
+        this.setState(prev => (
+            this.state.questions.map((question) => {
+                if(question.id === answer_target.question_id){
+                    question.answers.map((answer) => {
+                        if(answer.id === answer_target.id){
+                            answer.description = answer_target.description;
+                        }
+                    })
+                }
+            })
+            ))
+    }
+
     removeAnswer(answer_id, question_id){
         this.setState(prev => (
             this.state.questions.map((question) => {
@@ -134,6 +148,7 @@ class Questionnarie extends React.Component {
 
                                     removeQuestion={this.removeQuestion.bind(this)}
                                     addAnswer={this.addAnswer.bind(this)}
+                                    editAnswer={this.editAnswer.bind(this)}
                                     removeAnswer={this.removeAnswer.bind(this)}
                                 />
                             </li>
