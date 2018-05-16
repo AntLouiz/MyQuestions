@@ -2,9 +2,16 @@ import { questionnariesRef } from '../config/firebase.js'
 
 export const fetchQuestionnaries = () => async dispatch => {
   questionnariesRef.on("value", (snapshot) => {
+    let payload = snapshot.val();
+
+    if(payload)
+      payload = Object.values(payload);
+    else
+      payload = [];
+
     dispatch({
       type: 'FETCH_QUESTIONNARIES',
-      payload: Object.values(snapshot.val())
+      payload: payload
     })
   })
 }
