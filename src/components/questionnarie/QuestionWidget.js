@@ -22,10 +22,6 @@ class QuestionWidget extends React.Component {
         !!question_description ? undefined : scrollToComponent(this.refs.description)
     }
 
-    componentWillReceiveProps(nextProps) {
-        this.setState({answers: nextProps.answers})
-    }
-
     editQuestion(new_description) {
         this.setState({description: new_description})
     }
