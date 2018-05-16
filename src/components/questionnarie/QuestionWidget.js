@@ -16,6 +16,10 @@ class QuestionWidget extends React.Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({answers: nextProps.answers})
+    }
+
     componentDidMount() {
         let question_description = this.refs.description.props.value;
 
@@ -43,14 +47,6 @@ class QuestionWidget extends React.Component {
         this.props.addAnswer(empty_answer)
     }
 
-    removeAnswer(id, question_id){
-        this.props.removeAnswer(
-            id,
-            question_id
-        )
-        this.setState({answers: this.state.answers})
-    }
-
     render() {
         let style = {
             width: "40rem",
@@ -70,7 +66,7 @@ class QuestionWidget extends React.Component {
                                         question_id={this.state.id}
                                         type={answer.answer_type}
                                         description={answer.description}
-                                        removeAnswer={this.removeAnswer.bind(this)}
+                                        removeAnswer={this.props.removeAnswer}
                                     />
                                 </li>
                             );
