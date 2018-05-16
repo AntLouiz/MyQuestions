@@ -30,7 +30,8 @@ class Questionnarie extends React.Component {
     addQuestion() {
         let empty_question = {
             id: shortid.generate(),
-            description: null
+            description: null,
+            answers: []
         }
         this.setState(prev => this.state.questions.push(empty_question))
     }
@@ -39,6 +40,17 @@ class Questionnarie extends React.Component {
         this.setState({questions: this.state.questions.filter((question)=>{
             return question.id !== question_id 
         })});
+    }
+
+    addAnswer(answer) {
+        this.setState(prev => (
+            this.state.questions.map((question) => {
+                if(question.id === answer.question_id){
+                    question.answers.push(answer);
+                }
+            })))
+
+        console.log(this.state.questions)
     }
 
     saveQuestionnarie() {
@@ -102,6 +114,7 @@ class Questionnarie extends React.Component {
                                     questionnarie_id={question.questionnarie_id}
 
                                     removeQuestion={this.removeQuestion.bind(this)}
+                                    addAnswer={this.addAnswer.bind(this)}
                                 />
                             </li>
                         )

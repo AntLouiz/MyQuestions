@@ -23,6 +23,7 @@ class QuestionWidget extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        console.log(nextProps)
         this.setState({answers: nextProps.answers})
     }
 
@@ -44,13 +45,7 @@ class QuestionWidget extends React.Component {
             value: undefined,
             question_id: this.state.id
         }
-        this.props.addAnswer(
-            empty_answer.id, 
-            empty_answer.answer_type, 
-            empty_answer.question_id
-        )
-        this.setState({answers: this.state.answers})
-        // this.setState({ answers: this.props.answers })
+        this.props.addAnswer(empty_answer)
     }
 
     removeAnswer(id, question_id){
