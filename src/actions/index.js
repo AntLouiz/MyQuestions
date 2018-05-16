@@ -10,13 +10,17 @@ export const fetchQuestionnaries = () => async dispatch => {
   })
 }
 
-export const saveQuestionnarie = (id, title, description, questions) => ({
-  type: 'SAVE_QUESTIONNARIE',
-  id: id,
-  title: title,
-  description: description,
-  questions: questions
-})
+export const saveQuestionnarie = (new_questionnarie) => async dispatch => {
+  questionnariesRef.push().set({
+    id: new_questionnarie.id,
+    title: new_questionnarie.title,
+    description: new_questionnarie.description,
+    questions: new_questionnarie.questions
+  });
+  dispatch({
+    type: 'SAVE_QUESTIONNARIE',
+  });
+}
 
 export const editQuestionnarie = (title, description) => ({
   type: 'EDIT_QUESTIONNARIE',
@@ -27,7 +31,7 @@ export const editQuestionnarie = (title, description) => ({
 export const addQuestion = (questionnarie_id) => ({
   type: 'ADD_QUESTION',
   id: shortid.generate(),
-  description: undefined,
+  description: null,
   answers: [],
   questionnarie_id: questionnarie_id
 })
@@ -47,10 +51,10 @@ export const removeQuestion = (id) => ({
 export const addAnswer = (id, answer_type, question_id) => ({
   type: 'ADD_ANSWER',
   id: id,
-  description: undefined,
+  description: null,
   answer_type: answer_type,
   question_id: question_id,
-  value: undefined
+  value: null
 })
 
 export const saveAnswer = (id, description, question_id) => ({

@@ -5,8 +5,8 @@ import Questionnarie from '../components/Questionnarie.js'
 const CreatePage = () => {
     const empty_questionnarie = {
         id: shortid.generate(),
-        title: undefined,
-        description: undefined,
+        title: null,
+        description: null,
         questions: []
     }
     return (

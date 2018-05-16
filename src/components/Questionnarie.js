@@ -85,12 +85,7 @@ class Questionnarie extends React.Component {
     }
 
     saveQuestionnarie() {
-        this.props.saveQuestionnarie(
-            this.state.id,
-            this.state.title,
-            this.state.description,
-            this.state.questions
-        )
+        this.props.saveQuestionnarie(this.state);
         this.setState({is_saved: true});
     }
 
@@ -161,8 +156,8 @@ class Questionnarie extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  saveQuestionnarie: (id, title, description, questions) => {
-    dispatch(saveQuestionnarie(id, title, description, questions))
+  saveQuestionnarie: (new_questionnarie) => {
+    dispatch(saveQuestionnarie(new_questionnarie))
   }
 })
 
