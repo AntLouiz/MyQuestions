@@ -1,4 +1,3 @@
-import shortid from 'shortid'
 import { questionnariesRef } from '../config/firebase.js'
 
 export const fetchQuestionnaries = () => async dispatch => {

@@ -1,5 +1,3 @@
-import shortid from 'shortid'
-
 const QuestionnarieReducer = (state, action) => {
   switch (action.type) {
     case 'FETCH_QUESTIONNARIES':
