@@ -17,6 +17,9 @@ export const fetchQuestionnaries = () => async dispatch => {
 }
 
 export const saveQuestionnarie = (new_questionnarie) => async dispatch => {
+  if(!new_questionnarie.title)
+    new_questionnarie.title = `Questionnarie-${new_questionnarie.id}`
+
   questionnariesRef.push().set({
     id: new_questionnarie.id,
     title: new_questionnarie.title,
