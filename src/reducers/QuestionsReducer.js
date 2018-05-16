@@ -7,8 +7,7 @@ const QuestionsReducer = (state, action) => {
 
     case 'SAVE_QUESTIONNARIE':
       // save on the firebase
-      console.log(state, action);
-      return Object.assign({}, state)
+      return Object.assign(state, state)
 
     case 'EDIT_QUESTIONNARIE':
       state.title = action.title
