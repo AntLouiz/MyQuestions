@@ -17,7 +17,9 @@ class ListPage extends React.Component {
             <div>
                 <ul>
                     {this.props.questionnaries.map((questionnarie) => {
-                        return <li>{questionnarie.title}</li>;
+                        return  <li key={questionnarie.id}>
+                                    <a href="#">{questionnarie.title}</a>
+                                </li>
                     })}
                 </ul>
             </div>
@@ -25,9 +27,9 @@ class ListPage extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    questionnaries: state.questionnarie
-})
+const mapStateToProps = (state) => {
+        questionnaries: state.questionnarie
+    }
 
 const mapDispatchToProps = (dispatch) => ({
   fetchQuestionnaries: () => {
