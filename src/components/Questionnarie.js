@@ -5,25 +5,26 @@ import shortid from 'shortid'
 import { addQuestion, saveQuestionnarie, editQuestionnarie } from '../actions'
 import { connect } from 'react-redux'
 import { Redirect } from "react-router-dom"
-import store from '../store.js'
 
 
 class Questionnarie extends React.Component {
     constructor(props) {
         super(props);
-        this.store = store;
         this.state = {
-            id: this.props.id,
-            title: this.props.title,
-            description: this.props.description,
-            questions: this.props.questions,
-            is_saved: false
+            id: props.id,
+            title: props.title,
+            description: props.description,
+            questions: props.questions ? props.questions : [],
+            is_saved: props.is_saved ? props.is_saved : false
         }
     }
 
     componentWillReceiveProps(nextProps) {
        this.setState({
-         questions: nextProps.questions
+            id: nextProps.id,
+            title: nextProps.title,
+            description: nextProps.description,
+            questions: nextProps.questions
        })
     }
 
@@ -96,14 +97,14 @@ class Questionnarie extends React.Component {
     render() {
         return (
             <div>
-                {this.state.is_saved ? <Redirect to="/"/>: undefined}
-
                 <div style={{fontSize: "2.5rem", marginLeft: "5rem"}}>
                     <button 
-                        className="button is-success is-rounded is-medium"
+                        className={
+                            `button is-rounded is-medium ${this.state.is_saved ? "is-info": "is-success"}`
+                        }
                         onClick={this.saveQuestionnarie.bind(this)}
                     > 
-                        Save Questionnarie 
+                         {this.state.is_saved ? "Edit": "Save"}
                     </button>
                     <EditInput 
                         id={shortid.generate()} 
