@@ -7,7 +7,17 @@ import { Link } from 'react-router-dom'
 class ListPage extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props);
+        this.state = {
+            questionnaries: this.props.questionnaries,
+            is_loading: this.props.is_loading
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            questionnaries: nextProps.questionnaries,
+            is_loading: nextProps.is_loading
+        })
     }
 
     componentWillMount() {
@@ -15,20 +25,24 @@ class ListPage extends React.Component {
     }
 
     render() {
-        if(this.props.questionnaries.length){
-            return (<ul>
-                    {this.props.questionnaries.map((questionnarie) => {
+        if(!!this.state.questionnaries){
+            return (
+                <ul>
+                    {Object.keys(this.state.questionnaries).map((key) => {
+                        let id = this.state.questionnaries[key].id;
+                        let title = this.state.questionnaries[key].title;
+
                         return (
-                            <li key={questionnarie.id}>
-                                <Link to={`/detail/${questionnarie.id}`}>
-                                    {questionnarie.title}
+                            <li>
+                                <Link to={`questionnarie/detail/${key}/${id}`}>
+                                    {this.state.questionnaries[key].title}
                                 </Link>
                             </li>
-                        );
+                        )
                     })}
                 </ul>);
         }
-        else if(this.props.is_loading)
+        else if(this.state.is_loading)
             return <div>Loading...</div>
         else
             return <div>Not found questionnaries</div>
