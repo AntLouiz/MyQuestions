@@ -4,10 +4,8 @@ export const fetchQuestionnaries = () => async dispatch => {
   questionnariesRef.on("value", (snapshot) => {
     let payload = snapshot.val();
 
-    if(payload)
-      payload = Object.values(payload);
-    else
-      payload = [];
+    if(!payload)
+      payload = null;
 
     dispatch({
       type: 'FETCH_QUESTIONNARIES',
@@ -26,7 +24,7 @@ export const fetchQuestionnarieById = (questionnarie_id) => async dispatch => {
       })[0]
     }
     else
-      payload = [];
+      payload = null;
 
     dispatch({
       type: 'FETCH_QUESTIONNARIE_BY_ID',
