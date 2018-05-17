@@ -1,4 +1,4 @@
-import { questionnariesRef } from '../config/firebase.js'
+import { database, questionnariesRef } from '../config/firebase.js'
 
 export const fetchQuestionnaries = () => async dispatch => {
   questionnariesRef.on("value", (snapshot) => {
@@ -42,5 +42,13 @@ export const saveQuestionnarie = (new_questionnarie) => async dispatch => {
   });
   dispatch({
     type: 'SAVE_QUESTIONNARIE',
+  });
+}
+
+export const updateQuestionnarie = (questionnarie) => async dispatch => {
+  questionnariesRef.child(questionnarie.id).update(questionnarie)
+  dispatch({
+    type: 'UPDATE_QUESTIONNARIE',
+    payload: questionnarie
   });
 }
