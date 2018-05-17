@@ -13,10 +13,10 @@ const Menu = () => {
           <Link to="/" className="navbar-item button is-white">
             Home
           </Link>
-          <Link to="/create" className="navbar-item button is-success is-outlined">
+          <Link to="/create/questionnaries" className="navbar-item button is-success is-outlined">
             Create Questionnarie
           </Link>
-          <Link to="/list" className="navbar-item button is-info is-outlined">
+          <Link to="/list/questionnaries" className="navbar-item button is-info is-outlined">
             My Questionnaries
           </Link>
         </div>

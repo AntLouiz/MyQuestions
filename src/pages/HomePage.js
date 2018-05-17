@@ -11,7 +11,7 @@ const HomePage = () => {
                 </h3>
                 <div className="column">
                     <Link 
-                        to='/create' 
+                        to='/create/questionnaries' 
                         className="button is-success is-rounded is-medium"
                     >
 

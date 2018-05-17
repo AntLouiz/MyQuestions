@@ -36,7 +36,7 @@ class DetailPage extends React.Component {
             );
         }
         else
-            return <Redirect to="/list"/>
+            return <Redirect to="/list/questionnaries"/>
     }
 }
 
