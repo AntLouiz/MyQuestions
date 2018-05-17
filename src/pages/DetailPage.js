@@ -16,6 +16,7 @@ class DetailPage extends React.Component {
     }
 
     componentWillMount() {
+        console.log(this.state)
         this.props.fetchQuestionnarieById(this.state.questionnarie_id);
     }
 

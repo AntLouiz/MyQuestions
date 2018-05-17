@@ -33,8 +33,8 @@ class ListPage extends React.Component {
                         let title = this.state.questionnaries[key].title;
 
                         return (
-                            <li>
-                                <Link to={`questionnarie/detail/${key}/${id}`}>
+                            <li key={key}>
+                                <Link to={`/questionnarie/detail/${key}/${id}`}>
                                     {this.state.questionnaries[key].title}
                                 </Link>
                             </li>
