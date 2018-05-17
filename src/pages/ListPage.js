@@ -1,7 +1,9 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { connect, dispatch } from 'react-redux'
 import { fetchQuestionnaries } from '../actions'
 import Questionnarie from '../components/Questionnarie.js'
+import { startFetch } from '../actions/fetch.js'
+import { Link } from 'react-router-dom'
 
 class ListPage extends React.Component {
     constructor(props) {
@@ -9,24 +11,32 @@ class ListPage extends React.Component {
     }
 
     componentWillMount() {
+        this.props.startFetch();
         this.props.fetchQuestionnaries();
     }
 
     render() {
         const Questionnaries = (props) => {
-            if(this.props.questionnaries.length){
+            if(this.props.is_loading){
+                return (
+                    <span>Loading...</span>
+                );
+            }
+            else if(!this.props.questionnaries.length)
+                return (<div>Questionnaries not found</div>);
+            else{
                 return (
                     <ul>
                         {this.props.questionnaries.map((questionnarie) => {
                             return  <li key={questionnarie.id}>
-                                        <a href="#">{questionnarie.title}</a>
+                                        <Link to={`/detail/${questionnarie.id}`}>
+                                            {questionnarie.title}
+                                        </Link>
                                     </li>
                         })}
                     </ul>
                 );
             }
-            else
-                return (<div>Questionnaries not found</div>);
         }
 
         return (
@@ -40,13 +50,17 @@ class ListPage extends React.Component {
 const mapStateToProps = (state) => {
     console.log(state.questionnarie)
     return {
-        questionnaries: state.questionnarie
+        questionnaries: state.questionnarie,
+        is_loading: state.is_loading
     }
 }
 
 const mapDispatchToProps = (dispatch) => ({
   fetchQuestionnaries: () => {
     dispatch(fetchQuestionnaries())
+  },
+  startFetch: () => {
+    dispatch(startFetch())
   },
 })
 
