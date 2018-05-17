@@ -14,8 +14,8 @@ class Questionnarie extends React.Component {
             id: props.id,
             title: props.title,
             description: props.description,
-            questions: props.questions ? props.questions : [],
-            is_saved: props.is_saved ? props.is_saved : false
+            questions: props.questions,
+            is_saved: props.is_saved
         }
     }
 
@@ -86,8 +86,14 @@ class Questionnarie extends React.Component {
     }
 
     saveQuestionnarie() {
-        this.props.saveQuestionnarie(this.state);
-        this.setState({is_saved: true});
+        if(this.state.is_saved) {
+            console.log("UPDATE THE QUESTIONNARIE");
+        }
+
+        else {
+            this.props.saveQuestionnarie(this.state);
+            this.setState({is_saved: true});
+        }
     }
 
     editQuestionnarie() {
@@ -132,7 +138,6 @@ class Questionnarie extends React.Component {
                 <ul style={{listStyle: "decimal"}}>
                     {this.state.questions.map((question, index) => {
                         return (
-                            /*<li>{question.id}</li>*/
                             <li key={question.id}>
                                 <QuestionWidget
                                     id={question.id}
@@ -161,5 +166,12 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(saveQuestionnarie(new_questionnarie))
   }
 })
+
+Questionnarie.defaultProps = {
+    title: "",
+    description: "",
+    questions: [],
+    is_saved: false,
+}
 
 export default connect(null, mapDispatchToProps)(Questionnarie);
