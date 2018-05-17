@@ -11,8 +11,13 @@ class DetailPage extends React.Component {
 
         this.state = {
             questionnarie_id: props.match.params.id,
-            questionnarie_key: props.match.params.key
+            questionnarie_key: props.match.params.key,
+            data: props.data
         }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({data: nextProps.data})
     }
 
     componentWillMount() {
@@ -26,10 +31,10 @@ class DetailPage extends React.Component {
             return (
                 <div>
                     <Questionnarie
-                        id={this.props.data.id}
-                        title={this.props.data.title}
-                        description={this.props.data.description}
-                        questions={this.props.data.questions}
+                        id={this.state.questionnarie_key}
+                        title={this.state.data.title}
+                        description={this.state.data.description}
+                        questions={this.state.data.questions}
                         is_saved={true}
                     />
                 </div>
