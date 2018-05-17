@@ -14,14 +14,11 @@ export const fetchQuestionnaries = () => async dispatch => {
   })
 }
 
-export const fetchQuestionnarieById = (questionnarie_id) => async dispatch => {
+export const fetchQuestionnarieByKey = (questionnarie_key) => async dispatch => {
   questionnariesRef.on("value", (snapshot) => {
     let payload = snapshot.val();
     if(payload){
-      payload = Object.values(payload);
-      payload = payload.filter((questionnarie) => {
-        return questionnarie.id === questionnarie_id;
-      })[0]
+      payload = payload[questionnarie_key];
     }
     else
       payload = null;

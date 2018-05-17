@@ -2,7 +2,7 @@ import React from 'react'
 import shortid from 'shortid'
 import Questionnarie from '../components/Questionnarie.js'
 import { connect } from 'react-redux'
-import { fetchQuestionnarieById } from '../actions'
+import { fetchQuestionnarieByKey } from '../actions'
 import { Redirect } from "react-router-dom"
 
 class DetailPage extends React.Component {
@@ -16,8 +16,7 @@ class DetailPage extends React.Component {
     }
 
     componentWillMount() {
-        console.log(this.state)
-        this.props.fetchQuestionnarieById(this.state.questionnarie_id);
+        this.props.fetchQuestionnarieByKey(this.state.questionnarie_key);
     }
 
     render() {
@@ -47,8 +46,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchQuestionnarieById: (questionnarie_id) => {
-        dispatch(fetchQuestionnarieById(questionnarie_id));
+    fetchQuestionnarieByKey: (questionnarie_key) => {
+        dispatch(fetchQuestionnarieByKey(questionnarie_key));
     }
 })
 
