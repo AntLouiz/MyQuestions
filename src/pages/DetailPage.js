@@ -11,6 +11,7 @@ class DetailPage extends React.Component {
 
         this.state = {
             questionnarie_id: props.match.params.id,
+            questionnarie_key: props.match.params.key
         }
     }
 
@@ -22,7 +23,6 @@ class DetailPage extends React.Component {
         if(this.props.is_loading)
             return (<div>loading...</div>)
         else if(this.props.data){
-            console.log(this.props.data)
             return (
                 <div>
                     <Questionnarie
