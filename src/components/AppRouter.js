@@ -21,7 +21,7 @@ const AppRouter = () => (
         <Route exact path="/" component={HomePage} />
         <Route exact path="/create" component={CreatePage} />
         <Route exact path="/list" component={ListPage} />
-        <Route path="/detail/:id" component={DetailPage} />
+        <Route path="/questionnarie/detail/:key/:id" component={DetailPage} />
         <Route component={NotFoundPage} />
       </Switch>
 
