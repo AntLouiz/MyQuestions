@@ -4,5 +4,5 @@ import { FirebaseConfig } from "../config/keys";
 
 firebase.initializeApp(FirebaseConfig);
 
-const databaseRef = firebase.database().ref();
-export const questionnariesRef = databaseRef.child("questionnaries");
+export const database = firebase.database();
+export const questionnariesRef = database.ref().child("questionnaries");
