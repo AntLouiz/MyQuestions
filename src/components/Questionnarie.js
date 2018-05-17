@@ -2,7 +2,7 @@ import React from 'react'
 import QuestionWidget from '../components/questionnarie/QuestionWidget.js'
 import EditInput from './models/EditInput.js'
 import shortid from 'shortid'
-import { addQuestion, saveQuestionnarie, editQuestionnarie } from '../actions'
+import { addQuestion, saveQuestionnarie, updateQuestionnarie } from '../actions'
 import { connect } from 'react-redux'
 import { Redirect } from "react-router-dom"
 
@@ -34,7 +34,8 @@ class Questionnarie extends React.Component {
             description: null,
             answers: []
         }
-        this.setState(prev => this.state.questions.push(empty_question))
+        this.setState(prev => (this.state.questions.push(empty_question)))
+        this.setState(prev => this.saveQuestionnarie())
     }
 
     removeQuestion(question_id) {
@@ -52,16 +53,18 @@ class Questionnarie extends React.Component {
     }
 
     addAnswer(answer) {
-        this.setState(prev => (
+        this.setState(prev => {
             this.state.questions.map((question) => {
                 if(question.id === answer.question_id){
                     question.answers.push(answer);
                 }
-            })))
+            })
+            this.saveQuestionnarie()
+        })
     }
 
     editAnswer(answer_target){
-        this.setState(prev => (
+        this.setState(prev => {
             this.state.questions.map((question) => {
                 if(question.id === answer_target.question_id){
                     question.answers.map((answer) => {
@@ -71,23 +74,24 @@ class Questionnarie extends React.Component {
                     })
                 }
             })
-            ))
+        })
     }
 
     removeAnswer(answer_id, question_id){
-        this.setState(prev => (
+        this.setState(prev => {
             this.state.questions.map((question) => {
                 if(question.id === question_id){
                     question.answers = question.answers.filter((answer) => {
                         return answer.id !== answer_id;
                     })
                 }
-            })))
+            })
+        })
     }
 
     saveQuestionnarie() {
         if(this.state.is_saved) {
-            console.log("UPDATE THE QUESTIONNARIE");
+            this.props.updateQuestionnarie(this.state)
         }
 
         else {
@@ -164,6 +168,9 @@ class Questionnarie extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
   saveQuestionnarie: (new_questionnarie) => {
     dispatch(saveQuestionnarie(new_questionnarie))
+  },
+  updateQuestionnarie: (questionnarie) => {
+    dispatch(updateQuestionnarie(questionnarie))
   }
 })
 
