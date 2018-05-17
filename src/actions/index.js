@@ -46,7 +46,11 @@ export const saveQuestionnarie = (new_questionnarie) => async dispatch => {
 }
 
 export const updateQuestionnarie = (questionnarie) => async dispatch => {
-  questionnariesRef.child(questionnarie.id).update(questionnarie)
+  questionnariesRef.child(questionnarie.id).update({
+    title: questionnarie.title,
+    description: questionnarie.description,
+    questions: questionnarie.questions
+  })
   dispatch({
     type: 'UPDATE_QUESTIONNARIE',
     payload: questionnarie

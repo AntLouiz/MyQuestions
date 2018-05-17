@@ -24,8 +24,15 @@ class Questionnarie extends React.Component {
             id: nextProps.id,
             title: nextProps.title,
             description: nextProps.description,
-            questions: nextProps.questions
+            questions: nextProps.questions,
+            is_saved: nextProps.is_saved
        })
+    }
+
+    componentDidUpdate(nextState){
+        if(this.state.is_saved) {
+            this.props.updateQuestionnarie(this.state)
+        }
     }
 
     addQuestion() {
@@ -35,36 +42,41 @@ class Questionnarie extends React.Component {
             answers: []
         }
         this.setState(prev => (this.state.questions.push(empty_question)))
-        this.setState(prev => this.saveQuestionnarie())
+        // this.setState(prev => this.saveQuestionnarie())
     }
 
     removeQuestion(question_id) {
-        this.setState({questions: this.state.questions.filter((question)=>{
+        this.setState({ questions: this.state.questions.filter((question)=>{
             return question.id !== question_id 
-        })});
+        })})
+       //this.saveQuestionnarie()
     }
 
     editQuestion(new_desc, question_id){
-        this.state.questions.map((question) => {
-            if(question.id === question_id){
-                question.description = new_desc;
-            }
-        })
+        this.setState(prev => (
+            this.state.questions.map((question) => {
+                if(question.id === question_id){
+                    question.description = new_desc;
+                }
+            })
+        ))
     }
 
     addAnswer(answer) {
-        this.setState(prev => {
+        this.setState(prev => (
             this.state.questions.map((question) => {
                 if(question.id === answer.question_id){
-                    question.answers.push(answer);
+                    if(question.answers)
+                        question.answers.push(answer)
+                    else
+                        question.answers = [answer]
                 }
             })
-            this.saveQuestionnarie()
-        })
+        ))
     }
 
     editAnswer(answer_target){
-        this.setState(prev => {
+        this.setState(prev => (
             this.state.questions.map((question) => {
                 if(question.id === answer_target.question_id){
                     question.answers.map((answer) => {
@@ -74,11 +86,11 @@ class Questionnarie extends React.Component {
                     })
                 }
             })
-        })
+        ))
     }
 
     removeAnswer(answer_id, question_id){
-        this.setState(prev => {
+        this.setState(prev => (
             this.state.questions.map((question) => {
                 if(question.id === question_id){
                     question.answers = question.answers.filter((answer) => {
@@ -86,7 +98,7 @@ class Questionnarie extends React.Component {
                     })
                 }
             })
-        })
+        ))
     }
 
     saveQuestionnarie() {

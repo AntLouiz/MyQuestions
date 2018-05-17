@@ -16,10 +16,10 @@ const QuestionnarieReducer = (state, action) => {
       return Object.assign(state, state)
 
     case 'UPDATE_QUESTIONNARIE':
-      return Object.assign({}, { 
+      return { 
         data: action.payload, 
         is_loading: false
-      })
+      }
 
     default:
       return {
