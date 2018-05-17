@@ -17,7 +17,7 @@ const QuestionnarieReducer = (state, action) => {
 
     default:
       return {
-        data: [],
+        data: null,
         is_loading: true
       }
   }
