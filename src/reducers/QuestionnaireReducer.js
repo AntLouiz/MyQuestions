@@ -6,7 +6,7 @@ const QuestionnaireReducer = (state, action) => {
         is_loading: false
       }
 
-    case 'FETCH_QUESTIONNAIRE_BY_ID':
+    case 'FETCH_QUESTIONNAIRE_BY_KEY':
         return {
           data: action.payload,
           is_loading: false

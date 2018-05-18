@@ -24,7 +24,7 @@ export const fetchQuestionnaireByKey = (questionnaire_key) => async dispatch => 
       payload = null;
 
     dispatch({
-      type: 'FETCH_QUESTIONNAIRE_BY_ID',
+      type: 'FETCH_QUESTIONNAIRE_BY_KEY',
       payload: payload
     })
   })
