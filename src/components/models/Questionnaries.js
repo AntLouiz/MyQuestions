@@ -8,7 +8,7 @@ class Questionnaires extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            questionnaire: this.props.questionnaire,
+            questionnaires: this.props.questionnaires,
             is_loading: this.props.is_loading,
             search_actives: this.props.search_actives
         }
@@ -16,7 +16,7 @@ class Questionnaires extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            questionnaire: nextProps.questionnaire,
+            questionnaires: nextProps.questionnaires,
             is_loading: nextProps.is_loading
         })
     }
@@ -26,13 +26,13 @@ class Questionnaires extends React.Component {
     }
 
     render() {
-        if(!!this.state.questionnaire){
+        if(!!this.state.questionnaires){
             return (
                 <ul className="containner is-flex">
                     <div className="column is-5 is-offset-3">
-                    {Object.keys(this.state.questionnaire).map((key) => {
-                        let id = this.state.questionnaire[key].id;
-                        let title = this.state.questionnaire[key].title;
+                    {Object.keys(this.state.questionnaires).map((key) => {
+                        let id = this.state.questionnaires[key].id;
+                        let title = this.state.questionnaires[key].title;
 
                         return (
                             <li key={key}>
@@ -62,13 +62,13 @@ class Questionnaires extends React.Component {
         else if(this.state.is_loading)
             return <div>Loading...</div>
         else
-            return <div>Not found questionnaire</div>
+            return <div>Not found questionnaires</div>
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        questionnaire: state.questionnaire.data,
+        questionnaires: state.questionnaire.data,
         is_loading: state.questionnaire.is_loading
     }
 }
