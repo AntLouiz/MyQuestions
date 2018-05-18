@@ -9,6 +9,7 @@ import HomePage from '../pages/HomePage.js';
 import CreatePage from '../pages/CreatePage.js';
 import ListPage from '../pages/ListPage.js';
 import DetailPage from '../pages/DetailPage.js';
+import ArchivedPage from '../pages/ArchivedPage.js';
 import NotFoundPage from '../pages/NotFoundPage.js';
 import Menu from './Menu.js';
 
@@ -21,6 +22,7 @@ const AppRouter = () => (
         <Route exact path="/" component={HomePage} />
         <Route exact path="/create/questionnaries" component={CreatePage} />
         <Route exact path="/list/questionnaries" component={ListPage} />
+        <Route exact path="/archived/questionnaries" component={ArchivedPage} />
         <Route path="/questionnarie/detail/:key/:id" component={DetailPage} />
         <Route component={NotFoundPage} />
       </Switch>

@@ -19,6 +19,9 @@ const Menu = () => {
           <Link to="/list/questionnaries" className="navbar-item button is-info is-outlined">
             My Questionnaries
           </Link>
+          <Link to="/archived/questionnaries" className="navbar-item button is-outlined">
+            Archive
+          </Link>
         </div>
       </nav>
     );
