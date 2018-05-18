@@ -47,6 +47,9 @@ class Questionnaires extends React.Component {
                                 </Link>
                                 <footer class="card-footer">
                                     <a href="/" class="card-footer-item">
+                                        Compound
+                                    </a>
+                                    <a href="/" class="card-footer-item">
                                         Archive
                                     </a>
                                 </footer>
