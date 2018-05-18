@@ -27,19 +27,33 @@ class ListPage extends React.Component {
     render() {
         if(!!this.state.questionnaries){
             return (
-                <ul>
+                <ul className="containner is-flex">
+                    <div className="column is-5 is-offset-3">
                     {Object.keys(this.state.questionnaries).map((key) => {
                         let id = this.state.questionnaries[key].id;
                         let title = this.state.questionnaries[key].title;
 
                         return (
                             <li key={key}>
-                                <Link to={`/questionnarie/detail/${key}/${id}`}>
-                                    {this.state.questionnaries[key].title}
+                            <div className="column is-12">
+                                <Link className="card" to={`/questionnarie/detail/${key}/${id}`}>
+                                      <header class="card-header has-background-info">
+                                        <p class="card-header-title">
+                                          {title}
+                                        </p>
+                                        <a href="#" class="card-header-icon" aria-label="more options">
+                                          <span class="icon">
+                                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                          </span>
+                                        </a>
+                                      </header>
                                 </Link>
+                            </div>
                             </li>
+
                         )
                     })}
+                    </div>
                 </ul>);
         }
         else if(this.state.is_loading)
