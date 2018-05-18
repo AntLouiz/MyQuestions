@@ -1,6 +1,6 @@
 import { database, questionnaireRef } from '../config/firebase.js'
 
-export const fetchQuestionnaire = () => async dispatch => {
+export const fetchQuestionnaire = (search_actives = true) => async dispatch => {
   questionnaireRef.on("value", (snapshot) => {
     let payload = snapshot.val();
 
@@ -9,10 +9,12 @@ export const fetchQuestionnaire = () => async dispatch => {
     else{
       payload = {};
       snapshot.forEach((data) => {
-        if(data.val().is_active){
+        if(data.val().is_active === search_actives){
           payload[data.key] = data.val();
         }
       });
+
+      payload = Object.keys(payload).length ? payload : null;
     }
 
     dispatch({
