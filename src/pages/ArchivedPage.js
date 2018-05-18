@@ -1,13 +1,14 @@
 import React from 'react'
+import Questionnaries from '../components/models/Questionnaries.js'
 
-const ArchivedPage = () => {
-    return (
-        <div>
-            <div className="container">
-                Show all archived questionnaires
-            </div>
-        </div>
-    );
+class ArchivedPage extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return <Questionnaries search_actives={false} />
+    }
 }
 
-export default ArchivedPage
+export default ArchivedPage;
