@@ -4,7 +4,7 @@ const ArchivedPage = () => {
     return (
         <div>
             <div className="container">
-                Show all archived questionnaries
+                Show all archived questionnaires
             </div>
         </div>
     );

@@ -1,24 +1,24 @@
-const QuestionnarieReducer = (state, action) => {
+const QuestionnaireReducer = (state, action) => {
   switch (action.type) {
-    case 'FETCH_QUESTIONNARIES':
+    case 'FETCH_QUESTIONNAIRES':
       return {
         data: action.payload,
         is_loading: false
       }
 
-    case 'FETCH_QUESTIONNARIE_BY_ID':
+    case 'FETCH_QUESTIONNAIRE_BY_ID':
         return {
           data: action.payload,
           is_loading: false
         }
 
-    case 'SAVE_QUESTIONNARIE':
+    case 'SAVE_QUESTIONNAIRE':
       return {
-        questionnarie: action.payload,
+        questionnaire: action.payload,
         is_loading: true
       }
 
-    case 'UPDATE_QUESTIONNARIE':
+    case 'UPDATE_QUESTIONNAIRE':
       return { 
         data: action.payload, 
         is_loading: false
@@ -32,4 +32,4 @@ const QuestionnarieReducer = (state, action) => {
   }
 }
 
-export default QuestionnarieReducer
+export default QuestionnaireReducer

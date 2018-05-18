@@ -1,13 +1,13 @@
 import React from 'react'
-import QuestionWidget from '../components/questionnarie/QuestionWidget.js'
+import QuestionWidget from '../components/questionnaire/QuestionWidget.js'
 import EditInput from './models/EditInput.js'
 import shortid from 'shortid'
-import { addQuestion, saveQuestionnarie, updateQuestionnarie } from '../actions'
+import { addQuestion, saveQuestionnaire, updateQuestionnaire } from '../actions'
 import { connect } from 'react-redux'
 import { Redirect } from "react-router-dom"
 
 
-class Questionnarie extends React.Component {
+class Questionnaire extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -31,7 +31,7 @@ class Questionnarie extends React.Component {
 
     componentDidUpdate(nextState){
         if(this.state.is_saved) {
-            this.props.updateQuestionnarie(this.state)
+            this.props.updateQuestionnaire(this.state)
         }
     }
 
@@ -42,14 +42,14 @@ class Questionnarie extends React.Component {
             answers: []
         }
         this.setState(prev => (this.state.questions.push(empty_question)))
-        // this.setState(prev => this.saveQuestionnarie())
+        // this.setState(prev => this.saveQuestionnaire())
     }
 
     removeQuestion(question_id) {
         this.setState({ questions: this.state.questions.filter((question)=>{
             return question.id !== question_id 
         })})
-       //this.saveQuestionnarie()
+       //this.saveQuestionnaire()
     }
 
     editQuestion(new_desc, question_id){
@@ -101,18 +101,18 @@ class Questionnarie extends React.Component {
         ))
     }
 
-    saveQuestionnarie() {
+    saveQuestionnaire() {
         if(this.state.is_saved) {
-            this.props.updateQuestionnarie(this.state)
+            this.props.updateQuestionnaire(this.state)
         }
 
         else {
-            this.props.saveQuestionnarie(this.state);
+            this.props.saveQuestionnaire(this.state);
             this.setState({is_saved: true});
         }
     }
 
-    editQuestionnarie() {
+    editQuestionnaire() {
         this.setState({title: this.state.title, description: this.state.description})
     }
 
@@ -133,7 +133,7 @@ class Questionnarie extends React.Component {
                         label={"Description"}
                         value={this.state.description}
                         placeholder={"Insert the description"}
-                        saveInput={this.editQuestionnarie.bind(this)}
+                        saveInput={this.editQuestionnaire.bind(this)}
                         editInput={(desc) => this.setState({description: desc})}
                     />
                     <button state
@@ -151,7 +151,7 @@ class Questionnarie extends React.Component {
                                     id={question.id}
                                     description={question.description}
                                     answers={question.answers}
-                                    questionnarie_id={question.questionnarie_id}
+                                    questionnaire_id={question.questionnaire_id}
 
                                     editQuestion={this.editQuestion.bind(this)}
 
@@ -170,19 +170,19 @@ class Questionnarie extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  saveQuestionnarie: (new_questionnarie) => {
-    dispatch(saveQuestionnarie(new_questionnarie))
+  saveQuestionnaire: (new_questionnaire) => {
+    dispatch(saveQuestionnaire(new_questionnaire))
   },
-  updateQuestionnarie: (questionnarie) => {
-    dispatch(updateQuestionnarie(questionnarie))
+  updateQuestionnaire: (questionnaire) => {
+    dispatch(updateQuestionnaire(questionnaire))
   }
 })
 
-Questionnarie.defaultProps = {
+Questionnaire.defaultProps = {
     title: "",
     description: "",
     questions: [],
     is_saved: false,
 }
 
-export default connect(null, mapDispatchToProps)(Questionnarie);
+export default connect(null, mapDispatchToProps)(Questionnaire);

@@ -1,7 +1,7 @@
 import React from 'react'
 import shortid from 'shortid'
 import { connect, dispatch } from 'react-redux'
-import { saveQuestionnarie } from '../actions'
+import { saveQuestionnaire } from '../actions'
 import { Link } from 'react-router-dom'
 
 class CreatePage extends React.Component {
@@ -10,28 +10,28 @@ class CreatePage extends React.Component {
         super(props);
         this.state = {
             title: "",
-            questionnarie: null,
+            questionnaire: null,
             is_saved: false
         }
     }
 
     componentWillReceiveProps(newProps) {
-        if(newProps.questionnarie){
-            let questionnarie = newProps.questionnarie;
+        if(newProps.questionnaire){
+            let questionnaire = newProps.questionnaire;
             this.props.history.push(
-                `/questionnarie/detail/${questionnarie.key}/${questionnarie.id}`
+                `/questionnaire/detail/${questionnaire.key}/${questionnaire.id}`
             )
         }
     }
 
-    createQuestionnarie() {
-        let empty_questionnarie = {
+    createQuestionnaire() {
+        let empty_questionnaire = {
             id: shortid.generate(),
             title: this.state.title,
             description: "",
             questions: []
         }
-        this.props.createQuestionnarie(empty_questionnarie)
+        this.props.createQuestionnaire(empty_questionnaire)
         this.setState({is_saved: true})
     }
 
@@ -48,7 +48,7 @@ class CreatePage extends React.Component {
                             <div className="modal-content">
                                   <div className="modal-card">
                                     <header className="modal-card-head">
-                                      <p className="modal-card-title">Create a new questionnarie</p>
+                                      <p className="modal-card-title">Create a new questionnaire</p>
                                     </header>
                                     <section className="modal-card-body">
                                       <div>
@@ -68,7 +68,7 @@ class CreatePage extends React.Component {
                                     </section>
                                     <footer className="modal-card-foot">
                                       <button className="button is-success"
-                                        onClick={this.createQuestionnarie.bind(this)}
+                                        onClick={this.createQuestionnaire.bind(this)}
                                       >Create</button>
                                     <Link to="/" className="button">
                                         Cancel
@@ -92,13 +92,13 @@ class CreatePage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        questionnarie: state.questionnaries.questionnarie
+        questionnaire: state.questionnaire.questionnaire
     }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  createQuestionnarie: (questionnarie) => {
-    dispatch(saveQuestionnarie(questionnarie))
+  createQuestionnaire: (questionnaire) => {
+    dispatch(saveQuestionnaire(questionnaire))
   }
 })
 

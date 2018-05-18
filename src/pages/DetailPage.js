@@ -1,8 +1,8 @@
 import React from 'react'
 import shortid from 'shortid'
-import Questionnarie from '../components/Questionnarie.js'
+import Questionnaire from '../components/Questionnaire.js'
 import { connect } from 'react-redux'
-import { fetchQuestionnarieByKey } from '../actions'
+import { fetchQuestionnaireByKey } from '../actions'
 import { Redirect } from "react-router-dom"
 
 class DetailPage extends React.Component {
@@ -10,8 +10,8 @@ class DetailPage extends React.Component {
         super(props);
 
         this.state = {
-            questionnarie_id: props.match.params.id,
-            questionnarie_key: props.match.params.key,
+            questionnaire_id: props.match.params.id,
+            questionnaire_key: props.match.params.key,
             data: props.data
         }
     }
@@ -21,7 +21,7 @@ class DetailPage extends React.Component {
     }
 
     componentWillMount() {
-        this.props.fetchQuestionnarieByKey(this.state.questionnarie_key);
+        this.props.fetchQuestionnaireByKey(this.state.questionnaire_key);
     }
 
     render() {
@@ -30,8 +30,8 @@ class DetailPage extends React.Component {
         else if(this.props.data){
             return (
                 <div>
-                    <Questionnarie
-                        id={this.state.questionnarie_key}
+                    <Questionnaire
+                        id={this.state.questionnaire_key}
                         title={this.state.data.title}
                         description={this.state.data.description}
                         questions={this.state.data.questions}
@@ -41,18 +41,18 @@ class DetailPage extends React.Component {
             );
         }
         else
-            return <Redirect to="/list/questionnaries"/>
+            return <Redirect to="/list/questionnaires"/>
     }
 }
 
 const mapStateToProps = (state) => ({
-    data: state.questionnaries.data,
-    is_loading: state.questionnaries.is_loading
+    data: state.questionnaire.data,
+    is_loading: state.questionnaire.is_loading
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchQuestionnarieByKey: (questionnarie_key) => {
-        dispatch(fetchQuestionnarieByKey(questionnarie_key));
+    fetchQuestionnaireByKey: (questionnaire_key) => {
+        dispatch(fetchQuestionnaireByKey(questionnaire_key));
     }
 })
 

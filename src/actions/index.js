@@ -1,64 +1,64 @@
-import { database, questionnariesRef } from '../config/firebase.js'
+import { database, questionnaireRef } from '../config/firebase.js'
 
-export const fetchQuestionnaries = () => async dispatch => {
-  questionnariesRef.on("value", (snapshot) => {
+export const fetchQuestionnaire = () => async dispatch => {
+  questionnaireRef.on("value", (snapshot) => {
     let payload = snapshot.val();
 
     if(!payload)
       payload = null;
 
     dispatch({
-      type: 'FETCH_QUESTIONNARIES',
+      type: 'FETCH_QUESTIONNAIRES',
       payload: payload
     })
   })
 }
 
-export const fetchQuestionnarieByKey = (questionnarie_key) => async dispatch => {
-  questionnariesRef.on("value", (snapshot) => {
+export const fetchQuestionnaireByKey = (questionnaire_key) => async dispatch => {
+  questionnaireRef.on("value", (snapshot) => {
     let payload = snapshot.val();
     if(payload){
-      payload = payload[questionnarie_key];
+      payload = payload[questionnaire_key];
     }
     else
       payload = null;
 
     dispatch({
-      type: 'FETCH_QUESTIONNARIE_BY_ID',
+      type: 'FETCH_QUESTIONNAIRE_BY_ID',
       payload: payload
     })
   })
 }
 
-export const saveQuestionnarie = (new_questionnarie) => async dispatch => {
-  if(!new_questionnarie.title)
-    new_questionnarie.title = `Questionnarie-${new_questionnarie.id}`
+export const saveQuestionnaire = (new_questionnaire) => async dispatch => {
+  if(!new_questionnaire.title)
+    new_questionnaire.title = `Questionnaire-${new_questionnaire.id}`
 
-  let key = questionnariesRef.push().key;
+  let key = questionnaireRef.push().key;
 
-  new_questionnarie.key = key;
+  new_questionnaire.key = key;
 
-  questionnariesRef.child(key).set({
-    id: new_questionnarie.id,
-    title: new_questionnarie.title,
-    description: new_questionnarie.description,
-    questions: new_questionnarie.questions
+  questionnaireRef.child(key).set({
+    id: new_questionnaire.id,
+    title: new_questionnaire.title,
+    description: new_questionnaire.description,
+    questions: new_questionnaire.questions
   });
 
   dispatch({
-    type: 'SAVE_QUESTIONNARIE',
-    payload: new_questionnarie
+    type: 'SAVE_QUESTIONNAIRE',
+    payload: new_questionnaire
   });
 }
 
-export const updateQuestionnarie = (questionnarie) => async dispatch => {
-  questionnariesRef.child(questionnarie.id).update({
-    title: questionnarie.title,
-    description: questionnarie.description,
-    questions: questionnarie.questions
+export const updateQuestionnaire = (questionnaire) => async dispatch => {
+  questionnaireRef.child(questionnaire.id).update({
+    title: questionnaire.title,
+    description: questionnaire.description,
+    questions: questionnaire.questions
   })
   dispatch({
-    type: 'UPDATE_QUESTIONNARIE',
-    payload: questionnarie
+    type: 'UPDATE_QUESTIONNAIRE',
+    payload: questionnaire
   });
 }

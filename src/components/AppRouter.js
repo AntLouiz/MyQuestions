@@ -20,10 +20,10 @@ const AppRouter = () => (
 
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/create/questionnaries" component={CreatePage} />
-        <Route exact path="/list/questionnaries" component={ListPage} />
-        <Route exact path="/archived/questionnaries" component={ArchivedPage} />
-        <Route path="/questionnarie/detail/:key/:id" component={DetailPage} />
+        <Route exact path="/create/questionnaires" component={CreatePage} />
+        <Route exact path="/list/questionnaires" component={ListPage} />
+        <Route exact path="/archived/questionnaires" component={ArchivedPage} />
+        <Route path="/questionnaire/detail/:key/:id" component={DetailPage} />
         <Route component={NotFoundPage} />
       </Switch>
 

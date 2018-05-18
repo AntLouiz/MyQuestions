@@ -1,43 +1,43 @@
 import React from 'react'
 import { connect, dispatch } from 'react-redux'
-import { fetchQuestionnaries } from '../actions'
-import Questionnarie from '../components/Questionnarie.js'
+import { fetchQuestionnaire } from '../actions'
+import Questionnaire from '../components/Questionnaire.js'
 import { Link } from 'react-router-dom'
 
 class ListPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            questionnaries: this.props.questionnaries,
+            questionnaire: this.props.questionnaire,
             is_loading: this.props.is_loading
         }
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            questionnaries: nextProps.questionnaries,
+            questionnaire: nextProps.questionnaire,
             is_loading: nextProps.is_loading
         })
     }
 
     componentWillMount() {
-        this.props.fetchQuestionnaries();
+        this.props.fetchQuestionnaire();
     }
 
     render() {
-        if(!!this.state.questionnaries){
+        if(!!this.state.questionnaire){
             return (
                 <ul className="containner is-flex">
                     <div className="column is-5 is-offset-3">
-                    {Object.keys(this.state.questionnaries).map((key) => {
-                        let id = this.state.questionnaries[key].id;
-                        let title = this.state.questionnaries[key].title;
+                    {Object.keys(this.state.questionnaire).map((key) => {
+                        let id = this.state.questionnaire[key].id;
+                        let title = this.state.questionnaire[key].title;
 
                         return (
                             <li key={key}>
                             <div className="column is-12">
                                 <div className="card">
-                                <Link className="" to={`/questionnarie/detail/${key}/${id}`}>
+                                <Link className="" to={`/questionnaire/detail/${key}/${id}`}>
                                       <header class="card-header has-background-info">
                                         <p class="card-header-title">
                                           {title}
@@ -61,20 +61,20 @@ class ListPage extends React.Component {
         else if(this.state.is_loading)
             return <div>Loading...</div>
         else
-            return <div>Not found questionnaries</div>
+            return <div>Not found questionnaire</div>
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        questionnaries: state.questionnaries.data,
-        is_loading: state.questionnaries.is_loading
+        questionnaire: state.questionnaire.data,
+        is_loading: state.questionnaire.is_loading
     }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchQuestionnaries: () => {
-    dispatch(fetchQuestionnaries())
+  fetchQuestionnaire: () => {
+    dispatch(fetchQuestionnaire())
   }
 })
 
