@@ -120,14 +120,6 @@ class Questionnarie extends React.Component {
         return (
             <div>
                 <div style={{fontSize: "2.5rem", marginLeft: "5rem"}}>
-                    <button 
-                        className={
-                            `button is-rounded is-medium ${this.state.is_saved ? "is-info": "is-success"}`
-                        }
-                        onClick={this.saveQuestionnarie.bind(this)}
-                    > 
-                         {this.state.is_saved ? "Edit": "Save"}
-                    </button>
                     <EditInput 
                         id={shortid.generate()} 
                         label={"Title"}
