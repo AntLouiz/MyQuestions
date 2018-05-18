@@ -36,18 +36,20 @@ class ListPage extends React.Component {
                         return (
                             <li key={key}>
                             <div className="column is-12">
-                                <Link className="card" to={`/questionnarie/detail/${key}/${id}`}>
+                                <div className="card">
+                                <Link className="" to={`/questionnarie/detail/${key}/${id}`}>
                                       <header class="card-header has-background-info">
                                         <p class="card-header-title">
                                           {title}
                                         </p>
-                                        <a href="#" class="card-header-icon" aria-label="more options">
-                                          <span class="icon">
-                                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                                          </span>
-                                        </a>
                                       </header>
                                 </Link>
+                                <footer class="card-footer">
+                                    <a href="/" class="card-footer-item">
+                                        Archive
+                                    </a>
+                                </footer>
+                                </div>
                             </div>
                             </li>
 
