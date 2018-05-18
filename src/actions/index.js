@@ -6,6 +6,14 @@ export const fetchQuestionnaire = () => async dispatch => {
 
     if(!payload)
       payload = null;
+    else{
+      payload = {};
+      snapshot.forEach((data) => {
+        if(data.val().is_active){
+          payload[data.key] = data.val();
+        }
+      });
+    }
 
     dispatch({
       type: 'FETCH_QUESTIONNAIRES',
@@ -42,7 +50,8 @@ export const saveQuestionnaire = (new_questionnaire) => async dispatch => {
     id: new_questionnaire.id,
     title: new_questionnaire.title,
     description: new_questionnaire.description,
-    questions: new_questionnaire.questions
+    questions: new_questionnaire.questions,
+    is_active: true
   });
 
   dispatch({
