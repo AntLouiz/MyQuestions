@@ -13,7 +13,10 @@ const QuestionnarieReducer = (state, action) => {
         }
 
     case 'SAVE_QUESTIONNARIE':
-      return Object.assign(state, state)
+      return {
+        questionnarie: action.payload,
+        is_loading: true
+      }
 
     case 'UPDATE_QUESTIONNARIE':
       return { 

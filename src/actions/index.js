@@ -34,14 +34,20 @@ export const saveQuestionnarie = (new_questionnarie) => async dispatch => {
   if(!new_questionnarie.title)
     new_questionnarie.title = `Questionnarie-${new_questionnarie.id}`
 
-  questionnariesRef.push().set({
+  let key = questionnariesRef.push().key;
+
+  new_questionnarie.key = key;
+
+  questionnariesRef.child(key).set({
     id: new_questionnarie.id,
     title: new_questionnarie.title,
     description: new_questionnarie.description,
     questions: new_questionnarie.questions
   });
+
   dispatch({
     type: 'SAVE_QUESTIONNARIE',
+    payload: new_questionnarie
   });
 }
 
