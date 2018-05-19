@@ -15,6 +15,7 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.5.2",
     "babel-preset-es2016": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "bulma-start": "0.0.2",
     "css-loader": "^0.28.11",
     "firebase": "^5.0.2",
