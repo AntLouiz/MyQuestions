@@ -1,10 +1,14 @@
 import React from 'react'
-import QuestionWidget from '../components/questionnaire/QuestionWidget.js'
-import EditInput from './models/EditInput.js'
-import shortid from 'shortid'
-import { addQuestion, saveQuestionnaire, updateQuestionnaire } from '../actions'
 import { connect } from 'react-redux'
 import { Redirect } from "react-router-dom"
+import shortid from 'shortid'
+import QuestionWidget from '../components/questionnaire/QuestionWidget.js'
+import EditInput from './models/EditInput.js'
+import { 
+    addQuestion, 
+    saveQuestionnaire, 
+    updateQuestionnaire 
+} from '../actions'
 
 
 class Questionnaire extends React.Component {
