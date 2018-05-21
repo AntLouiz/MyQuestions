@@ -2,8 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from "react-router-dom"
 import shortid from 'shortid'
-import QuestionWidget from '../components/questionnaire/QuestionWidget.js'
 import QuestionnaireHeader from './questionnaire/QuestionnaireHeader.js'
+import ListQuestions from './questionnaire/ListQuestions.js'
 import EditInput from './models/EditInput.js'
 import { 
     addQuestion, 
@@ -137,27 +137,14 @@ class Questionnaire extends React.Component {
                     editTitle={this.editTitle.bind(this)}
                     editDescription={this.editDescription.bind(this)}
                 />
-                <ul style={{listStyle: "decimal"}}>
-                    {this.state.questions.map((question, index) => {
-                        return (
-                            <li key={question.id}>
-                                <QuestionWidget
-                                    id={question.id}
-                                    description={question.description}
-                                    answers={question.answers}
-                                    questionnaire_id={question.questionnaire_id}
-
-                                    editQuestion={this.editQuestion.bind(this)}
-
-                                    removeQuestion={this.removeQuestion.bind(this)}
-                                    addAnswer={this.addAnswer.bind(this)}
-                                    editAnswer={this.editAnswer.bind(this)}
-                                    removeAnswer={this.removeAnswer.bind(this)}
-                                />
-                            </li>
-                        )
-                    })}
-                </ul>
+                <ListQuestions
+                    questions={this.state.questions}
+                    editQuestion={this.editQuestion.bind(this)}
+                    removeQuestion={this.removeQuestion.bind(this)}
+                    addAnswer={this.addAnswer.bind(this)}
+                    editAnswer={this.editAnswer.bind(this)}
+                    removeAnswer={this.removeAnswer.bind(this)}
+                />
             </div>
         );
     }
