@@ -1,4 +1,10 @@
 import { database, questionnaireRef } from '../config/firebase.js'
+import {
+  FETCH_QUESTIONNAIRES,
+  FETCH_QUESTIONNAIRE_BY_KEY,
+  SAVE_QUESTIONNAIRE,
+  UPDATE_QUESTIONNAIRE
+} from './types.js'
 
 export const fetchQuestionnaire = (search_actives = true) => async dispatch => {
   questionnaireRef.on("value", (snapshot) => {
@@ -18,7 +24,7 @@ export const fetchQuestionnaire = (search_actives = true) => async dispatch => {
     }
 
     dispatch({
-      type: 'FETCH_QUESTIONNAIRES',
+      type: FETCH_QUESTIONNAIRES,
       payload: payload
     })
   })
@@ -34,7 +40,7 @@ export const fetchQuestionnaireByKey = (questionnaire_key) => async dispatch => 
       payload = null;
 
     dispatch({
-      type: 'FETCH_QUESTIONNAIRE_BY_KEY',
+      type: FETCH_QUESTIONNAIRE_BY_KEY,
       payload: payload
     })
   })
@@ -57,7 +63,7 @@ export const saveQuestionnaire = (new_questionnaire) => async dispatch => {
   });
 
   dispatch({
-    type: 'SAVE_QUESTIONNAIRE',
+    type: SAVE_QUESTIONNAIRE,
     payload: new_questionnaire
   });
 }
@@ -69,7 +75,7 @@ export const updateQuestionnaire = (questionnaire) => async dispatch => {
     questions: questionnaire.questions
   })
   dispatch({
-    type: 'UPDATE_QUESTIONNAIRE',
+    type: UPDATE_QUESTIONNAIRE,
     payload: questionnaire
   });
 }

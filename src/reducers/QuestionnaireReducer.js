@@ -1,24 +1,31 @@
+import {
+  FETCH_QUESTIONNAIRES,
+  FETCH_QUESTIONNAIRE_BY_KEY,
+  SAVE_QUESTIONNAIRE,
+  UPDATE_QUESTIONNAIRE
+} from '../actions/types.js'
+
 const QuestionnaireReducer = (state, action) => {
   switch (action.type) {
-    case 'FETCH_QUESTIONNAIRES':
+    case FETCH_QUESTIONNAIRES:
       return {
         data: action.payload,
         is_loading: false
       }
 
-    case 'FETCH_QUESTIONNAIRE_BY_KEY':
+    case FETCH_QUESTIONNAIRE_BY_KEY:
         return {
           data: action.payload,
           is_loading: false
         }
 
-    case 'SAVE_QUESTIONNAIRE':
+    case SAVE_QUESTIONNAIRE:
       return {
         questionnaire: action.payload,
         is_loading: true
       }
 
-    case 'UPDATE_QUESTIONNAIRE':
+    case UPDATE_QUESTIONNAIRE:
       return { 
         data: action.payload, 
         is_loading: false
