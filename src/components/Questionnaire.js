@@ -42,14 +42,12 @@ class Questionnaire extends React.Component {
             answers: []
         }
         this.setState(prev => (this.state.questions.push(empty_question)))
-        // this.setState(prev => this.saveQuestionnaire())
     }
 
     removeQuestion(question_id) {
         this.setState({ questions: this.state.questions.filter((question)=>{
             return question.id !== question_id 
         })})
-       //this.saveQuestionnaire()
     }
 
     editQuestion(new_desc, question_id){
