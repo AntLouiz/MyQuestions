@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect } from "react-router-dom"
 import shortid from 'shortid'
 import QuestionWidget from '../components/questionnaire/QuestionWidget.js'
+import QuestionnaireHeader from './questionnaire/QuestionnaireHeader.js'
 import EditInput from './models/EditInput.js'
 import { 
     addQuestion, 
@@ -114,6 +115,14 @@ class Questionnaire extends React.Component {
         }
     }
 
+    editTitle(new_title){
+        this.setState({title: new_title})
+    }
+
+    editDescription(new_description){
+        this.setState({description: new_description})
+    }
+
     editQuestionnaire() {
         this.setState({title: this.state.title, description: this.state.description})
     }
@@ -121,30 +130,13 @@ class Questionnaire extends React.Component {
     render() {
         return (
             <div>
-                <div style={{fontSize: "2.5rem", marginLeft: "5rem"}}>
-                    <EditInput 
-                        id={shortid.generate()} 
-                        label={"Title"}
-                        value={this.state.title}
-                        placeholder={"Insert the title"}
-                        saveInput={(new_title) => this.setState({title: new_title})}
-                        editInput={(new_title) => this.setState({title: new_title})}
-                    />
-                    <EditInput 
-                        id={shortid.generate()} 
-                        label={"Description"}
-                        value={this.state.description}
-                        placeholder={"Insert the description"}
-                        saveInput={this.editQuestionnaire.bind(this)}
-                        editInput={(desc) => this.setState({description: desc})}
-                    />
-                    <button state
-                        className="button is-success is-rounded"
-                        onClick={this.addQuestion.bind(this)}
-                    >
-                        Add question
-                    </button>
-                </div> 
+                <QuestionnaireHeader 
+                    title={this.state.title}
+                    description={this.state.description}
+                    addQuestion={this.addQuestion.bind(this)}
+                    editTitle={this.editTitle.bind(this)}
+                    editDescription={this.editDescription.bind(this)}
+                />
                 <ul style={{listStyle: "decimal"}}>
                     {this.state.questions.map((question, index) => {
                         return (
