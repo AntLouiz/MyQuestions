@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from "react-router-dom"
 import shortid from 'shortid'
-import QuestionnaireHeader from './questionnaire/QuestionnaireHeader.js'
+import Header from './questionnaire/QuestionnaireHeader.js'
 import ListQuestions from './questionnaire/ListQuestions.js'
 import EditInput from './models/EditInput.js'
 import { 
@@ -130,7 +130,7 @@ class Questionnaire extends React.Component {
     render() {
         return (
             <div>
-                <QuestionnaireHeader 
+                <Header 
                     title={this.state.title}
                     description={this.state.description}
                     addQuestion={this.addQuestion.bind(this)}
