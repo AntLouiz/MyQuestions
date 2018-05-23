@@ -12,12 +12,16 @@ class DetailPage extends React.Component {
         this.state = {
             questionnaire_id: props.match.params.id,
             questionnaire_key: props.match.params.key,
+            is_loading: true,
             data: props.data
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({data: nextProps.data})
+        this.setState({
+            data: nextProps.data[this.state.questionnaire_key], 
+            is_loading: nextProps.is_loading
+        })
     }
 
     componentWillMount() {
@@ -25,13 +29,14 @@ class DetailPage extends React.Component {
     }
 
     render() {
-        if(this.props.is_loading)
+        if(this.state.is_loading)
             return (<div>loading...</div>)
         else if(this.props.data){
             return (
                 <div>
                     <Questionnaire
-                        id={this.state.questionnaire_key}
+                        id={this.state.questionnaire_id}
+                        _key={this.state.questionnaire_key}
                         title={this.state.data.title}
                         description={this.state.data.description}
                         questions={this.state.data.questions}

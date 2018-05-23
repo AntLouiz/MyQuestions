@@ -17,6 +17,7 @@ class Questionnaire extends React.Component {
         super(props);
         this.state = {
             id: props.id,
+            _key: props._key,
             title: props.title,
             description: props.description,
             questions: props.questions,
@@ -36,7 +37,7 @@ class Questionnaire extends React.Component {
 
     componentDidUpdate(nextState){
         if(this.state.is_saved) {
-            this.props.updateQuestionnaire(this.state)
+            this.props.updateQuestionnaire(this.state._key, this.state)
         }
     }
 
@@ -71,8 +72,6 @@ class Questionnaire extends React.Component {
                 if(question.id === answer.question_id){
                     if(question.answers)
                         question.answers.push(answer)
-                    else
-                        question.answers = [answer]
                 }
             })
         ))
@@ -106,7 +105,7 @@ class Questionnaire extends React.Component {
 
     saveQuestionnaire() {
         if(this.state.is_saved) {
-            this.props.updateQuestionnaire(this.state)
+            this.props.updateQuestionnaire(this.state._key, this.state)
         }
 
         else {
@@ -154,8 +153,8 @@ const mapDispatchToProps = (dispatch) => ({
   saveQuestionnaire: (new_questionnaire) => {
     dispatch(saveQuestionnaire(new_questionnaire))
   },
-  updateQuestionnaire: (questionnaire) => {
-    dispatch(updateQuestionnaire(questionnaire))
+  updateQuestionnaire: (key, questionnaire) => {
+    dispatch(updateQuestionnaire(key, questionnaire))
   }
 })
 

@@ -92,7 +92,7 @@ class CreatePage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        questionnaire: state.questionnaire.questionnaire
+        questionnaire: state.questionnaire.data
     }
 }
 

@@ -33,10 +33,7 @@ export const fetchQuestionnaire = (search_actives = true) => async dispatch => {
 export const fetchQuestionnaireByKey = (questionnaire_key) => async dispatch => {
   questionnaireRef.on("value", (snapshot) => {
     let payload = snapshot.val();
-    if(payload){
-      payload = payload[questionnaire_key];
-    }
-    else
+    if(!payload)
       payload = null;
 
     dispatch({
@@ -68,14 +65,18 @@ export const saveQuestionnaire = (new_questionnaire) => async dispatch => {
   });
 }
 
-export const updateQuestionnaire = (questionnaire) => async dispatch => {
-  questionnaireRef.child(questionnaire.id).update({
+export const updateQuestionnaire = (questionnaire_key, questionnaire) => async dispatch => {
+  questionnaireRef.child(questionnaire_key).update({
     title: questionnaire.title,
     description: questionnaire.description,
     questions: questionnaire.questions
   })
+
+  let payload = {};
+  payload[questionnaire_key] = questionnaire;
+
   dispatch({
     type: UPDATE_QUESTIONNAIRE,
-    payload: questionnaire
+    payload: payload
   });
 }
