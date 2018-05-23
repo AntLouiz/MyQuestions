@@ -35,6 +35,7 @@ class QuestionnaireList extends React.Component {
                         {Object.keys(this.state.questionnaires).map((key) => {
                             let id = this.state.questionnaires[key].id;
                             let title = this.state.questionnaires[key].title;
+                            let is_active = this.state.questionnaires[key].is_active;
 
                             return (
                                 <li key={key}>
@@ -42,6 +43,7 @@ class QuestionnaireList extends React.Component {
                                         id={id}
                                         _key={key}
                                         title={title}
+                                        is_active={is_active}
                                     />
                                 </li>
                             );
