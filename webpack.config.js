@@ -13,7 +13,9 @@ module.exports = {
             use: {
     			loader: 'babel-loader',
     			options: {
-                    presets: ['babel-preset-env', 'react', 'stage-0']
+                    presets: ['babel-preset-env', 'react', 'stage-0'],
+                    compact: false,
+                    plugins: ["jsx-control-statements"]
                 }
 			},
             exclude: '/node_modules/'

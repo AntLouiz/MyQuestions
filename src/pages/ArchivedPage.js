@@ -1,5 +1,5 @@
 import React from 'react'
-import Questionnaries from '../components/models/Questionnaries.js'
+import QuestionnaireList from '../components/QuestionnaireList.js'
 
 class ArchivedPage extends React.Component {
     constructor(props) {
@@ -7,7 +7,7 @@ class ArchivedPage extends React.Component {
     }
 
     render() {
-        return <Questionnaries search_actives={false} />
+        return <QuestionnaireList search_actives={false} />
     }
 }
 

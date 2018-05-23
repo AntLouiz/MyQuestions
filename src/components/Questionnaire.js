@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect } from "react-router-dom"
 import shortid from 'shortid'
 import Header from './questionnaire/QuestionnaireHeader.js'
-import ListQuestions from './questionnaire/ListQuestions.js'
+import QuestionsList from './questionnaire/QuestionsList.js'
 import EditInput from './models/EditInput.js'
 import { 
     addQuestion, 
@@ -137,7 +137,7 @@ class Questionnaire extends React.Component {
                     editTitle={this.editTitle.bind(this)}
                     editDescription={this.editDescription.bind(this)}
                 />
-                <ListQuestions
+                <QuestionsList
                     questions={this.state.questions}
                     editQuestion={this.editQuestion.bind(this)}
                     removeQuestion={this.removeQuestion.bind(this)}
