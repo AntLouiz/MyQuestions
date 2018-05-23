@@ -21,7 +21,7 @@ const QuestionnaireReducer = (state, action) => {
 
     case SAVE_QUESTIONNAIRE:
       return {
-        questionnaire: action.payload,
+        data: action.payload,
         is_loading: true
       }
 
