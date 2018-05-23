@@ -1,7 +1,7 @@
 import React from 'react'
 import QuestionWidget from './QuestionWidget.js'
 
-const ListQuestions = (props) => {
+const QuestionsList = (props) => {
   return (
     <ul style={{listStyle: "decimal"}}>
       <For each="question" of={props.questions}>
@@ -25,4 +25,4 @@ const ListQuestions = (props) => {
   );
 }
 
-export default ListQuestions;
+export default QuestionsList;
