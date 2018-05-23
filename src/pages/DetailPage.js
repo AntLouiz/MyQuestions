@@ -18,7 +18,6 @@ class DetailPage extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps)
         this.setState({
             data: nextProps.data[this.state.questionnaire_key], 
             is_loading: nextProps.is_loading

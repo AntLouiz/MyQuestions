@@ -72,8 +72,6 @@ export const updateQuestionnaire = (questionnaire_key, questionnaire) => async d
     questions: questionnaire.questions
   })
 
-  console.log(questionnaire)
-
   let payload = {};
   payload[questionnaire_key] = questionnaire;
 
