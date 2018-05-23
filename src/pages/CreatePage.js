@@ -39,9 +39,6 @@ class CreatePage extends React.Component {
         if(!this.state.is_saved){
         return (
                 <div>
-                    <h2>
-                        Create Questions
-                    </h2>
                     <div className="container">
                         <div className="modal is-active">
                         <div className="modal-background"></div>
