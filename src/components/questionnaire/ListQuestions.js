@@ -4,9 +4,8 @@ import QuestionWidget from './QuestionWidget.js'
 const ListQuestions = (props) => {
   return (
     <ul style={{listStyle: "decimal"}}>
-      {props.questions.map((question, index) => {
-        return (
-            <li key={question.id}>
+      <For each="question" of={props.questions}>
+        <li key={question.id}>
               <QuestionWidget
                   id={question.id}
                   description={question.description}
@@ -20,9 +19,8 @@ const ListQuestions = (props) => {
                   editAnswer={props.editAnswer}
                   removeAnswer={props.removeAnswer}
               />
-            </li>
-          )
-      })}
+        </li>
+      </For>
     </ul>
   );
 }
