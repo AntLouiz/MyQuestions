@@ -27,31 +27,36 @@ class QuestionnaireList extends React.Component {
     }
 
     render() {
-        if(!!this.state.questionnaires){
-            return (
+        return (
+        <Choose>
+            <When condition={!!this.state.questionnaires}>
                 <ul className="containner is-flex">
                     <div className="column is-5 is-offset-3">
-                    {Object.keys(this.state.questionnaires).map((key) => {
-                        let id = this.state.questionnaires[key].id;
-                        let title = this.state.questionnaires[key].title;
+                        {Object.keys(this.state.questionnaires).map((key) => {
+                            let id = this.state.questionnaires[key].id;
+                            let title = this.state.questionnaires[key].title;
 
-                        return (
-                            <li key={key}>
-                                <QuestionnaireCard 
-                                    id={id}
-                                    _key={key}
-                                    title={title}
-                                />
-                            </li>
-                        );
-                    })}
+                            return (
+                                <li key={key}>
+                                    <QuestionnaireCard 
+                                        id={id}
+                                        _key={key}
+                                        title={title}
+                                    />
+                                </li>
+                            );
+                        })}
                     </div>
-                </ul>);
-        }
-        else if(this.state.is_loading)
-            return <div>Loading...</div>
-        else
-            return <div>Not found questionnaires</div>
+                </ul>
+            </When>
+            <When condition={this.state.is_loading}>
+                <span>Loading...</span>
+            </When>
+            <Otherwise>
+                <span>Not found questionnaires</span>
+            </Otherwise>
+        </Choose>
+        );
     }
 }
 
