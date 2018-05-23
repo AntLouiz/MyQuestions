@@ -10,8 +10,7 @@ const RadioAnswer = (props) => {
     }
 
     let div_style = {
-        display: "flex",
-        fontSize: "1.5rem"
+        display: "flex"
     }
 
     return (
