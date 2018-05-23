@@ -1,10 +1,11 @@
 import React from 'react'
 import { connect, dispatch } from 'react-redux'
-import { fetchQuestionnaire } from '../../actions'
-import Questionnaire from '../Questionnaire.js'
+import { fetchQuestionnaire } from '../actions'
+import Questionnaire from './Questionnaire.js'
+import QuestionnaireCard from './questionnaire_list/QuestionnaireCard.js'
 import { Link } from 'react-router-dom'
 
-class Questionnaires extends React.Component {
+class QuestionnaireList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -36,28 +37,13 @@ class Questionnaires extends React.Component {
 
                         return (
                             <li key={key}>
-                            <div className="column is-12">
-                                <div className="card">
-                                <Link className="" to={`/questionnaire/detail/${key}/${id}`}>
-                                      <header class="card-header has-background-info">
-                                        <p class="card-header-title">
-                                          {title}
-                                        </p>
-                                      </header>
-                                </Link>
-                                <footer class="card-footer">
-                                    <a href="/" class="card-footer-item">
-                                        Compound
-                                    </a>
-                                    <a href="/" class="card-footer-item">
-                                        Archive
-                                    </a>
-                                </footer>
-                                </div>
-                            </div>
+                                <QuestionnaireCard 
+                                    id={id}
+                                    _key={key}
+                                    title={title}
+                                />
                             </li>
-
-                        )
+                        );
                     })}
                     </div>
                 </ul>);
@@ -82,4 +68,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Questionnaires)
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionnaireList)

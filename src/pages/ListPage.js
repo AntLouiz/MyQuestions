@@ -1,5 +1,5 @@
 import React from 'react'
-import Questionnaries from '../components/models/Questionnaries.js'
+import QuestionnaireList from '../components/QuestionnaireList.js'
 
 class ListPage extends React.Component {
     constructor(props) {
@@ -8,7 +8,7 @@ class ListPage extends React.Component {
 
     render() {
         return (
-            <Questionnaries search_actives={true} />
+            <QuestionnaireList search_actives={true} />
         )
     }
 }
