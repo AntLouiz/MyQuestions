@@ -7,11 +7,11 @@ const HomePage = () => {
             <div className="container is-fullhd">
               <div className="notification welcome-message">
                 <h3>
-                   Create awesome questionnaries for your researches!
+                   Create awesome questionnaires for your researches!
                 </h3>
                 <div className="column">
                     <Link 
-                        to='/create' 
+                        to='/create/questionnaires' 
                         className="button is-success is-rounded is-medium"
                     >
 

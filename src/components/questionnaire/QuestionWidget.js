@@ -3,14 +3,6 @@ import scrollToComponent from 'react-scroll-to-component'
 import EditInput from '../models/EditInput.js'
 import shortid from 'shortid'
 import Answer from './questionWidget/Answer.js'
-import dispatch from 'redux'
-import { connect } from 'react-redux'
-import { 
-    removeQuestion, 
-    editQuestion, 
-    addAnswer, 
-    removeAnswer 
-} from '../../actions'
 
 class QuestionWidget extends React.Component {
     constructor(props) {
@@ -24,18 +16,19 @@ class QuestionWidget extends React.Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({description: nextProps.description, answers: nextProps.answers})
+    }
+
     componentDidMount() {
         let question_description = this.refs.description.props.value;
 
         !!question_description ? undefined : scrollToComponent(this.refs.description)
     }
 
-    componentWillReceiveProps(nextProps) {
-        this.setState({answers: nextProps.answers})
-    }
-
     editQuestion(new_description) {
-        this.props.editQuestion(this.state.id, new_description)
+        this.props.editQuestion(new_description, this.state.id);
+        this.setState({description: new_description});
     }
 
     removeItself() {
@@ -48,25 +41,11 @@ class QuestionWidget extends React.Component {
         let empty_answer = {
             id: shortid.generate(),
             answer_type: answer_type,
-            description: undefined,
-            value: undefined,
+            description: null,
+            value: null,
             question_id: this.state.id
         }
-        this.props.addAnswer(
-            empty_answer.id, 
-            empty_answer.answer_type, 
-            empty_answer.question_id
-        )
-        this.setState({answers: this.state.answers})
-        // this.setState({ answers: this.props.answers })
-    }
-
-    removeAnswer(id, question_id){
-        this.props.removeAnswer(
-            id,
-            question_id
-        )
-        this.setState({answers: this.state.answers})
+        this.props.addAnswer(empty_answer)
     }
 
     render() {
@@ -88,7 +67,8 @@ class QuestionWidget extends React.Component {
                                         question_id={this.state.id}
                                         type={answer.answer_type}
                                         description={answer.description}
-                                        removeAnswer={this.removeAnswer.bind(this)}
+                                        removeAnswer={this.props.removeAnswer}
+                                        editAnswer={this.props.editAnswer}
                                     />
                                 </li>
                             );
@@ -112,7 +92,7 @@ class QuestionWidget extends React.Component {
                         placeholder={"Insert the question"}
                         ref="description"
                         saveInput={this.editQuestion.bind(this)}
-                        editInput={(description) => this.setState({description: description})}
+                        editInput={this.editQuestion.bind(this)}
                     />
                     <a 
                         className="button is-text"
@@ -152,16 +132,4 @@ class QuestionWidget extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-  questions: state.questions
-})
-
-
-const mapDispatchToProps = (dispatch) => ({
-  removeQuestion: (id) => dispatch(removeQuestion(id)),
-  editQuestion: (id, description) => dispatch(editQuestion(id, description)),
-  addAnswer: (id, type, question_id) => dispatch(addAnswer(id, type, question_id)),
-  removeAnswer: (id, question_id) => dispatch(removeAnswer(id, question_id))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionWidget);
+export default QuestionWidget;

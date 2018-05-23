@@ -2,7 +2,7 @@ const path = require("path")
 
 module.exports = {
     mode: "development",
-    entry: './src/app.js',
+    entry: ['babel-polyfill', './src/app.js'],
 	output: {
 		path: path.join(__dirname, "public"),
 		filename: 'bundle.js'
@@ -13,7 +13,7 @@ module.exports = {
             use: {
     			loader: 'babel-loader',
     			options: {
-                    presets: ['babel-preset-env', 'react']
+                    presets: ['babel-preset-env', 'react', 'stage-0']
                 }
 			},
             exclude: '/node_modules/'

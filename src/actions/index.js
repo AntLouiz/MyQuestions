@@ -1,57 +1,81 @@
-import shortid from 'shortid'
+import { database, questionnaireRef } from '../config/firebase.js'
+import {
+  FETCH_QUESTIONNAIRES,
+  FETCH_QUESTIONNAIRE_BY_KEY,
+  SAVE_QUESTIONNAIRE,
+  UPDATE_QUESTIONNAIRE
+} from './types.js'
 
-export const saveQuestionnarie = (id, title, description, questions) => ({
-  type: 'SAVE_QUESTIONNARIE',
-  id: id,
-  title: title,
-  description: description,
-  questions: questions
-})
+export const fetchQuestionnaire = (search_actives = true) => async dispatch => {
+  questionnaireRef.on("value", (snapshot) => {
+    let payload = snapshot.val();
 
-export const editQuestionnarie = (title, description) => ({
-  type: 'EDIT_QUESTIONNARIE',
-  title: title,
-  description: description
-})
+    if(!payload)
+      payload = null;
+    else{
+      payload = {};
+      snapshot.forEach((data) => {
+        if(data.val().is_active === search_actives){
+          payload[data.key] = data.val();
+        }
+      });
 
-export const addQuestion = (questionnarie_id) => ({
-  type: 'ADD_QUESTION',
-  id: shortid.generate(),
-  description: undefined,
-  answers: [],
-  questionnarie_id: questionnarie_id
-})
+      payload = Object.keys(payload).length ? payload : null;
+    }
 
-export const editQuestion = (id, description) => ({
-  type: 'EDIT_QUESTION',
-  id: id,
-  description: description,
-})
+    dispatch({
+      type: FETCH_QUESTIONNAIRES,
+      payload: payload
+    })
+  })
+}
 
-export const removeQuestion = (id) => ({
-  type: 'REMOVE_QUESTION',
-  id: id,
-})
+export const fetchQuestionnaireByKey = (questionnaire_key) => async dispatch => {
+  questionnaireRef.on("value", (snapshot) => {
+    let payload = snapshot.val();
+    if(payload){
+      payload = payload[questionnaire_key];
+    }
+    else
+      payload = null;
 
+    dispatch({
+      type: FETCH_QUESTIONNAIRE_BY_KEY,
+      payload: payload
+    })
+  })
+}
 
-export const addAnswer = (id, answer_type, question_id) => ({
-  type: 'ADD_ANSWER',
-  id: id,
-  description: undefined,
-  answer_type: answer_type,
-  question_id: question_id,
-  value: undefined
-})
+export const saveQuestionnaire = (new_questionnaire) => async dispatch => {
+  if(!new_questionnaire.title)
+    new_questionnaire.title = `Questionnaire-${new_questionnaire.id}`
 
-export const saveAnswer = (id, description, question_id) => ({
-  type: 'SAVE_ANSWER',
-  id: id,
-  description: description,
-  question_id: question_id,
-})
+  let key = questionnaireRef.push().key;
 
-export const removeAnswer = (id, question_id) => ({
-  type: 'REMOVE_ANSWER',
-  id: id,
-  question_id: question_id,
-})
+  new_questionnaire.key = key;
+
+  questionnaireRef.child(key).set({
+    id: new_questionnaire.id,
+    title: new_questionnaire.title,
+    description: new_questionnaire.description,
+    questions: new_questionnaire.questions,
+    is_active: true
+  });
+
+  dispatch({
+    type: SAVE_QUESTIONNAIRE,
+    payload: new_questionnaire
+  });
+}
+
+export const updateQuestionnaire = (questionnaire) => async dispatch => {
+  questionnaireRef.child(questionnaire.id).update({
+    title: questionnaire.title,
+    description: questionnaire.description,
+    questions: questionnaire.questions
+  })
+  dispatch({
+    type: UPDATE_QUESTIONNAIRE,
+    payload: questionnaire
+  });
+}

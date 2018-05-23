@@ -7,6 +7,9 @@ import {
 } from "react-router-dom";
 import HomePage from '../pages/HomePage.js';
 import CreatePage from '../pages/CreatePage.js';
+import ListPage from '../pages/ListPage.js';
+import DetailPage from '../pages/DetailPage.js';
+import ArchivedPage from '../pages/ArchivedPage.js';
 import NotFoundPage from '../pages/NotFoundPage.js';
 import Menu from './Menu.js';
 
@@ -17,7 +20,10 @@ const AppRouter = () => (
 
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/create" component={CreatePage} />
+        <Route exact path="/create/questionnaires" component={CreatePage} />
+        <Route exact path="/list/questionnaires" component={ListPage} />
+        <Route exact path="/archived/questionnaires" component={ArchivedPage} />
+        <Route path="/questionnaire/detail/:key/:id" component={DetailPage} />
         <Route component={NotFoundPage} />
       </Switch>
 
