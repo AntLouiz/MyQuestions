@@ -4,7 +4,12 @@ import EditInput from '../models/EditInput.js'
   
 const QuestionnaireHeader = (props) => {
   return (
-            <div style={{fontSize: "2.5rem", marginLeft: "5rem"}}>
+            <div style={{
+              fontSize: "1.5rem", 
+              marginLeft: "5rem", 
+              marginRight: "5rem",
+              padding: "2rem"
+            }}>
                   <EditInput 
                       id={shortid.generate()} 
                       label={"Title"}

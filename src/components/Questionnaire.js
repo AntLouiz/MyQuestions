@@ -128,7 +128,7 @@ class Questionnaire extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{background: "#f7f7f7"}}>
                 <Header 
                     title={this.state.title}
                     description={this.state.description}

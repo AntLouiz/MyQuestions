@@ -3,7 +3,11 @@ import QuestionWidget from './QuestionWidget.js'
 
 const QuestionsList = (props) => {
   return (
-    <ul style={{listStyle: "decimal"}}>
+    <ul style={{
+      listStyle: "decimal", 
+      padding: "1rem",
+      marginLeft: "2rem"}}
+    >
       <For each="question" of={props.questions}>
         <li key={question.id}>
               <QuestionWidget

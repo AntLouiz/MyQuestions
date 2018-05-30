@@ -43,19 +43,15 @@ class Answer extends React.Component {
                 <EditInput
                     id={this.state.id} 
                     value={this.state.description}
-                    placeholder={"Insert the answer"}
-                    saveInput={this.saveAnswer.bind(this)}
-                    editInput={this.editAnswer.bind(this)}
+                    placeholder={"Text answer"}
                 />
             ),
             number: (
                 <EditInput
                     id={this.state.id} 
                     value={this.state.description}
-                    placeholder={"Insert the answer"}
+                    placeholder={"Numbered answer"}
                     type="number"
-                    saveInput={this.saveAnswer.bind(this)}
-                    editInput={this.editAnswer.bind(this)}
                 />
             )
         }
@@ -65,7 +61,7 @@ class Answer extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{fontSize: "1.2rem"}}>
                 {this.chooseAnswer()}
                 <a 
                     className="button is-text"

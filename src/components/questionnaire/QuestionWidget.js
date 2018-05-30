@@ -52,7 +52,7 @@ class QuestionWidget extends React.Component {
         let style = {
             width: "40rem",
             margin: "2rem",
-            fontSize: "2rem"
+            fontSize: "1.3rem"
         }
 
         const Answers = () => {
