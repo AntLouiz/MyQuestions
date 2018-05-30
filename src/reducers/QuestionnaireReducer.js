@@ -2,7 +2,9 @@ import {
   FETCH_QUESTIONNAIRES,
   FETCH_QUESTIONNAIRE_BY_KEY,
   SAVE_QUESTIONNAIRE,
-  UPDATE_QUESTIONNAIRE
+  UPDATE_QUESTIONNAIRE,
+  ARCHIVE_QUESTIONNAIRE,
+  RESTORE_QUESTIONNAIRE
 } from '../actions/types.js'
 
 const QuestionnaireReducer = (state, action) => {
@@ -26,6 +28,18 @@ const QuestionnaireReducer = (state, action) => {
       }
 
     case UPDATE_QUESTIONNAIRE:
+      return { 
+        data: action.payload, 
+        is_loading: false
+      }
+
+    case ARCHIVE_QUESTIONNAIRE:
+      return { 
+        data: action.payload, 
+        is_loading: false
+      }
+
+    case RESTORE_QUESTIONNAIRE:
       return { 
         data: action.payload, 
         is_loading: false
