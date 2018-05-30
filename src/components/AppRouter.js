@@ -12,6 +12,7 @@ import DetailPage from '../pages/DetailPage.js';
 import ArchivedPage from '../pages/ArchivedPage.js';
 import NotFoundPage from '../pages/NotFoundPage.js';
 import Menu from './Menu.js';
+import Footer from './Footer.js';
 
 const AppRouter = () => (
   <Router>
@@ -27,6 +28,7 @@ const AppRouter = () => (
         <Route component={NotFoundPage} />
       </Switch>
 
+      <Footer />
     </div>
   </Router>
 );
