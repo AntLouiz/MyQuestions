@@ -4,7 +4,8 @@ import {
   FETCH_QUESTIONNAIRE_BY_KEY,
   SAVE_QUESTIONNAIRE,
   UPDATE_QUESTIONNAIRE,
-  ARCHIVE_QUESTIONNAIRE
+  ARCHIVE_QUESTIONNAIRE,
+  RESTORE_QUESTIONNAIRE
 } from './types.js'
 
 export const fetchQuestionnaire = (search_actives = true) => async dispatch => {
@@ -104,6 +105,33 @@ export const archiveQuestionnaire = (questionnaire_key, questionnaire_id) => asy
 
     dispatch({
       type: ARCHIVE_QUESTIONNAIRE,
+      payload: payload
+    });
+  })
+}
+
+export const restoreQuestionnaire = (questionnaire_key, questionnaire_id) => async dispatch => {
+  questionnaireRef.child(questionnaire_key).update({
+    is_active: true
+  })
+
+  questionnaireRef.on("value", (snapshot) => {
+    let payload = null;
+
+    if(snapshot.val()){
+      payload = {}
+
+      snapshot.forEach((data) => {
+        if(data.key !== questionnaire_key && !data.val().is_active)
+          payload[data.key] = data.val();
+      })
+
+      if(!Object.keys(payload).length)
+        payload = null
+    }
+
+    dispatch({
+      type: RESTORE_QUESTIONNAIRE,
       payload: payload
     });
   })
