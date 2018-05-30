@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { 
-    archiveQuestionnaire 
+    archiveQuestionnaire,
+    restoreQuestionnaire
 } from '../../actions'
 
 class QuestionnaireCard extends React.Component {
@@ -19,6 +20,12 @@ class QuestionnaireCard extends React.Component {
         e.preventDefault();
 
         this.props.archiveQuestionnaire(this.state._key, this.state.id)
+    }
+
+    restoreQuestionnaire(e) {
+        e.preventDefault();
+
+        this.props.restoreQuestionnaire(this.state._key, this.state.id)
     }
 
     render() {
@@ -53,7 +60,10 @@ class QuestionnaireCard extends React.Component {
                                 </p>
                             </header>
                             <footer className="card-footer">
-                                <a href="/" className="card-footer-item">
+                                <a 
+                                    className="card-footer-item"
+                                    onClick={this.restoreQuestionnaire.bind(this)}
+                                >
                                     Restore
                                 </a>
                             </footer>
@@ -66,8 +76,11 @@ class QuestionnaireCard extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  archiveQuestionnaire: (questionnaire_key, questionnaire_id) => {
-    dispatch(archiveQuestionnaire(questionnaire_key, questionnaire_id))
+    archiveQuestionnaire: (questionnaire_key, questionnaire_id) => {
+        dispatch(archiveQuestionnaire(questionnaire_key, questionnaire_id))
+    },
+    restoreQuestionnaire: (questionnaire_key, questionnaire_id) => {
+        dispatch(restoreQuestionnaire(questionnaire_key, questionnaire_id))
     }
 })
 
