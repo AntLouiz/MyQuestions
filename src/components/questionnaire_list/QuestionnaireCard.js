@@ -1,7 +1,26 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { 
+    archiveQuestionnaire 
+} from '../../actions'
 
 class QuestionnaireCard extends React.Component {
+    constructor(props){
+        super(props);
+
+        this.state = {
+            _key: props._key,
+            id: props.id
+        }
+    }
+
+    archiveQuestionnaire(e) {
+        e.preventDefault();
+
+        this.props.archiveQuestionnaire(this.state._key, this.state.id)
+    }
+
     render() {
         return (
             <div className="column is-12">
@@ -19,7 +38,10 @@ class QuestionnaireCard extends React.Component {
                                 <a href="/" className="card-footer-item">
                                     Compound
                                 </a>
-                                <a href="/" className="card-footer-item">
+                                <a
+                                    className="card-footer-item"
+                                    onClick={this.archiveQuestionnaire.bind(this)}
+                                >
                                     Archive
                                 </a>
                             </footer>
@@ -43,4 +65,10 @@ class QuestionnaireCard extends React.Component {
     }
 }
 
-export default QuestionnaireCard;
+const mapDispatchToProps = (dispatch) => ({
+  archiveQuestionnaire: (questionnaire_key, questionnaire_id) => {
+    dispatch(archiveQuestionnaire(questionnaire_key, questionnaire_id))
+    }
+})
+
+export default connect(null, mapDispatchToProps)(QuestionnaireCard);
