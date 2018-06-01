@@ -148,6 +148,10 @@ export const compoundQuestionnaire = (questionnaires) => async dispatch => {
 
   questionnaires.forEach((questionnaire, index) => {
     if(questionnaire.questions){
+      questionnaire.questions.map((question) => {
+        question.id = shortid.generate();
+        return question;
+      })
       compound_questionnaire.questions.push(...questionnaire.questions)
     }
   })
