@@ -2,6 +2,8 @@ import React from 'react'
 import CompoundModalHeader from './compound_modal/CompoundModalHeader.js'
 import CompoundModalSection from './compound_modal/CompoundModalSection.js'
 import CompoundModalFooter from './compound_modal/CompoundModalFooter.js'
+import { compoundQuestionnaire } from '../../../actions'
+import { connect } from 'react-redux';
 
 
 class CompoundModal extends React.Component {
@@ -12,11 +14,18 @@ class CompoundModal extends React.Component {
       _key: props._key,
       id: props.id,
       title: props.title,
+      questionnaires: props.questionnaires,
       selected_questionnaires: [],
       is_loading: false
     }
 
   }
+
+  componentWillReceiveProps(nextProps) {
+      this.setState({
+          questionnaires: nextProps.questionnaires
+      })
+    }
 
   hideModal() {
     this.props.hideModal()
@@ -24,6 +33,16 @@ class CompoundModal extends React.Component {
 
   handleCompound(e) {
     this.setState({is_loading: true})
+
+    let questionnaires_to_be_composed = []
+
+    questionnaires_to_be_composed.push(this.props.questionnaires[this.state._key])
+
+    this.state.selected_questionnaires.forEach((key, index) => {
+      questionnaires_to_be_composed.push(this.props.questionnaires[key])
+    })
+
+    this.props.compoundQuestionnaire(questionnaires_to_be_composed)
   }
 
   handleCheckbox(e) {
@@ -50,6 +69,7 @@ class CompoundModal extends React.Component {
                 _key={this.state._key}
                 is_loading={this.state.is_loading}
                 handleCheckbox={this.handleCheckbox.bind(this)}
+                questionnaires={this.state.questionnaires}
               />
               <CompoundModalFooter
                 is_loading={this.state.is_loading}
@@ -64,4 +84,14 @@ class CompoundModal extends React.Component {
   }
 }
 
-export default CompoundModal;
+const mapStateToProps = (state) => {
+  return { questionnaires: state.questionnaire.data }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+    compoundQuestionnaire: (questionnaires) => {
+        dispatch(compoundQuestionnaire(questionnaires))
+    },
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CompoundModal);

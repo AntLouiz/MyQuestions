@@ -14,6 +14,12 @@ class CompoundModalFooter extends React.Component {
       })
   }
 
+  handleCompound() {
+    if(this.props.button_compound_enable){
+      this.props.handleCompound()
+    }
+  }
+
   render() {
     return(
       <footer className="modal-card-foot">
@@ -21,7 +27,7 @@ class CompoundModalFooter extends React.Component {
            Cancel
         </a>
         <a 
-          onClick={this.props.handleCompound}
+          onClick={this.handleCompound.bind(this)}
           className={`button is-info ${this.state.is_loading ? 'is-loading' : ''}`}
           disabled={this.props.button_compound_enable ? false : true}
         >
