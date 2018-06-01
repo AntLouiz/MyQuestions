@@ -4,7 +4,8 @@ import {
   SAVE_QUESTIONNAIRE,
   UPDATE_QUESTIONNAIRE,
   ARCHIVE_QUESTIONNAIRE,
-  RESTORE_QUESTIONNAIRE
+  RESTORE_QUESTIONNAIRE,
+  COMPOUND_QUESTIONNAIRE
 } from '../actions/types.js'
 
 const QuestionnaireReducer = (state, action) => {
@@ -28,6 +29,12 @@ const QuestionnaireReducer = (state, action) => {
       }
 
     case UPDATE_QUESTIONNAIRE:
+      return { 
+        data: action.payload, 
+        is_loading: false
+      }
+
+    case COMPOUND_QUESTIONNAIRE:
       return { 
         data: action.payload, 
         is_loading: false
