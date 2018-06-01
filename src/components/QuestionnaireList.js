@@ -3,7 +3,7 @@ import { connect, dispatch } from 'react-redux'
 import { fetchQuestionnaire } from '../actions'
 import Questionnaire from './Questionnaire.js'
 import QuestionnaireCard from './questionnaire_list/QuestionnaireCard.js'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 class QuestionnaireList extends React.Component {
     constructor(props) {
@@ -28,36 +28,43 @@ class QuestionnaireList extends React.Component {
 
     render() {
         return (
-        <Choose>
-            <When condition={!!this.state.questionnaires}>
-                <ul className="containner is-flex">
-                    <div className="column is-5 is-offset-3">
-                        {Object.keys(this.state.questionnaires).map((key) => {
-                            let id = this.state.questionnaires[key].id;
-                            let title = this.state.questionnaires[key].title;
-                            let is_active = this.state.questionnaires[key].is_active;
+        <div>
+            <If condition={this.state.questionnaires.is_compound}>
+                <Redirect 
+                    to={`/questionnaire/detail/${this.state.questionnaires.key}/${this.state.questionnaires.id}`} 
+                />
+            </If>
+            <Choose>
+                <When condition={!!this.state.questionnaires}>
+                    <ul className="containner is-flex">
+                        <div className="column is-5 is-offset-3">
+                            {Object.keys(this.state.questionnaires).map((key) => {
+                                let id = this.state.questionnaires[key].id;
+                                let title = this.state.questionnaires[key].title;
+                                let is_active = this.state.questionnaires[key].is_active;
 
-                            return (
-                                <li key={key}>
-                                    <QuestionnaireCard 
-                                        id={id}
-                                        _key={key}
-                                        title={title}
-                                        is_active={is_active}
-                                    />
-                                </li>
-                            );
-                        })}
-                    </div>
-                </ul>
-            </When>
-            <When condition={this.state.is_loading}>
-                <span>Loading...</span>
-            </When>
-            <Otherwise>
-                <span>Not found questionnaires</span>
-            </Otherwise>
-        </Choose>
+                                return (
+                                    <li key={key}>
+                                        <QuestionnaireCard 
+                                            id={id}
+                                            _key={key}
+                                            title={title}
+                                            is_active={is_active}
+                                        />
+                                    </li>
+                                );
+                            })}
+                        </div>
+                    </ul>
+                </When>
+                <When condition={this.state.is_loading}>
+                    <span>Loading...</span>
+                </When>
+                <Otherwise>
+                    <span>Not found questionnaires</span>
+                </Otherwise>
+            </Choose>
+        </div>
         );
     }
 }
