@@ -1,11 +1,13 @@
 import { database, questionnaireRef } from '../config/firebase.js'
+import shortid from 'shortid'
 import {
   FETCH_QUESTIONNAIRES,
   FETCH_QUESTIONNAIRE_BY_KEY,
   SAVE_QUESTIONNAIRE,
   UPDATE_QUESTIONNAIRE,
   ARCHIVE_QUESTIONNAIRE,
-  RESTORE_QUESTIONNAIRE
+  RESTORE_QUESTIONNAIRE,
+  COMPOUND_QUESTIONNAIRE
 } from './types.js'
 
 export const fetchQuestionnaire = (search_actives = true) => async dispatch => {
@@ -54,10 +56,7 @@ export const saveQuestionnaire = (new_questionnaire) => async dispatch => {
   new_questionnaire.key = key;
 
   questionnaireRef.child(key).set({
-    id: new_questionnaire.id,
-    title: new_questionnaire.title,
-    description: new_questionnaire.description,
-    questions: new_questionnaire.questions,
+    ...new_questionnaire,
     is_active: true
   });
 
@@ -135,4 +134,23 @@ export const restoreQuestionnaire = (questionnaire_key, questionnaire_id) => asy
       payload: payload
     });
   })
+}
+
+export const compoundQuestionnaire = (questionnaires) => async dispatch => {
+  let payload = {}
+  let compound_questionnaire = {
+    id: shortid.generate(),
+    title: 'New compound questionnaire',
+    description: 'new compound questionnaire',
+    questions: [],
+    is_compound: true
+  }
+
+  questionnaires.forEach((questionnaire, index) => {
+    if(questionnaire.questions){
+      compound_questionnaire.questions.push(...questionnaire.questions)
+    }
+  })
+
+  dispatch(saveQuestionnaire(compound_questionnaire))
 }

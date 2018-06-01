@@ -5,6 +5,7 @@ import {
     archiveQuestionnaire,
     restoreQuestionnaire
 } from '../../actions'
+import CompoundModal from './questionnaire_card/CompoundModal.js'
 
 class QuestionnaireCard extends React.Component {
     constructor(props){
@@ -12,7 +13,9 @@ class QuestionnaireCard extends React.Component {
 
         this.state = {
             _key: props._key,
-            id: props.id
+            id: props.id,
+            title: props.title,
+            modal_active : false
         }
     }
 
@@ -20,6 +23,21 @@ class QuestionnaireCard extends React.Component {
         e.preventDefault();
 
         this.props.archiveQuestionnaire(this.state._key, this.state.id)
+    }
+
+
+    showModal() {
+        this.setState({modal_active: true})
+    }
+
+    hideModal() {
+        this.setState({modal_active: false})
+    }
+
+    compoundQuestionnaire(e) {
+        e.preventDefault();
+
+        this.showModal();
     }
 
     restoreQuestionnaire(e) {
@@ -32,6 +50,14 @@ class QuestionnaireCard extends React.Component {
         return (
             <div className="column is-12">
                 <div className="card">
+                    <If condition={this.state.modal_active}>
+                        <CompoundModal 
+                            {...this.state}
+                            is_active = {this.state.modal_active}
+                            hideModal = {this.hideModal.bind(this)}
+                            handleCompound = {this.compoundQuestionnaire.bind(this)}
+                        />
+                    </If>
                     <Choose>
                         <When condition={this.props.is_active}>
                             <Link className="" to={`/questionnaire/detail/${this.props._key}/${this.props.id}`}>
@@ -42,7 +68,10 @@ class QuestionnaireCard extends React.Component {
                                 </header>
                             </Link>
                             <footer className="card-footer">
-                                <a href="/" className="card-footer-item">
+                                <a 
+                                    className="card-footer-item"
+                                    onClick={this.compoundQuestionnaire.bind(this)}
+                                >
                                     Compound
                                 </a>
                                 <a
