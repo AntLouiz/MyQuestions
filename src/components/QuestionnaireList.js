@@ -29,13 +29,13 @@ class QuestionnaireList extends React.Component {
     render() {
         return (
         <div>
-            <If condition={this.state.questionnaires.is_compound}>
-                <Redirect 
-                    to={`/questionnaire/detail/${this.state.questionnaires.key}/${this.state.questionnaires.id}`} 
-                />
-            </If>
             <Choose>
                 <When condition={!!this.state.questionnaires}>
+                    <If condition={this.state.questionnaires.is_compound}>
+                        <Redirect 
+                            to={`/questionnaire/detail/${this.state.questionnaires.key}/${this.state.questionnaires.id}`} 
+                        />
+                    </If>
                     <ul className="containner is-flex">
                         <div className="column is-5 is-offset-3">
                             {Object.keys(this.state.questionnaires).map((key) => {
