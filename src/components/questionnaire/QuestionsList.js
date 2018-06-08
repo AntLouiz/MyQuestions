@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import QuestionWidget from './QuestionWidget.js'
 
 const QuestionsList = (props) => {
@@ -27,6 +28,15 @@ const QuestionsList = (props) => {
       </For>
     </ul>
   );
+}
+
+QuestionsList.propTypes = {
+  questions: PropTypes.array,
+  editQuestion: PropTypes.func,
+  removeQuestion: PropTypes.func,
+  addAnswer: PropTypes.func,
+  editAnswer: PropTypes.func,
+  removeAnswer: PropTypes.func
 }
 
 export default QuestionsList;

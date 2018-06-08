@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import scrollToComponent from 'react-scroll-to-component'
 import EditInput from '../models/EditInput.js'
 import shortid from 'shortid'
@@ -130,6 +131,16 @@ class QuestionWidget extends React.Component {
             </div>
         );
     }
+}
+
+QuestionWidget.propTypes = {
+    id: PropTypes.integer,
+    description: PropTypes.string,
+    questionnarie_id: PropTypes.integer,
+    answers: PropTypes.array,
+    editQuestion: PropTypes.func,
+    removeQuestion: PropTypes.func,
+    addAnswer: PropTypes.func
 }
 
 export default QuestionWidget;
