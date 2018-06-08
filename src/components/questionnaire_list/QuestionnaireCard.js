@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import { 
     archiveQuestionnaire,
     restoreQuestionnaire
@@ -112,5 +113,12 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(restoreQuestionnaire(questionnaire_key, questionnaire_id))
     }
 })
+
+QuestionnaireCard.propTypes = {
+    _key: PropTypes.string,
+    id: PropTypes.integer,
+    title: PropTypes.string,
+    modal_active: PropTypes.bool
+}
 
 export default connect(null, mapDispatchToProps)(QuestionnaireCard);
