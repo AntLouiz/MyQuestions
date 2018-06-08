@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 class CompoundModalFooter extends React.Component {
   constructor(props) {
@@ -36,6 +37,13 @@ class CompoundModalFooter extends React.Component {
       </footer>
     );
   }
+}
+
+CompoundModalFooter.propTypes = {
+  is_loading: PropTypes.bool,
+  button_compound_enable: PropTypes.bool,
+  handleCompound: PropTypes.func,
+  hideModal: PropTypes.func
 }
 
 export default CompoundModalFooter

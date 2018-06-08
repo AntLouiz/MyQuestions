@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import shortid from 'shortid';
 import EditInput from '../../../models/EditInput.js';
 
@@ -30,6 +31,12 @@ const RadioAnswer = (props) => {
           />
       </div>
     )
+}
+
+RadioAnswer.propTypes = {
+  description: PropTypes.string,
+  saveAnswer: PropTypes.func,
+  editAnswer: PropTypes.func
 }
 
 export default RadioAnswer;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import { connect, dispatch } from 'react-redux';
 
 class CompoundModalSection extends React.Component {
@@ -61,6 +62,13 @@ const mapStateToProps = (state) => {
     return {
         questionnaires: state.questionnaire.data
     }
+}
+
+CompoundModalSection.propTypes = {
+  _key: PropTypes.string,
+  is_loading: PropTypes.bool,
+  questionnaires: PropTypes.array,
+  handleCheckbox: PropTypes.func
 }
 
 export default connect(mapStateToProps, null)(CompoundModalSection)

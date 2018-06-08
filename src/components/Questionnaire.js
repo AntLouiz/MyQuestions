@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from "react-router-dom"
+import PropTypes from 'prop-types'
 import shortid from 'shortid'
 import Header from './questionnaire/QuestionnaireHeader.js'
 import QuestionsList from './questionnaire/QuestionsList.js'
@@ -163,6 +164,17 @@ Questionnaire.defaultProps = {
     description: "",
     questions: [],
     is_saved: false,
+}
+
+Questionnaire.propTypes = {
+    id: PropTypes.integer,
+    _key: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    questions: PropTypes.array,
+    is_saved: PropTypes.bool,
+    saveQuestionnaire: PropTypes.func,
+    updateQuestionnaire: PropTypes.func
 }
 
 export default connect(null, mapDispatchToProps)(Questionnaire);

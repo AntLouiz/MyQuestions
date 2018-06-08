@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import EditInput from '../../models/EditInput.js'
 import shortid from 'shortid'
 import RadioAnswer from './answer/RadioAnswer.js'
@@ -72,6 +73,15 @@ class Answer extends React.Component {
             </div>
         );
     }
+}
+
+Answer.propTypes = {
+    id: PropTypes.integer,
+    question_id: PropTypes.integer,
+    description: PropTypes.string,
+    value: PropTypes.string,
+    type: PropTypes.string,
+    editAnswer: PropTypes.func
 }
 
 export default Answer;

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import PropTypes from 'prop-types'
 
 const CompoundModalHeader = (props) => {
     return (
@@ -12,6 +12,10 @@ const CompoundModalHeader = (props) => {
           </p>
         </header>
     );
+}
+
+CompoundModalHeader.propTypes = {
+  title: PropTypes.string
 }
 
 

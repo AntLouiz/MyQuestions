@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect, dispatch } from 'react-redux'
+import PropTypes from 'prop-types'
 import { fetchQuestionnaire } from '../actions'
 import Questionnaire from './Questionnaire.js'
 import QuestionnaireCard from './questionnaire_list/QuestionnaireCard.js'
@@ -81,5 +82,11 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchQuestionnaire(search_actives))
   }
 })
+
+QuestionnaireList.propTypes = {
+    questionnaires: PropTypes.array,
+    is_loading: PropTypes.bool,
+    search_actives: PropTypes.array
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionnaireList)

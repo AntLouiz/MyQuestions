@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import CompoundModalHeader from './compound_modal/CompoundModalHeader.js'
 import CompoundModalSection from './compound_modal/CompoundModalSection.js'
 import CompoundModalFooter from './compound_modal/CompoundModalFooter.js'
@@ -93,5 +94,16 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(compoundQuestionnaire(questionnaires))
     },
 })
+
+CompoundModal.propTypes = {
+  _key: PropTypes.string,
+  id: PropTypes.integer,
+  title: PropTypes.string,
+  questionnaires: PropTypes.array,
+  selected_questionnaires: PropTypes.array,
+  is_loading: PropTypes.bool,
+  is_active: PropTypes.bool,
+  hideModal: PropTypes.func
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(CompoundModal);

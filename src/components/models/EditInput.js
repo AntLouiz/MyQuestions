@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import AutosizeInput from 'react-input-autosize';
 
 class EditInput extends React.Component {
@@ -69,6 +70,15 @@ class EditInput extends React.Component {
 EditInput.defaultProps = {
     label: undefined,
     value: undefined
+}
+
+EditInput.propTypes = {
+    id: PropTypes.integer,
+    value: PropTypes.numeric,
+    type: PropTypes.string,
+    label: PropTypes.string,
+    editInput: PropTypes.func,
+    saveInput: PropTypes.func
 }
 
 export default EditInput;
