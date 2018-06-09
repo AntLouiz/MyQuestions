@@ -3,7 +3,7 @@ import { connect, dispatch } from 'react-redux'
 import PropTypes from 'prop-types'
 import { fetchQuestionnaire } from '../actions'
 import Questionnaire from './Questionnaire.js'
-import QuestionnaireCard from './questionnaire_list/QuestionnaireCard.js'
+import Card from './questionnaire_list/Card.js'
 import { Link, Redirect } from 'react-router-dom'
 
 class QuestionnaireList extends React.Component {
@@ -29,7 +29,7 @@ class QuestionnaireList extends React.Component {
 
     render() {
         return (
-        <div>
+        <div className="column">
             <Choose>
                 <When condition={!!this.state.questionnaires}>
                     <If condition={this.state.questionnaires.is_compound}>
@@ -46,7 +46,7 @@ class QuestionnaireList extends React.Component {
 
                                 return (
                                     <li key={key}>
-                                        <QuestionnaireCard 
+                                        <Card 
                                             id={id}
                                             _key={key}
                                             title={title}

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import QuestionWidget from './QuestionWidget.js'
 
-const QuestionsList = (props) => {
+const ListQuestion = (props) => {
   return (
     <ul style={{
       listStyle: "decimal", 
@@ -30,7 +30,7 @@ const QuestionsList = (props) => {
   );
 }
 
-QuestionsList.propTypes = {
+ListQuestion.propTypes = {
   questions: PropTypes.array,
   editQuestion: PropTypes.func,
   removeQuestion: PropTypes.func,
@@ -39,4 +39,4 @@ QuestionsList.propTypes = {
   removeAnswer: PropTypes.func
 }
 
-export default QuestionsList;
+export default ListQuestion;
