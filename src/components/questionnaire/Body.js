@@ -8,7 +8,7 @@ const Body = (props) => {
         <div className={props.className}>
             <ul>
                 <For each="option" of={props.options}>
-                    {option}
+                    <Option type={option.type} />
                 </For>
             </ul>
         </div>

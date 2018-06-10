@@ -1,10 +1,17 @@
-import React from 'react';
+import React from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { addTextOption } from '../../actions/options.js'
 
 class SideMenuOptions extends React.Component {
 
     constructor(props) {
         super(props);
+        this.addTextOption = this.addTextOption.bind(this)
+    }
+
+    addTextOption() {
+      this.props.addTextOption(this.props.questionnaire_key)
     }
 
     render() {
@@ -16,7 +23,12 @@ class SideMenuOptions extends React.Component {
               <ul class="menu-list">
                 <li><a class="button">Add multi answers</a></li>
                 <li><a class="button">Add yes/no question</a></li>
-                <li><a class="button">Add text</a></li>
+                <li>
+                  <a 
+                    onClick={this.addTextOption} 
+                    class="button">Add text
+                  </a>
+                </li>
                 <li><a class="button">Add start message</a></li>
                 <li><a class="button">Add end message</a></li>
               </ul>
@@ -42,4 +54,10 @@ SideMenuOptions.propTypes = {
   questionnaire_key: PropTypes.string.isRequired
 }
 
-export default SideMenuOptions;
+const mapDispatchToProps = (dispatch) => ({
+  addTextOption: (questionnaire_key) => {
+    dispatch(addTextOption(questionnaire_key))
+  }
+})
+
+export default connect(null, mapDispatchToProps)(SideMenuOptions);

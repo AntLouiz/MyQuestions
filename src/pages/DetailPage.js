@@ -12,24 +12,21 @@ class DetailPage extends React.Component {
         this.state = {
             questionnaire_id: props.match.params.id,
             questionnaire_key: props.match.params.key,
-            is_loading: true,
-            data: props.data
+            is_loading: true
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({
-            data: nextProps.data[this.state.questionnaire_key], 
-            is_loading: nextProps.is_loading
-        })
+        let { is_loading } = nextProps
+        this.setState({ is_loading })
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.fetchQuestionnaireByKey(this.state.questionnaire_key);
     }
 
     render() {
-        if(this.state.is_loading)
+        if(this.props.is_loading)
             return (<div>loading...</div>)
         else if(this.props.data){
             return (
@@ -37,9 +34,9 @@ class DetailPage extends React.Component {
                     <Questionnaire
                         id={this.state.questionnaire_id}
                         _key={this.state.questionnaire_key}
-                        title={this.state.data.title}
-                        description={this.state.data.description}
-                        options={this.state.data.options}
+                        title={this.props.data.title}
+                        description={this.props.data.description}
+                        options={this.props.data.options}
                         is_saved={true}
                     />
                 </div>

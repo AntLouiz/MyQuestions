@@ -35,10 +35,8 @@ export const fetchQuestionnaire = (search_actives = true) => async dispatch => {
 }
 
 export const fetchQuestionnaireByKey = (questionnaire_key) => async dispatch => {
-  questionnaireRef.on("value", (snapshot) => {
+  questionnaireRef.child(questionnaire_key).on("value", (snapshot) => {
     let payload = snapshot.val();
-    if(!payload)
-      payload = null;
 
     dispatch({
       type: FETCH_QUESTIONNAIRE_BY_KEY,
