@@ -22,6 +22,12 @@ const Option = (props) => {
             <a>
                 remove
             </a>
+            <a>
+                up
+            </a>
+            <a>
+                down
+            </a>
         </div>
     );
 }
