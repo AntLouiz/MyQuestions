@@ -7,9 +7,9 @@ import TextOption from './options/TextOption.js'
 
 const Option = (props) => {
     let options = {
-        'yes_no': <YesNoOption />,
-        'multi_answer': <MultiAnswerOption />,
-        'text': <TextOption />
+        'yes_no': <YesNoOption description={props.description}/>,
+        'multi_answer': <MultiAnswerOption description={props.description} />,
+        'text': <TextOption description={props.description} />
     }
 
     const chooseOption = () => {

@@ -11,6 +11,7 @@ const Body = (props) => {
                     <Option 
                         id={key}
                         type={props.options[key].type}
+                        description={props.options[key].description}
                     />
                 </For>
             </ul>
