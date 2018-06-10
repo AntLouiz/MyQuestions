@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 
 class SideMenuOptions extends React.Component {
 
@@ -37,5 +38,8 @@ class SideMenuOptions extends React.Component {
     }
 }
 
+SideMenuOptions.propTypes = {
+  questionnaire_key: PropTypes.string.isRequired
+}
 
 export default SideMenuOptions;

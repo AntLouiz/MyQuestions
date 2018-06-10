@@ -14,7 +14,10 @@ class Questionnaire extends React.Component {
     render() {
         return (
             <div className='container columns'>
-                <SideMenuOptions className="column is-4"/>
+                <SideMenuOptions 
+                    className="column is-4"
+                    questionnaire_key={this.props._key}
+                />
                 <div className="column is-12">
                     <Header 
                         title={this.props.title}
