@@ -7,8 +7,11 @@ const Body = (props) => {
     return (
         <div className={props.className}>
             <ul>
-                <For each="option" of={props.options}>
-                    <Option type={option.type} />
+                <For each="key" of={Object.keys(props.options)}>
+                    <Option 
+                        id={key}
+                        type={props.options[key].type}
+                    />
                 </For>
             </ul>
         </div>

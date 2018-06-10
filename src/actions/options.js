@@ -6,18 +6,18 @@ import {
 
 
 export const addTextOption = (questionnaire_key) => async dispatch => {
+    let text_option_id = shortid.generate();
     let text_option = {'type':'text'};
     let payload = null;
-    let options = [];
+    let options = {};
 
     questionnaireRef.child(questionnaire_key).on('value', (snapshot) => {
         payload = snapshot.val();
-        options = snapshot.val().options;
         
-        if(options)
-            options.push({'type': 'text'})
-        else 
-            options = [{'type':'text'}]
+        if(snapshot.val().options)
+            options = snapshot.val().options
+
+        options[text_option_id] = {'type': 'text'}
     })
 
     questionnaireRef.child(questionnaire_key).update({

@@ -33,6 +33,7 @@ const Option = (props) => {
 }
 
 Option.propTypes = {
+    id: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired
 }
 
