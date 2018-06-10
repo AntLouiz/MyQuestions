@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Option from './Option.js'
 
 
@@ -6,18 +7,21 @@ const Body = (props) => {
     return (
         <div className={props.className}>
             <ul>
-                <li>
-                    <Option type="text"/>
-                </li>
-                <li>
-                    <Option type="multi_answer" />
-                </li>
-                <li>
-                    <Option type="yes_no"/>
-                </li>
+                <For each="option" of={props.options}>
+                    {option}
+                </For>
             </ul>
         </div>
     );
+}
+
+
+Body.defaultProps = {
+    options: []
+}
+
+Body.propTypes = {
+    options: PropTypes.array.isRequired
 }
 
 

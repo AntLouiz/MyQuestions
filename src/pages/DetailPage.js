@@ -39,7 +39,7 @@ class DetailPage extends React.Component {
                         _key={this.state.questionnaire_key}
                         title={this.state.data.title}
                         description={this.state.data.description}
-                        questions={this.state.data.questions}
+                        options={this.state.data.options}
                         is_saved={true}
                     />
                 </div>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Header from './questionnaire/Header.js'
 import Body from './questionnaire/Body.js'
 import SideMenuOptions from './questionnaire/SideMenuOptions.js'
+import store from '../store.js'
 
 
 class Questionnaire extends React.Component {
@@ -21,6 +22,7 @@ class Questionnaire extends React.Component {
                     <Body 
                         _key={this.props._key}
                         className="column is-7"
+                        options={this.props.options}
                     />
                 </div>
             </div>
@@ -33,7 +35,7 @@ Questionnaire.propTypes = {
     _key: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
-    questions: PropTypes.array,
+    options: PropTypes.array,
     is_saved: PropTypes.bool,
     saveQuestionnaire: PropTypes.func,
     updateQuestionnaire: PropTypes.func
